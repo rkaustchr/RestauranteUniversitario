@@ -1,0 +1,14 @@
+CREATE TABLE Departamento(sigla varchar(255) PRIMARY KEY NOT NULL, nome VARCHAR(255));
+
+curso(sigla varchar(255) PRIMARY KEY NOT NULL, nome varchar(255),  siglaDepartamento varchar(255), FOREIGN KEY (siglaDepartamento) references Departamento(sigla));
+
+create table funcionario(cpf varchar(11) PRIMARY KEY, nome varchar(255), matricula integer, anoIngresso date, sexo varchar(255), titulo varchar(255),  siglaDepartamento varchar(255), FOREIGN KEY (siglaDepartamento) references Departamento(sigla),  cpfConsumidor varchar(11), FOREIGN KEY (cpfConsumidor) references Consumidor(cpf));
+
+create table Aluno(cpf varchar(11) PRIMARY KEY, nome varchar(255), matricula integer, anoIngresso date, sexo varchar(255), titulo varchar(255),  siglaCurso varchar(255), FOREIGN KEY (siglaCurso) references Curso(sigla),  cpfConsumidor varchar(11), FOREIGN KEY (cpfConsumidor) references Consumidor(cpf));
+
+create table Refeicao(id integer auto_increment PRIMARY KEY, turno varchar(255), descricao varchar(255), opcaoVegan varchar(255));
+
+create table Consumidor(cpf varchar(11) PRIMARY KEY, nome varchar(255), matricula integer, anoIngresso date, sexo varchar(255), titulo varchar(255));
+
+create table Ticket(pago boolean, idRefeicao integer, FOREIGN KEY (idRefeicao) references Refeicao(id), cpfConsumidor varchar(11), FOREIGN KEY (cpfConsumidor) references Consumidor(cpf) );
+
