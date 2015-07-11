@@ -7,7 +7,7 @@
 <title>SisRU - Status do Banco de Dados</title>
 </head>
 <body>
-	Status: Ok!
+	Status do banco de dados: <%= request.getAttribute("dbstatus") %>
 
 </body>
 </html>

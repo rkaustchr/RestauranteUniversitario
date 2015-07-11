@@ -82,7 +82,7 @@ public class DBStatus extends HttpServlet {
         conn.close();
         
         request.setAttribute("dbstatus", status);
-        request.getRequestDispatcher("WEB-INF/DBStatus.jsp").forward(request,response);
+        //request.getRequestDispatcher("WEB-INF/DBStatus.jsp").forward(request,response);
 	}
 
 }
