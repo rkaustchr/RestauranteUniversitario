@@ -11,9 +11,9 @@ import entidades.Titulo;
 import entidades.value_objects.DepartamentoVO;
 
 public class GatewayConsumidor {
-	
+
 	public GatewayConsumidor() {
-		
+	
 	}
 	
 	public ArrayList<Consumidor> listarConsumidores() throws Exception {
