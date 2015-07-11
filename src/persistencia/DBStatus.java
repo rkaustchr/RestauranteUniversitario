@@ -52,7 +52,7 @@ public class DBStatus extends HttpServlet {
 	
 	public void conectar() throws ClassNotFoundException, SQLException {
 		Class.forName("org.h2.Driver");
-        Connection conn = DriverManager.getConnection("jdbc:h2:~/restaurante", "admin", "admin");
+        Connection conn = DriverManager.getConnection("jdbc:h2:file:~/restaurante", "admin", "admin");
         // add application code here
         String sql = "Insert into teste values(1, 'Racicley')";
         conn.createStatement().execute(sql);
