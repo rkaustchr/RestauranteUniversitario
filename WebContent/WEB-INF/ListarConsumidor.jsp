@@ -18,26 +18,6 @@
 		return new String[]{"","Nome","Matricula","Ano Ingresso", "Sexo","CPF", "Departamento","Curso" };
 	}
 
-	public Collection<String> getValuesConsumidor(Consumidor consumidori){
-		Collection<String> results = new ArrayList<String>();
-		results.add("<input type='radio' name ='cpf' value = '"+consumidori.getCpf().toString()+"'>");
-		results.add(consumidori.getNome());
-		results.add(""+consumidori.getMatricula());
-		results.add(""+consumidori.getAnoIngresso());
-		results.add(consumidori.getSexo().toString());
-		results.add(consumidori.getCpf().toString());
-		try{
-			Aluno alunoi = (Aluno)consumidori;
-			results.add(alunoi.getCurso().getDepartamento().getSigla());
-			results.add(alunoi.getCurso().getSigla());
-		}catch (Exception e){
-			Funcionario funcionarioi = (Funcionario)consumidori;
-			results.add(funcionarioi.getDepartamento().getSigla());
-			results.add("-");
-		}
-		return results;
-	}
-
 %>
 
 <%@include file="messagePage.jsp" %>
@@ -48,7 +28,7 @@
 		<input type="submit" name ="acaoListar" value = "Criar Aluno">
 		<input type="submit" name ="acaoListar" value = "Criar Funcionario">
 				
-		<table width="80%">
+		<table width="100%">
 		  <tr>
 		  <% for (String headeri: getHeaders()){ %>
 		  <th><%=headeri %></th>
@@ -56,17 +36,31 @@
 		  </tr>
 		  <%
 			  try{
-				  Collection<Consumidor> consumidoresDisponiveis = (Collection<Consumidor>)request.getAttribute("consumidores");
-				  for (Consumidor consumidori: consumidoresDisponiveis){
-					  %> <tr align="center"> <%
-					  for (String headeri: getValuesConsumidor(consumidori)){ %>
-					  <td><%=headeri %></td>
-					  <%}
-					  %> </tr> <%
-				  }
+			  	ArrayList<Consumidor> results = (ArrayList<Consumidor>) request.getAttribute("listaConsumidores");
+				int i;
+				for (i=0; i < results.size(); i++ ) {
+			  %>
+			  	<tr align="center">
+			  	<td><input type='radio' name ='cpf' value='<%=results.get(i).getCpf().toString() %>'></td>
+			  	<td><%=results.get(i).getNome() %></td>
+			  	<td><%=results.get(i).getMatricula() %></td>
+			  	<td><%=results.get(i).getAnoIngresso() %></td>
+			  	<td><%=results.get(i).getSexo().toString() %></td>
+			  	<td><%=results.get(i).getCpf().toString() %></td>
+			  	<td><% 
+			  		try {
+				  		Aluno a = (Aluno)results.get(i); %>
+				  		<%=a.getCurso().getDepartamento().getSigla() %></td>
+				  		<td><%=a.getCurso().getNome() %></td>
+			  		<%} catch (Exception e) {
+			  			Funcionario f = (Funcionario)results.get(i);%>
+			  			<%=f.getDepartamento().getSigla() %>
+			  			<td> - </td>
+			  		<%}
+			  		}
+					%></tr> <%
 			  }catch(Exception e){ }
 		  %>
-		  
 		</table>
 	</form>
 </body>

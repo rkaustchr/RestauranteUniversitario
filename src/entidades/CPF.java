@@ -25,4 +25,8 @@ public class CPF {
 	public String getListaDigitos(){
 		return digitos;
 	}
+	
+	public String toString() {
+		return digitos;
+	}
 }
