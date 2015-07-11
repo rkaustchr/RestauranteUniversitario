@@ -56,6 +56,7 @@ public class DBStatus extends HttpServlet {
         // add application code here
         String sql = "Insert into teste values(1, 'Racicley')";
         conn.createStatement().execute(sql);
+        conn.createStatement().executeQuery(sql);
         conn.close();
 	}
 
