@@ -1,7 +1,6 @@
 package controladores.ccu;
 
 import javax.servlet.http.HttpSession;
-
 import controladores.ccu.exceptions.CursoNotFound;
 import controladores.ccu.exceptions.DepartamentoNotFound;
 import controladores.ccu.exceptions.NomeNotFoundException;
@@ -9,7 +8,6 @@ import controladores.ccu.exceptions.SiglaAlreadyExistsException;
 import controladores.ccu.exceptions.SiglaNotFoundException;
 import entidades.Curso;
 import entidades.Departamento;
-import entidades.value_objects.CursoVO;
 import entidades.value_objects.DepartamentoVO;
 
 public class GerirCurso {
@@ -17,8 +15,8 @@ public class GerirCurso {
 		return Curso._listarCursosDisponiveis(session);
 	}
 
-	public static CursoVO buscarCurso(HttpSession session, String sigla) throws CursoNotFound{
-		CursoVO cursoAntigo = new CursoVO("", sigla,null);
+	public static Curso buscarCurso(HttpSession session, String sigla) throws CursoNotFound{
+		Curso cursoAntigo = new Curso("", sigla,null);
 		try {
 			cursoAntigo = Curso._buscarCurso(session, cursoAntigo.getSigla());
 		} catch (NullPointerException e) {
@@ -37,7 +35,7 @@ public class GerirCurso {
 		if (dpto == null){
 			throw new DepartamentoNotFound();
 		} else{
-			CursoVO curso = new CursoVO(nome,sigla,dpto);
+			Curso curso = new Curso(nome,sigla,dpto);
 			
 			if (Curso._buscarCurso(session,sigla) == null){
 				if (sigla==""){
@@ -61,7 +59,7 @@ public class GerirCurso {
 		if (dpto == null){
 			throw new DepartamentoNotFound();
 		} else{
-			CursoVO cursoAntigo = buscarCurso(session,sigla);
+			Curso cursoAntigo = buscarCurso(session,sigla);
 			if (cursoAntigo == null){
 				throw new CursoNotFound();
 			}else{

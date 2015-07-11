@@ -6,11 +6,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import controladores.ccu.GerirCurso;
 import controladores.ccu.exceptions.CursoNotFound;
 import entidades.Refeicao;
-import entidades.value_objects.CursoVO;
 
 /**
  * Servlet implementation class VerRefeicao

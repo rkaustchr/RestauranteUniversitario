@@ -2,23 +2,16 @@ package controladores;
 
 import java.io.IOException;
 import java.util.Collection;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import controladores.ccu.GerirCurso;
 import controladores.ccu.GerirDepartamento;
 import controladores.ccu.exceptions.CursoNotFound;
 import controladores.ccu.exceptions.DepartamentoNotFound;
-import controladores.ccu.exceptions.NomeNotFoundException;
-import controladores.ccu.exceptions.SiglaAlreadyExistsException;
-import controladores.ccu.exceptions.SiglaNotFoundException;
 import entidades.Curso;
-import entidades.Departamento;
-import entidades.value_objects.CursoVO;
 import entidades.value_objects.DepartamentoVO;
 
 @WebServlet("/AtualizarCurso")
@@ -44,7 +37,7 @@ public class AtualizarCurso extends HttpServlet {
 				break;
 			default:
 				try {
-					CursoVO cursoAntigo = GerirCurso.buscarCurso(request.getSession(),request.getParameter("sigla"));
+					Curso cursoAntigo = GerirCurso.buscarCurso(request.getSession(),request.getParameter("sigla"));
 					request.setAttribute("curso antigo",cursoAntigo);
 					request.getRequestDispatcher("WEB-INF/AtualizarCurso.jsp").forward(request,response);
 				} catch (CursoNotFound e2) {

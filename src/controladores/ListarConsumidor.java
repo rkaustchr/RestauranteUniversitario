@@ -1,35 +1,33 @@
 package controladores;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import entidades.Aluno;
 import entidades.CPF;
 import entidades.Consumidor;
-import entidades.Curso;
-import entidades.Departamento;
-import entidades.Funcionario;
-import entidades.Sexo;
-import entidades.Titulo;
-import entidades.value_objects.CursoVO;
-import entidades.value_objects.DepartamentoVO;
+import roteiros.RoteiroListarConsumidor;
 
 @WebServlet("/ListarConsumidor")
 public class ListarConsumidor extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		listarConsumidores(request, response);
+		//listarConsumidores(request, response);
+		RoteiroListarConsumidor rListarConsumidor = new RoteiroListarConsumidor();
+		try {
+			ArrayList<Consumidor> consumidores = rListarConsumidor.executar();
+			request.setAttribute("listaConsumidores", consumidores);
+			request.getRequestDispatcher("WEB-INF/ListarConsumidor.jsp").forward(request,response);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -48,13 +46,9 @@ public class ListarConsumidor extends HttpServlet {
 			case "Ver":
 				verConsumidor(request,response);
 				break;
-			// nos requisitos nao podemos remover consumidores
-//			case "Remover":
-//				removeConsumidor(request,response);
-//				break;
 			case "":
 			default:
-				listarConsumidores(request,response);				
+				doGet(request, response); // listarConsumidores(request,response); 			
 		}
 	}
 
@@ -70,17 +64,15 @@ public class ListarConsumidor extends HttpServlet {
 		request.getRequestDispatcher("VerConsumidor").forward(request,response);
 	}
 
-//	private void removeConsumidor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		request.getRequestDispatcher("RemoverConsumidor").forward(request,response);
-//	}
-
+	
+	// << Limpeza de Código: Remover listarConsumidores, _listarConsumidores  >>
+	/*
 	private void listarConsumidores(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("consumidores", _listarConsumidoresDisponiveis(request));
 		request.getRequestDispatcher("WEB-INF/ListarConsumidor.jsp").forward(request,response);
 	}
 
 	// metodos de persistencia de Consumidor
-
 	public static Collection<Consumidor> _listarConsumidoresDisponiveis(HttpServletRequest request){
 		
 		HttpSession session = request.getSession();
@@ -116,6 +108,7 @@ public class ListarConsumidor extends HttpServlet {
 
 		return consumidoresDisponiveis;
 	}
+	*/
 	
 	public static void _adicionarConsumidor(HttpServletRequest request, Consumidor consumido) {
 		Set<Consumidor> consumidoresDisponiveis = (Set<Consumidor>)request.getSession().getAttribute("consumidoresDisponiveis");
