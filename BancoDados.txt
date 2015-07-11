@@ -12,3 +12,6 @@ create table Refeicao(id integer auto_increment PRIMARY KEY, turno varchar(255),
 
 create table Ticket(pago boolean, idRefeicao integer, FOREIGN KEY (idRefeicao) references Refeicao(id), cpfConsumidor varchar(11), FOREIGN KEY (cpfConsumidor) references Consumidor(cpf) );
 
+create table status(id int primary key, value varchar(10));
+
+insert into status(id, value) values(1, '1');

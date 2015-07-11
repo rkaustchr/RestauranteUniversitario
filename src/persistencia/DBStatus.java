@@ -33,7 +33,7 @@ public class DBStatus extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		try {
-			conectar();
+			conectar(request, response);
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -50,14 +50,39 @@ public class DBStatus extends HttpServlet {
 		doGet(request, response);
 	}
 	
-	public void conectar() throws ClassNotFoundException, SQLException {
+	public void conectar( HttpServletRequest request, HttpServletResponse response ) throws ClassNotFoundException, SQLException, ServletException, IOException {
 		Class.forName("org.h2.Driver");
         Connection conn = DriverManager.getConnection("jdbc:h2:file:~/restaurante", "admin", "admin");
-        // add application code here
-        String sql = "Insert into teste values(1, 'Racicley')";
-        conn.createStatement().execute(sql);
-        conn.createStatement().executeQuery(sql);
+        
+        String status;
+        
+        String sql = "Update status set value = '1' where id = 1";
+        try {
+			conn.createStatement().execute(sql);
+			status = "Ok!";
+		} catch (SQLException e) {
+			status = "Banco de dados não existia!<br/>";
+			status += "Tentando criar as tabelas do banco de dados...<br/>";
+			
+			sql = 
+					"CREATE TABLE Departamento(sigla varchar(255) PRIMARY KEY NOT NULL, nome VARCHAR(255));"+
+							"create table curso(sigla varchar(255) PRIMARY KEY NOT NULL, nome varchar(255),  siglaDepartamento varchar(255), FOREIGN KEY (siglaDepartamento) references Departamento(sigla));"+
+							"create table Consumidor(cpf varchar(11) PRIMARY KEY, nome varchar(255), matricula integer, anoIngresso date, sexo varchar(255), titulo varchar(255));"+
+							"create table funcionario(cpf varchar(11) PRIMARY KEY, nome varchar(255), matricula integer, anoIngresso date, sexo varchar(255), titulo varchar(255),  siglaDepartamento varchar(255), FOREIGN KEY (siglaDepartamento) references Departamento(sigla),  cpfConsumidor varchar(11), FOREIGN KEY (cpfConsumidor) references Consumidor(cpf));" +
+							"create table Aluno(cpf varchar(11) PRIMARY KEY, nome varchar(255), matricula integer, anoIngresso date, sexo varchar(255), titulo varchar(255),  siglaCurso varchar(255), FOREIGN KEY (siglaCurso) references Curso(sigla),  cpfConsumidor varchar(11), FOREIGN KEY (cpfConsumidor) references Consumidor(cpf));" +
+							"create table Refeicao(id integer auto_increment PRIMARY KEY, turno varchar(255), descricao varchar(255), opcaoVegan varchar(255));"+
+							"create table Ticket(pago boolean, idRefeicao integer, FOREIGN KEY (idRefeicao) references Refeicao(id), cpfConsumidor varchar(11), FOREIGN KEY (cpfConsumidor) references Consumidor(cpf) );"+
+							"create table status(id int primary key, value varchar(10));" +
+							"insert into status(id, value) values(1, '1');";
+			conn.createStatement().execute(sql);
+			
+			status += "Tabelas criadas com sucesso!";
+		}
+        //conn.createStatement().executeQuery(sql);
         conn.close();
+        
+        request.setAttribute("dbstatus", status);
+        request.getRequestDispatcher("WEB-INF/DBStatus.jsp").forward(request,response);
 	}
 
 }
