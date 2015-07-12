@@ -44,7 +44,7 @@ public class DepartamentoFinder implements IFinder {
 	public IGateway find(String id) {
 		String sql = "SELECT * FROM departamento"
 				+ "WHERE sigla='"+ id +"';";
-		IGateway gDepartamento = new DepartamentoGateway(null, null);
+		IGateway gDepartamento = null;
 		
 		if (conexao.abrirConexao()) {
 			ResultSet rs = conexao.executarSelectQuery(sql);

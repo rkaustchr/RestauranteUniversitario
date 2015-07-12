@@ -37,10 +37,9 @@ public class ListarDepartamento extends HttpServlet {
 		switch (acao) {
 			case "Criar":
 				request.getRequestDispatcher("CriarDepartamento").forward(request,response);
-				
 				break;
 			case "Atualizar":
-				request.getRequestDispatcher("AtualizarDepartamento").forward(request,response);
+				doGet(request,response);
 				break;
 			case "Ver":
 				request.getRequestDispatcher("VerDepartamento").forward(request,response);
