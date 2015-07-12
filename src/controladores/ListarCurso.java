@@ -2,9 +2,6 @@ package controladores;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import gateway.IGateway;
+import entidades.Curso;
 import roteiros.RoteiroListarCurso;
 
 @WebServlet("/ListarCurso")
@@ -24,7 +21,7 @@ public class ListarCurso extends HttpServlet {
 		//listarCursos(request, response);
 		RoteiroListarCurso rListarCurso = new RoteiroListarCurso();
 		try {
-			ArrayList<IGateway> cursos = rListarCurso.executar();
+			ArrayList<Curso> cursos = rListarCurso.executar();
 			request.setAttribute("listaCursos", cursos);
 			request.getRequestDispatcher("WEB-INF/ListarCurso.jsp").forward(request,response);
 		} catch (Exception e) {

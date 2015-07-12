@@ -4,15 +4,14 @@ import java.io.Serializable;
 import java.util.Collection;
 import javax.servlet.http.HttpSession;
 import persistencia.RepositorioCurso;
-import entidades.value_objects.DepartamentoVO;
 
 public class Curso implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String nome;
 	private String sigla;
-	private DepartamentoVO departamento;
+	private Departamento departamento;
 
-	public Curso(String nome, String sigla, DepartamentoVO departamento) {
+	public Curso(String nome, String sigla, Departamento departamento) {
 		this.nome = nome;
 		this.sigla = sigla;
 		this.departamento = departamento;
@@ -26,7 +25,7 @@ public class Curso implements Serializable {
 		return sigla;
 	}
 	
-	public DepartamentoVO getDepartamento() {
+	public Departamento getDepartamento() {
 		return departamento;
 	}
 
@@ -34,7 +33,7 @@ public class Curso implements Serializable {
 		this.nome = nome;
 	}
 	
-	public void setDepartamento(DepartamentoVO departamento){
+	public void setDepartamento(Departamento departamento){
 		this.departamento = departamento;
 	}
 

@@ -2,8 +2,12 @@ package roteiros;
 
 import java.util.ArrayList;
 
+import entidades.Departamento;
+import entidades.Refeicao;
+import gateway.DepartamentoGateway;
 import gateway.IGateway;
 import gateway.RefeicaoFinder;
+import gateway.RefeicaoGateway;
 
 public class RoteiroListarRefeicao {
 	
@@ -11,11 +15,15 @@ public class RoteiroListarRefeicao {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public ArrayList<IGateway> executar() throws Exception {
+	public ArrayList<Refeicao> executar() throws Exception {
 		RefeicaoFinder fRefeicao = new RefeicaoFinder();
+		ArrayList<Refeicao> retorno = new ArrayList<Refeicao>();
 		
-		return fRefeicao.findAll();
+		for (IGateway gRefeicao : fRefeicao.findAll()) {
+			retorno.add(new Refeicao(((RefeicaoGateway) gRefeicao).getId(), ((RefeicaoGateway) gRefeicao).getDescricao(), ((RefeicaoGateway) gRefeicao).getTurno(), ((RefeicaoGateway) gRefeicao).getOpcaoVegan()));
+		}
 		
+		return retorno;		
 	}
 
 }

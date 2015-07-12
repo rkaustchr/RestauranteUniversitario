@@ -38,7 +38,7 @@ public class ListarRefeicao extends HttpServlet {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		RoteiroListarRefeicao rListarRefeicao = new RoteiroListarRefeicao();
 		try {
-			ArrayList<IGateway> refeicoes = rListarRefeicao.executar();
+			ArrayList<Refeicao> refeicoes = rListarRefeicao.executar();
 			request.setAttribute("listaRefeicoes", refeicoes);
 			request.getRequestDispatcher("WEB-INF/ListarRefeicao.jsp").forward(request,response);
 		} catch (Exception e) {

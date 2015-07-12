@@ -1,4 +1,4 @@
-<%@page import="gateway.RefeicaoGateway"%>
+<%@page import="entidades.Refeicao"%>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="entidades.Refeicao" %>
 
@@ -27,7 +27,7 @@
 		  <tr><th>op</<th><th>Turno</th><th>Descrição</th><th>Opção Vegetariana</th></tr>
 		  <%
 			  try{
-				  ArrayList<RefeicaoGateway> listaRefeicao = (ArrayList<RefeicaoGateway>)request.getAttribute("listaRefeicoes");
+				  ArrayList<Refeicao> listaRefeicao = (ArrayList<Refeicao>)request.getAttribute("listaRefeicoes");
 				  int i;
 				  for (i=0; i < listaRefeicao.size(); i++){
 					  %> <tr align="center"> 
