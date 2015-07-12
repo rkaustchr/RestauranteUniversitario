@@ -55,9 +55,10 @@ public class ConexaoBD {
 			return true;
 			
 		} catch (ClassNotFoundException e) {
+			System.out.println("Erro ao abrir conexão: Classe Não encontrada!");
 			return false;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			System.out.println("Erro ao abrir conexão: " + e.getMessage());
 			return false;
 		}
 	    	    
