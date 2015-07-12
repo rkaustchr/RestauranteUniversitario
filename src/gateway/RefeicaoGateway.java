@@ -1,19 +1,24 @@
 package gateway;
 
 import entidades.Turno;
+import persistencia.ConexaoBD;
 
 public class RefeicaoGateway implements IGateway {
 	private int id;
 	private String descricao;
 	private String opcaoVegan;
-	private Turno turno;
+	private String turno;
 	
-	public RefeicaoGateway(int id, String descricao, String opcaoVegan, Turno turno) {
+	protected ConexaoBD conexao;
+	
+	public RefeicaoGateway(int id, String descricao, String opcaoVegan, String turno) {
 		super();
 		this.id = id;
 		this.turno = turno;
 		this.descricao = descricao;
 		this.opcaoVegan = opcaoVegan;
+		
+		conexao = new ConexaoBD();
 	}
 	
 	public int getId() {
@@ -28,26 +33,40 @@ public class RefeicaoGateway implements IGateway {
 		return opcaoVegan;
 	}
 
-	public Turno getTurno() {
+	public String getTurno() {
 		return turno;
 	}
 
 	@Override
 	public void insert() {
-		// TODO Auto-generated method stub
-
+		int res;
+		String sql = "INSERT INTO refeicao(turno, descricao, opcaVegan) "
+				+ "VAUES('"+ this.turno +"', '"+ this.descricao +"', '"+ this.opcaoVegan +"');";
+		
+		if ( conexao.abrirConexao() ) {
+			res = conexao.executarCUDQuery(sql);
+			conexao.fecharConexao();
+		}
+		
 	}
+
+	@Override
+	public void update() {
+		int res;
+		String sql = "UPDATE refeicao"
+				+ "SET descricao='"+ this.descricao +"', '" + "'opcaoVegan='"+ this.opcaoVegan +"'"
+						+ "WHERE id='"+ this.id +"';";
+		
+		if ( conexao.abrirConexao() ) {
+			res = conexao.executarCUDQuery(sql);
+			conexao.fecharConexao();
+		}
+		
+	}	// TODO Auto-generated method stub
 
 	@Override
 	public void delete() {
 		// TODO Auto-generated method stub
 
 	}
-
-	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-
-	}
-
 }

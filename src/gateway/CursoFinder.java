@@ -24,7 +24,7 @@ public class CursoFinder implements IFinder {
 				try {
 					while (rs.next()) {
 						DepartamentoFinder fDept = new DepartamentoFinder();
-						DepartamentoGateway gDept = (DepartamentoGateway) fDept.find(rs.getString("departamento"));
+						DepartamentoGateway gDept = (DepartamentoGateway) fDept.find(rs.getString("siglaDepartamento"));
 						
 						gCursos.add( new CursoGateway(rs.getString("nome"), rs.getString("sigla"), gDept) );
 					}
@@ -52,7 +52,7 @@ public class CursoFinder implements IFinder {
 				try {
 					while (rs.next()) {
 						DepartamentoFinder fDept = new DepartamentoFinder();
-						DepartamentoGateway gDept = (DepartamentoGateway) fDept.find(rs.getString("departamento"));
+						DepartamentoGateway gDept = (DepartamentoGateway) fDept.find(rs.getString("siglaDepartamento"));
 						
 						gCurso = new CursoGateway(rs.getString("nome"), rs.getString("sigla"), gDept);
 					}

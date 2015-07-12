@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import entidades.Departamento;
 import entidades.Refeicao;
+import entidades.Turno;
 import gateway.DepartamentoGateway;
 import gateway.IGateway;
 import gateway.RefeicaoFinder;
@@ -20,7 +21,7 @@ public class RoteiroListarRefeicao {
 		ArrayList<Refeicao> retorno = new ArrayList<Refeicao>();
 		
 		for (IGateway gRefeicao : fRefeicao.findAll()) {
-			retorno.add(new Refeicao(((RefeicaoGateway) gRefeicao).getId(), ((RefeicaoGateway) gRefeicao).getDescricao(), ((RefeicaoGateway) gRefeicao).getTurno(), ((RefeicaoGateway) gRefeicao).getOpcaoVegan()));
+			retorno.add(new Refeicao(((RefeicaoGateway) gRefeicao).getId(), ((RefeicaoGateway) gRefeicao).getDescricao(), Turno.valueOf(((RefeicaoGateway) gRefeicao).getTurno()), ((RefeicaoGateway) gRefeicao).getOpcaoVegan()));
 		}
 		
 		return retorno;		
