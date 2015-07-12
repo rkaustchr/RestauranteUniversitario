@@ -6,7 +6,7 @@ import entidades.Titulo;
 import persistencia.ConexaoBD;
 
 public class AlunoGateway extends ConsumidorGateway implements IGateway {
-	CursoGateway gCurso;
+	private CursoGateway gCurso;
 	
 	protected ConexaoBD conexao;
 	

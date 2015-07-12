@@ -11,6 +11,10 @@ import persistencia.ConexaoBD;
 
 public class AlunoFinder implements IFinder {
 	protected ConexaoBD conexao;
+	
+	public AlunoFinder() {
+		conexao = new ConexaoBD();
+	}
 
 	@Override
 	public ArrayList<IGateway> findAll() {

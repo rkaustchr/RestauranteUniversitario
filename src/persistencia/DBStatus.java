@@ -65,15 +65,15 @@ public class DBStatus extends HttpServlet {
 			status += "Tentando criar as tabelas do banco de dados...<br/>";
 			
 			sql = 
-					"CREATE TABLE Departamento(sigla varchar(255) PRIMARY KEY NOT NULL, nome VARCHAR(255));"+
-							"create table curso(sigla varchar(255) PRIMARY KEY NOT NULL, nome varchar(255),  siglaDepartamento varchar(255), FOREIGN KEY (siglaDepartamento) references Departamento(sigla));"+
-							"create table Consumidor(cpf varchar(11) PRIMARY KEY, nome varchar(255), matricula integer, anoIngresso date, sexo varchar(255), titulo varchar(255));"+
-							"create table funcionario(cpf varchar(11) PRIMARY KEY, nome varchar(255), matricula integer, anoIngresso date, sexo varchar(255), titulo varchar(255),  siglaDepartamento varchar(255), FOREIGN KEY (siglaDepartamento) references Departamento(sigla),  cpfConsumidor varchar(11), FOREIGN KEY (cpfConsumidor) references Consumidor(cpf));" +
-							"create table Aluno(cpf varchar(11) PRIMARY KEY, nome varchar(255), matricula integer, anoIngresso date, sexo varchar(255), titulo varchar(255),  siglaCurso varchar(255), FOREIGN KEY (siglaCurso) references Curso(sigla),  cpfConsumidor varchar(11), FOREIGN KEY (cpfConsumidor) references Consumidor(cpf));" +
-							"create table Refeicao(id integer auto_increment PRIMARY KEY, turno varchar(255), descricao varchar(255), opcaoVegan varchar(255));"+
-							"create table Ticket(pago boolean, idRefeicao integer, FOREIGN KEY (idRefeicao) references Refeicao(id), cpfConsumidor varchar(11), FOREIGN KEY (cpfConsumidor) references Consumidor(cpf) );"+
-							"create table status(id int primary key, value varchar(10));" +
-							"insert into status(id, value) values(1, '1');";
+					"CREATE TABLE Departamento(sigla varchar(255) PRIMARY KEY NOT NULL, nome VARCHAR(255));"
+					+ "create table Curso(sigla varchar(255) PRIMARY KEY NOT NULL, nome varchar(255),  siglaDepartamento varchar(255), FOREIGN KEY (siglaDepartamento) references Departamento(sigla));"
+					+ "create table Consumidor(cpf varchar(11) PRIMARY KEY, nome varchar(255), matricula integer, anoIngresso date, sexo varchar(255), titulo varchar(255));"
+					+ "create table Funcionario(cpfConsumidor varchar(11) PRIMARY KEY, siglaDepartamento varchar(255), FOREIGN KEY (siglaDepartamento) references Departamento(sigla),  FOREIGN KEY (cpfConsumidor) references Consumidor(cpf));"
+					+ "create table Aluno(cpfConsumidor varchar(11) PRIMARY KEY, siglaCurso varchar(255), FOREIGN KEY (siglaCurso) references Curso(sigla), FOREIGN KEY (cpfConsumidor) references Consumidor(cpf));"
+					+ "create table Refeicao(id integer auto_increment PRIMARY KEY, turno varchar(255), descricao varchar(255), opcaoVegan varchar(255));"
+					+ "create table Ticket(pago boolean, idRefeicao integer, FOREIGN KEY (idRefeicao) references Refeicao(id), cpfConsumidor varchar(11), FOREIGN KEY (cpfConsumidor) references Consumidor(cpf) );"
+					+ "create table status(id int primary key, value varchar(10));"
+					+ "insert into status(id, value) values(1, '1');";
 			conn.createStatement().execute(sql);
 			
 			status += "Tabelas criadas com sucesso!";

@@ -1,17 +1,16 @@
 package gateway;
 
-import entidades.Consumidor;
 import persistencia.ConexaoBD;
 
 public class TicketGateway implements IGateway {
 	private int id;
 	private boolean pago;
 	private RefeicaoGateway refeicao;
-	private ConsumidorGateway consumidor;
+	private IGateway consumidor;
 	
 	protected ConexaoBD conexao;
 	
-	public TicketGateway(int id, boolean pago, RefeicaoGateway refeicao, ConsumidorGateway consumidor) {
+	public TicketGateway(int id, boolean pago, RefeicaoGateway refeicao, IGateway consumidor) {
 		super();
 		this.id = id;
 		this.pago = pago;
@@ -33,7 +32,7 @@ public class TicketGateway implements IGateway {
 		return refeicao;
 	}
 
-	public ConsumidorGateway getConsumidor() {
+	public IGateway getConsumidor() {
 		return consumidor;
 	}
 
@@ -53,9 +52,9 @@ public class TicketGateway implements IGateway {
 	@Override
 	public void update() {
 		int res;
-		String sql = "UPDATE ticket"
-				+ "SET pago='"+ this.pago +"', '" + "'refeicao='"+ this.refeicao +"'"
-						+ "WHERE sigla='"+ this.id +"';";
+		String sql = "UPDATE ticket "
+				+ "SET pago='"+ this.pago +"','refeicao='"+ this.refeicao +"' "
+						+ "WHERE id='"+ this.id +"';";
 		
 		if ( conexao.abrirConexao() ) {
 			res = conexao.executarCUDQuery(sql);

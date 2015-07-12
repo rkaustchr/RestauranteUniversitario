@@ -4,26 +4,28 @@ import entidades.CPF;
 import entidades.Departamento;
 import entidades.Sexo;
 import entidades.Titulo;
+import persistencia.ConexaoBD;
 
 public class FuncionarioGateway extends ConsumidorGateway implements IGateway {
-	private Departamento departamento;
+	private DepartamentoGateway gDepartamento;
 	
-	public FuncionarioGateway(String nome, int matricula, int anoIngresso, Departamento departamento) {
-		super(nome, matricula, anoIngresso);
-		this.departamento = departamento;
-	}
-		   
-	public FuncionarioGateway(String nome, int matricula, int anoIngresso, Sexo sexo, Titulo titulo, CPF cpf, Departamento departamento) {
+	protected ConexaoBD conexao;
+	
+	public FuncionarioGateway(String nome, int matricula, int anoIngresso, Sexo sexo, Titulo titulo, CPF cpf, IGateway departamento) {
 		super(nome, matricula, anoIngresso, sexo, titulo, cpf);
-		this.departamento = departamento;
+		this.gDepartamento = (DepartamentoGateway) departamento;
+		
+		conexao = new ConexaoBD();
 	}
+	
+	
 	
 	@Override
 	public void insert() {
 		int res;
 		
 		String sql = "INSERT INTO Funcionario(cpfConsumidor, siglaDepartamento)"
-				+ "VALUES('"+ this.getCpf() +"','"+this.departamento.getSigla()+"';";
+				+ "VALUES('"+ this.getCpf() +"','"+this.gDepartamento.getSigla()+"';";
 		
 		if ( conexao.abrirConexao() ) {
 			res = conexao.executarCUDQuery(sql);
@@ -49,7 +51,7 @@ public class FuncionarioGateway extends ConsumidorGateway implements IGateway {
 		int res;
 		
 		String sql = "UPDATE Funcionario"
-				+ "SET siglaDepartamento='"+this.departamento.getSigla()+"'"
+				+ "SET siglaDepartamento='"+this.gDepartamento.getSigla()+"'"
 						+ "WHERE cpfConsumidor='"+ this.getCpf()+"';";
 		
 		if ( conexao.abrirConexao() ) {
