@@ -2,6 +2,7 @@ package persistencia;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ConexaoBD {
@@ -13,7 +14,11 @@ public class ConexaoBD {
 	 * To execute a query, call an execute method from Statement 
 	 * such as the following:
 	 *   	execute: Returns true if the first object that the query 
-	 *   				returns is a ResultSet object. Use this method if the query could return one or more ResultSet objects. Retrieve the ResultSet objects returned from the query by repeatedly calling Statement.getResultSet.
+	 *   				returns is a ResultSet object. Use this method 
+	 *   				if the query could return one or more ResultSet 
+	 *   				objects. Retrieve the ResultSet objects returned 
+	 *   				from the query by repeatedly calling 
+	 *   				Statement.getResultSet.
 	 *   	executeQuery: Returns one ResultSet object.
 	 *   	executeUpdate: Returns an integer representing the number 
 	 *   				of rows affected by the SQL statement. 
@@ -40,14 +45,59 @@ public class ConexaoBD {
 	 *
 	 */
 	
-	Connection conexao;
+	private Connection conexao;
 	
-	public void conectar( ) throws ClassNotFoundException, SQLException {
-	    Class.forName("org.h2.Driver");
-	    conexao = DriverManager.getConnection("jdbc:h2:~/restaurante", "admin", "admin");
-	    // add application code here
-	    System.out.println("Conectou! :) ");
-	    conexao.close();
+	public boolean abrirConexao( )  {
+	    try {
+	    	
+			Class.forName("org.h2.Driver");
+			conexao = DriverManager.getConnection("jdbc:h2:~/restaurante", "admin", "admin");
+			return true;
+			
+		} catch (ClassNotFoundException e) {
+			return false;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			return false;;
+		}
+	    	    
 	}
+	
+	public void fecharConexao() {
+		try {
+			conexao.close();
+		} catch (SQLException e) {
+			// Erro ao fechar conexão com o bancos
+		}
+	}
+	
+	/**
+	 * Método que executa uma consulta de Insert/Update/Delete ao banco de dados, deve-se fazer uma chamada ao método 
+	 * 		abrirConexao() antes;
+	 * @param sql Consulta de Insert/Update/Delete a ser executada.
+	 * @return Número de linhas afetadas pela consulta, -1 se ocorrer um erro.
+	 */
+	public int executarCUDQuery( String sql) {
+		try {
+			return conexao.createStatement().executeUpdate(sql);
+		} catch (SQLException e) {
+			return -1;
+		}
+	}
+	
+	/**
+	 * Método que executa uma consulta de Select ao banco de dados,  deve-se fazer uma chamada ao método 
+	 * 		abrirConexao() antes;
+	 * @param sql Consulta Select a ser executada
+	 * @return Resultados da consulta, NULL se ocorrer um erro.
+	 */
+	public ResultSet executarSelectQuery( String sql ) {
+		try {
+			return conexao.createStatement().executeQuery(sql);
+		} catch (SQLException e) {
+			return null;
+		}
+	}
+
 	
 }

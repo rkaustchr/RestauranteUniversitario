@@ -8,10 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import controladores.ccu.GerirDepartamento;
-import entidades.Consumidor;
 import entidades.Departamento;
-import gateway.DepartamentoGateway;
-import gateway.IGateway;
 import roteiros.RoteiroListarDepartamento;
 
 @WebServlet("/ListarDepartamento")

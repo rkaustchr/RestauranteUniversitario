@@ -1,7 +1,6 @@
 package roteiros;
 
 import java.util.ArrayList;
-
 import entidades.Departamento;
 import gateway.DepartamentoFinder;
 import gateway.DepartamentoGateway;
