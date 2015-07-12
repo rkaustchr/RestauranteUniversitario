@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import controladores.ccu.GerirDepartamento;
+import entidades.Consumidor;
+import entidades.Departamento;
+import gateway.DepartamentoGateway;
 import gateway.IGateway;
 import roteiros.RoteiroListarDepartamento;
 
@@ -19,9 +22,9 @@ public class ListarDepartamento extends HttpServlet {
 		//listarDepartamentos(request, response);
 		RoteiroListarDepartamento rListarDepartamento = new RoteiroListarDepartamento();
 		try {
-			ArrayList<IGateway> departamentos	 = rListarDepartamento.executar();
+			ArrayList<IGateway> departamentos = rListarDepartamento.executar();
 			request.setAttribute("listaDepartamentos", departamentos);
-			request.getRequestDispatcher("WEB-INF/ListarConsumidor.jsp").forward(request,response);
+			request.getRequestDispatcher("WEB-INF/ListarDepartamento.jsp").forward(request,response);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
