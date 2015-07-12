@@ -41,6 +41,7 @@ public class DepartamentoGateway implements IGateway{
 			} else {
 				return true;
 			}*/
+			conexao.fecharConexao();
 		}
 		
 	}
@@ -60,6 +61,7 @@ public class DepartamentoGateway implements IGateway{
 			} else {
 				return true;
 			}*/
+			conexao.fecharConexao();
 		}
 		
 	}

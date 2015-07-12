@@ -17,7 +17,7 @@ public class RefeicaoFinder implements IFinder {
 	}
 
 	@Override
-	public IGateway find() {
+	public IGateway find(String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
