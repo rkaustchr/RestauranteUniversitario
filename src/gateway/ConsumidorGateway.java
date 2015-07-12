@@ -10,9 +10,9 @@ import entidades.Sexo;
 import entidades.Titulo;
 import entidades.value_objects.DepartamentoVO;
 
-public class GatewayConsumidor {
+public class ConsumidorGateway {
 
-	public GatewayConsumidor() {
+	public ConsumidorGateway() {
 	
 	}
 	

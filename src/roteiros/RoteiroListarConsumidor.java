@@ -2,12 +2,12 @@ package roteiros;
 
 import java.util.ArrayList;
 import entidades.Consumidor;
-import gateway.GatewayConsumidor;
+import gateway.ConsumidorGateway;
 
 public class RoteiroListarConsumidor  {
 
 	public ArrayList<Consumidor> executar() throws Exception {
-		GatewayConsumidor gConsumidor = new GatewayConsumidor();
+		ConsumidorGateway gConsumidor = new ConsumidorGateway();
 		
 		return gConsumidor.listarConsumidores();
 		

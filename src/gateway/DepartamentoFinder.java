@@ -20,7 +20,6 @@ public class DepartamentoFinder implements IFinder {
 	@Override
 	public ArrayList<IGateway> findAll() {
 		ArrayList<IGateway> gDepartamentos = new ArrayList<IGateway>();
-									//String nome, int matricula, int anoIngresso, Sexo sexo, Titulo titulo, CPF cpf, Curso curso // (String nome, String sigla, DepartamentoVO departamento)
 		gDepartamentos.add(new DepartamentoGateway("Racicley", "CLEY"));
 		
 		return gDepartamentos;
