@@ -1,6 +1,6 @@
 <%@ page import="java.util.Collection" %>
 <%@ page import="entidades.value_objects.DepartamentoVO" %>
-<%@ page import="gateway.DepartamentoGateway" %>
+<%@ page import="entidades.Departamento" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -24,7 +24,7 @@
 		  
 		  <%
 			  try{
-				  ArrayList<DepartamentoGateway> results = (ArrayList<DepartamentoGateway>) request.getAttribute("listaDepartamentos");
+				  ArrayList<Departamento> results = (ArrayList<Departamento>) request.getAttribute("listaDepartamentos");
 					int i;
 					for (i=0; i < results.size(); i++ ) {
 		  %>

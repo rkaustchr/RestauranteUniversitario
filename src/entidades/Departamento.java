@@ -10,6 +10,23 @@ import persistencia.RepositorioDepartamento;
 import entidades.value_objects.DepartamentoVO;
 
 public class Departamento {
+	private String nome;
+	private String sigla;
+	
+	
+	public Departamento(String nome, String sigla) {
+		super();
+		this.nome = nome;
+		this.sigla = sigla;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public String getSigla() {
+		return sigla;
+	}
 
 	public static Collection<DepartamentoVO> _listarDepartamentosDisponiveis(HttpSession session){
 		RepositorioDepartamento repositorio = new RepositorioDepartamento(session);

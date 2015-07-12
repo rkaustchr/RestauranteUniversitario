@@ -22,7 +22,7 @@ public class ListarDepartamento extends HttpServlet {
 		//listarDepartamentos(request, response);
 		RoteiroListarDepartamento rListarDepartamento = new RoteiroListarDepartamento();
 		try {
-			ArrayList<IGateway> departamentos = rListarDepartamento.executar();
+			ArrayList<Departamento> departamentos = rListarDepartamento.executar();
 			request.setAttribute("listaDepartamentos", departamentos);
 			request.getRequestDispatcher("WEB-INF/ListarDepartamento.jsp").forward(request,response);
 		} catch (Exception e) {
