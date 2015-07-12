@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import entidades.Refeicao;
 import entidades.Turno;
+import gateway.IGateway;
+import roteiros.RoteiroListarDepartamento;
+import roteiros.RoteiroListarRefeicao;
 
 /**
  * Servlet implementation class ListarRefeicao
@@ -33,14 +36,15 @@ public class ListarRefeicao extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		
-		ArrayList<Refeicao> listaRefeicao = new ArrayList<>();
-		listaRefeicao.add(new Refeicao(1, "Picanha na brasa", Turno.NOITE , "Cocô"));
-		listaRefeicao.add(new Refeicao(2, "Costela acebolada", Turno.MANHA , "Grama"));
-		
-		request.setAttribute("refeicoes", listaRefeicao);
-		
-		listarRefeicoes(request,response);
+		RoteiroListarRefeicao rListarRefeicao = new RoteiroListarRefeicao();
+		try {
+			ArrayList<IGateway> refeicoes = rListarRefeicao.executar();
+			request.setAttribute("listaRefeicoes", refeicoes);
+			request.getRequestDispatcher("WEB-INF/ListarRefeicao.jsp").forward(request,response);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**

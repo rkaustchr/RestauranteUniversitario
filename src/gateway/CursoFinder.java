@@ -6,8 +6,10 @@ public class CursoFinder implements IFinder {
 
 	@Override
 	public ArrayList<IGateway> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<IGateway> gCurso = new ArrayList<IGateway>();
+		
+		gCurso.add(new CursoGateway("Racicley", "CLEY", new DepartamentoGateway("DepRacicley", "DCLEY")));
+		return gCurso;
 	}
 
 	@Override

@@ -1,5 +1,5 @@
-<%@ page import="java.util.Collection" %>
-<%@ page import="entidades.value_objects.CursoVO" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="gateway.CursoGateway" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -23,13 +23,14 @@
 		  
 		  <%
 			  try{
-				  Collection<CursoVO> cursosDisponiveis = (Collection<CursoVO>)request.getAttribute("cursos");
-				  for (CursoVO cursoi: cursosDisponiveis){
+				  ArrayList<CursoGateway> listaCurso = (ArrayList<CursoGateway>)request.getAttribute("listaCursos");
+				  int i;
+				  for (i=0; i < listaCurso.size(); i++){
 		  %>
 			  <tr align="center">
-			    <td><input type="radio" name='sigla' value='<%=cursoi.getSigla()%>'><%=cursoi.getSigla()%></td>
-			    <td><%=cursoi.getNome()%></td>
-			    <td><%=cursoi.getDepartamento().getSigla()%></td>
+			    <td><input type="radio" name='sigla' value='<%=listaCurso.get(i).getSigla()%>'><%=listaCurso.get(i).getSigla()%></td>
+			    <td><%=listaCurso.get(i).getNome()%></td>
+			    <td><%=listaCurso.get(i).getDepartamento().getSigla()%></td>
 			  </tr>
 		  <%
 				  }
