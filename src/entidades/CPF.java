@@ -4,9 +4,10 @@ public class CPF {
 	
 	private String digitos;
 	
-	public CPF(String digitos) throws Exception {
+	public CPF(String digitos)  {
 		if (digitos.length() != 11){
-			throw new Exception("O CPF deve conter 11 digitos!");
+			//CPF inválido
+			
 			// tambem podemos validar os calculos do dv aqui!
 		}else{
 			// usando o clone = nao permitir alteracoes externas a classe CPF nos valores do array

@@ -1,20 +1,18 @@
 package gateway;
 
-import entidades.Aluno;
 import entidades.CPF;
-import entidades.Curso;
 import entidades.Sexo;
 import entidades.Titulo;
 import persistencia.ConexaoBD;
 
 public class AlunoGateway extends ConsumidorGateway implements IGateway {
-	Curso curso;
+	CursoGateway gCurso;
 	
 	protected ConexaoBD conexao;
 	
-	public AlunoGateway( String nome, int matricula, int anoIngresso, Sexo sexo, Titulo titulo, CPF cpf, Curso curso ) {
+	public AlunoGateway( String nome, int matricula, int anoIngresso, Sexo sexo, Titulo titulo, CPF cpf, IGateway curso ) {
 		super(nome, matricula, anoIngresso, sexo, titulo, cpf);
-		this.curso = curso;
+		this.gCurso = (CursoGateway) curso;
 		
 		conexao = new ConexaoBD();
 	}
@@ -23,7 +21,7 @@ public class AlunoGateway extends ConsumidorGateway implements IGateway {
 		int res;
 		
 		String sql = "INSERT INTO aluno(cpfConsumidor, siglaCurso)"
-				+ "VALUES('"+ this.getCpf() +"','"+this.curso.getSigla()+"';";
+				+ "VALUES('"+ this.getCpf() +"','"+this.gCurso.getSigla()+"';";
 		
 		if ( conexao.abrirConexao() ) {
 			res = conexao.executarCUDQuery(sql);
@@ -49,7 +47,7 @@ public class AlunoGateway extends ConsumidorGateway implements IGateway {
 		int res;
 		
 		String sql = "UPDATE Aluno"
-				+ "SET siglaCurso='"+this.curso.getSigla()+"'"
+				+ "SET siglaCurso='"+this.gCurso.getSigla()+"'"
 						+ "WHERE cpfConsumidor='"+ this.getCpf()+"';";
 		
 		if ( conexao.abrirConexao() ) {
