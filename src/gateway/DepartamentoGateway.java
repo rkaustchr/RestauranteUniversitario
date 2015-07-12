@@ -5,9 +5,16 @@ public class DepartamentoGateway implements IGateway{
 	private String sigla;
 
 	public DepartamentoGateway(String nome, String sigla) {
-		super();
 		this.nome = nome;
 		this.sigla = sigla;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public String getSigla() {
+		return sigla;
 	}
 
 	@Override
