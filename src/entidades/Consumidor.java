@@ -1,9 +1,5 @@
 package entidades;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-
 public abstract class Consumidor {
 	private String nome;
 	private int matricula;
