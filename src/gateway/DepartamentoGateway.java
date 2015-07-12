@@ -31,8 +31,8 @@ public class DepartamentoGateway implements IGateway{
 	public void insert() {
 		int res;
 		String sql = "INSERT INTO departamento(sigla, nome) "
-				+ "VAUES('"+ this.sigla +"', '"+ this.nome +"');";
-		
+				+ "VALUES('"+ this.sigla +"', '"+ this.nome +"');";
+
 		if ( conexao.abrirConexao() ) {
 			res = conexao.executarCUDQuery(sql);
 			
