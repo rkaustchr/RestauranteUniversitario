@@ -1,6 +1,7 @@
 package controladores;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,7 +14,10 @@ import controladores.ccu.exceptions.DepartamentoNotFound;
 import controladores.ccu.exceptions.NomeNotFoundException;
 import controladores.ccu.exceptions.SiglaAlreadyExistsException;
 import controladores.ccu.exceptions.SiglaNotFoundException;
+import entidades.Departamento;
 import entidades.value_objects.DepartamentoVO;
+import gateway.DepartamentoGateway;
+import roteiros.RoteiroListarDepartamento;
 
 @WebServlet("/CriarCurso")
 public class CriarCurso extends HttpServlet {
@@ -21,8 +25,16 @@ public class CriarCurso extends HttpServlet {
        
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String acao = (String) request.getParameter("acaoCriar");
-		Collection<DepartamentoVO> departamentosDisponiveis = GerirDepartamento.listarDepartamentos(request.getSession());
-		request.setAttribute("departamentosDisponiveis", departamentosDisponiveis);
+		RoteiroListarDepartamento rListarDepartamento = new RoteiroListarDepartamento();
+		ArrayList<Departamento> departamentosDisponiveis = new ArrayList<Departamento>();
+		try {
+			departamentosDisponiveis = rListarDepartamento.executar();
+			request.setAttribute("departamentosDisponiveis", departamentosDisponiveis);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 		if (acao != null){
 			switch (acao) {
