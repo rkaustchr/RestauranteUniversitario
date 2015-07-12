@@ -10,8 +10,14 @@ import gateway.DepartamentoFinder;
 import gateway.DepartamentoGateway;
 
 public class RoteiroCriarDepartamento {
-
-	public void execute(String nome, String sigla) throws SiglaNotFoundException, NomeNotFoundException, SiglaAlreadyExistsException{
+	private String nome;
+	private String sigla;
+	
+	public RoteiroCriarDepartamento(String nome, String sigla){
+		this.nome = nome;
+		this.sigla = sigla;
+	}
+	public void execute() throws SiglaNotFoundException, NomeNotFoundException, SiglaAlreadyExistsException{
 		
 		DepartamentoFinder fDepartamento = new DepartamentoFinder();
 		if(fDepartamento.find(sigla) == null){

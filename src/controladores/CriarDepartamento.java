@@ -37,10 +37,10 @@ public class CriarDepartamento extends HttpServlet {
 	private void criarDepartamento(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nome = (String) request.getParameter("nome");
 		String sigla = (String) request.getParameter("sigla");
-		RoteiroCriarDepartamento rCriarDepartamento = new RoteiroCriarDepartamento();
+		RoteiroCriarDepartamento rCriarDepartamento = new RoteiroCriarDepartamento(nome, sigla);
 		try {
 			//GerirDepartamento.criarDepartamento(request.getSession(), nome, sigla);
-			rCriarDepartamento.execute(nome, sigla);
+			rCriarDepartamento.execute();
 			request.setAttribute("message", "Novo departamento criado!");
 			request.getRequestDispatcher("ListarDepartamento").forward(request,response);
 		} catch (SiglaNotFoundException | NomeNotFoundException e2) {
