@@ -20,7 +20,7 @@ public class RoteiroAtualizarCurso {
 		this.siglaDepartamento = siglaDepartamento;
 	}
 
-	public Curso execute() throws CursoNotFound {
+	public Curso executar() throws CursoNotFound {
 		DepartamentoFinder fDepartamento = new DepartamentoFinder();
 		CursoGateway gCurso = new CursoGateway(this.nome, this.id, (DepartamentoGateway) fDepartamento.find(siglaDepartamento));
 		gCurso.update();

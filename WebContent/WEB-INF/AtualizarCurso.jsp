@@ -11,7 +11,6 @@
 </head>
 <%@include file="messagePage.jsp" %>
 <% Curso curso = (Curso)request.getAttribute("cursoAntigo");%>
-<% Collection<Departamento> departamentosDisponiveis = (Collection<Departamento>)request.getAttribute("departamentosDisponiveis"); %>
 
 <body>
 	<form action="AtualizarCurso" method="post">
@@ -20,12 +19,7 @@
 	String sigla = curso.getSigla(); %>
 	Nome : <input type="text" name ="nome" value = "<%=nome%>">
 	Sigla : <%=sigla%> <input type="hidden" name ="sigla" value = "<%=sigla%>">
-	Departamento : <select name ="departamento">
-	<%  for(Departamento dptoi : departamentosDisponiveis){ %>
-		<option value="<%=dptoi.getSigla()%>" <%= dptoi.equals(curso.getDepartamento())? "selected" : ""  %>><%=dptoi.getNome()%></option>
-	<% } %>
-	</select>	
-	<br>
+	Departamento : 	<%=curso.getDepartamento().getSigla()%><br>
 	<input type="submit" name="acaoAtualizar" value="Atualizar">
 	<input type="submit" name="acaoAtualizar" value="Cancelar">
 <% } catch (NullPointerException e)  { %>

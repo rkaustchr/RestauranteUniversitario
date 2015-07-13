@@ -37,7 +37,7 @@ public class CriarDepartamento extends HttpServlet {
 		RoteiroCriarDepartamento rCriarDepartamento = new RoteiroCriarDepartamento(nome, sigla);
 		try {
 			//GerirDepartamento.criarDepartamento(request.getSession(), nome, sigla);
-			rCriarDepartamento.execute();
+			rCriarDepartamento.executar();
 			request.setAttribute("message", "Novo departamento criado!");
 			request.getRequestDispatcher("ListarDepartamento").forward(request,response);
 		} catch (SiglaNotFoundException | NomeNotFoundException e2) {

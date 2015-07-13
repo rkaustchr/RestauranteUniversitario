@@ -15,7 +15,7 @@ public class RoteiroCriarDepartamento {
 		this.nome = nome;
 		this.sigla = sigla;
 	}
-	public void execute() throws SiglaNotFoundException, NomeNotFoundException, SiglaAlreadyExistsException{
+	public void executar() throws SiglaNotFoundException, NomeNotFoundException, SiglaAlreadyExistsException{
 		
 		DepartamentoFinder fDepartamento = new DepartamentoFinder();
 		if(fDepartamento.find(sigla) == null){
