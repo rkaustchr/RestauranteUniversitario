@@ -6,9 +6,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import controladores.ccu.GerirDepartamento;
 import controladores.ccu.exceptions.DepartamentoNotFound;
 import entidades.Departamento;
+import roteiros.RoteiroVerDepartamento;
 
 @WebServlet("/VerDepartamento")
 public class VerDepartamento extends HttpServlet {
@@ -27,8 +27,9 @@ public class VerDepartamento extends HttpServlet {
 			default:
 				Departamento departamentoAntigo;
 			try {
-				departamentoAntigo = GerirDepartamento.buscarDepartamento(request.getSession(),request.getParameter("sigla"));
-				request.setAttribute("departamento antigo",departamentoAntigo);
+				RoteiroVerDepartamento rVerDepartamento = new RoteiroVerDepartamento(request.getParameter("sigla"));
+				departamentoAntigo = rVerDepartamento.executar();
+				request.setAttribute("departamentoAntigo",departamentoAntigo);
 				request.getRequestDispatcher("WEB-INF/VerDepartamento.jsp").forward(request,response);
 			} catch (DepartamentoNotFound e) {
 				request.setAttribute("erro", "Departamento não existe!");

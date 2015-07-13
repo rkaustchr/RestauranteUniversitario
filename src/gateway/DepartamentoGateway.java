@@ -63,6 +63,8 @@ public class DepartamentoGateway implements IGateway{
 				return true;
 			}*/
 			conexao.fecharConexao();
+		} else {
+			System.out.println("Erro: Não foi possivel abrir a conexão!");
 		}
 		
 	}

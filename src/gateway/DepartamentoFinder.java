@@ -42,8 +42,7 @@ public class DepartamentoFinder implements IFinder {
 
 	@Override
 	public IGateway find(String id) {
-		String sql = "SELECT * FROM departamento"
-				+ "WHERE sigla='"+ id +"';";
+		String sql = "SELECT * FROM departamento WHERE sigla='"+ id +"';";
 		IGateway gDepartamento = null;
 		
 		if (conexao.abrirConexao()) {
@@ -58,10 +57,13 @@ public class DepartamentoFinder implements IFinder {
 					e.printStackTrace();
 				}
 				
+			} else {
+				System.out.println("SQL returna null");
 			}
+			
 			conexao.fecharConexao();
 		}
-			
+		
 		return gDepartamento;
 	}
 }

@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import controladores.ccu.GerirDepartamento;
 import controladores.ccu.exceptions.DepartamentoNotFound;
 import entidades.Departamento;
+import roteiros.RoteiroAtualizarDepartamento;
+import roteiros.RoteiroVerDepartamento;
 
 @WebServlet("/AtualizarDepartamento")
 public class AtualizarDepartamento extends HttpServlet {
@@ -30,8 +32,9 @@ public class AtualizarDepartamento extends HttpServlet {
 				break;
 			default:
 				try {
-					Departamento departamentoAntigo = GerirDepartamento.buscarDepartamento(request.getSession(),request.getParameter("sigla"));
-					request.setAttribute("departamento antigo",departamentoAntigo);
+					RoteiroVerDepartamento rVerDepartamento = new RoteiroVerDepartamento(request.getParameter("sigla"));
+					Departamento departamentoAntigo = rVerDepartamento.executar();
+					request.setAttribute("departamentoAntigo",departamentoAntigo);
 					request.getRequestDispatcher("WEB-INF/AtualizarDepartamento.jsp").forward(request,response);
 				} catch (DepartamentoNotFound e2) {
 					request.setAttribute("erro", "O departamento informado nao existe");
@@ -42,21 +45,17 @@ public class AtualizarDepartamento extends HttpServlet {
 	
 	
 	private void atualizarDepartamentoAntigo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String nome = (String) request.getParameter("nome");
-		String sigla = (String) request.getParameter("sigla");
+		RoteiroAtualizarDepartamento rAtualizarDepartamento = new RoteiroAtualizarDepartamento(request.getParameter("sigla"), request.getParameter("nome"));
 		
-		if (nome=="" || sigla==""){
-			request.setAttribute("erro", "Um departamento deve conter um nome e uma sigla");
+		try {
+			Departamento departamentoNovo = rAtualizarDepartamento.executar();
+			
+			request.setAttribute("departamentoNovo",departamentoNovo);
 			request.getRequestDispatcher("WEB-INF/AtualizarDepartamento.jsp").forward(request,response);
-		}else{
-			try {
-				GerirDepartamento.atualizarDepartamento(request.getSession(), nome, sigla);
-				request.getRequestDispatcher("ListarDepartamento").forward(request,response);
-				
-			} catch (DepartamentoNotFound e2) {
-				request.setAttribute("erro", "O departamento informado nao existe");
-				request.getRequestDispatcher("WEB-INF/AtualizarDepartamento.jsp").forward(request,response);
-			}			
-		}
+		} catch (DepartamentoNotFound e2) {
+			request.setAttribute("erro", "O departamento informado nao existe");
+			request.getRequestDispatcher("WEB-INF/AtualizarDepartamento.jsp").forward(request,response);
+		} 
+		
 	}
 }

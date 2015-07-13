@@ -8,7 +8,7 @@
 <title>Atualizar departamento</title>
 </head>
 <%@include file="messagePage.jsp" %>
-<% Departamento dept = (Departamento)request.getAttribute("departamento antigo");%>
+<% Departamento dept = (Departamento)request.getAttribute("departamentoAntigo");%>
 <body>
 	<form action="AtualizarDepartamento" method="post">
 <% try{ 

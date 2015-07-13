@@ -39,20 +39,17 @@ public class ListarDepartamento extends HttpServlet {
 				request.getRequestDispatcher("CriarDepartamento").forward(request,response);
 				break;
 			case "Atualizar":
-				doGet(request,response);
+				request.setAttribute("id", request.getParameter("sigla"));
+				request.getRequestDispatcher("AtualizarDepartamento").forward(request,response);
 				break;
 			case "Ver":
+				request.setAttribute("id", request.getParameter("sigla"));
 				request.getRequestDispatcher("VerDepartamento").forward(request,response);
 				break;
 			case "":
 			default:
-				listarDepartamentos(request,response);				
+				doGet(request,response); 				
 		}
-	}
-
-	private void listarDepartamentos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("departamentos", GerirDepartamento.listarDepartamentos(request.getSession()));
-		request.getRequestDispatcher("WEB-INF/ListarDepartamento.jsp").forward(request,response);
 	}
 
 }
