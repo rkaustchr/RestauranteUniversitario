@@ -1,5 +1,5 @@
 <%@ page import="java.util.Collection" %>
-<%@ page import="entidades.value_objects.DepartamentoVO" %>
+<%@ page import="entidades.Departamento" %>
 <%@ page import="entidades.Departamento" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
