@@ -8,7 +8,6 @@ import controladores.ccu.exceptions.SiglaAlreadyExistsException;
 import controladores.ccu.exceptions.SiglaNotFoundException;
 import entidades.Curso;
 import entidades.Departamento;
-import entidades.value_objects.DepartamentoVO;
 
 public class GerirCurso {
 	public static Object listarCursos(HttpSession session) {
@@ -30,7 +29,7 @@ public class GerirCurso {
 	}
 
 	public static void criarCurso(HttpSession session, String nome, String sigla, String siglaDpto) throws SiglaNotFoundException, NomeNotFoundException, SiglaAlreadyExistsException, DepartamentoNotFound {
-		DepartamentoVO dpto = Departamento._buscarDepartamento(session,siglaDpto);
+		Departamento dpto = Departamento._buscarDepartamento(session,siglaDpto);
 		
 		if (dpto == null){
 			throw new DepartamentoNotFound();
@@ -54,7 +53,7 @@ public class GerirCurso {
 	}
 
 	public static void atualizarCurso(HttpSession session, String nome, String sigla, String siglaDpto) throws CursoNotFound, DepartamentoNotFound{
-		DepartamentoVO dpto = Departamento._buscarDepartamento(session,siglaDpto);
+		Departamento dpto = Departamento._buscarDepartamento(session,siglaDpto);
 		
 		if (dpto == null){
 			throw new DepartamentoNotFound();

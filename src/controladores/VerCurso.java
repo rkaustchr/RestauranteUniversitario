@@ -12,7 +12,6 @@ import controladores.ccu.GerirDepartamento;
 import controladores.ccu.exceptions.CursoNotFound;
 import controladores.ccu.exceptions.DepartamentoNotFound;
 import entidades.Curso;
-import entidades.value_objects.DepartamentoVO;
 
 @WebServlet("/VerCurso")
 public class VerCurso extends HttpServlet {

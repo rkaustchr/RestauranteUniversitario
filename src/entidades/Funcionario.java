@@ -2,22 +2,20 @@ package entidades;
 
 import java.util.Collection;
 
-import entidades.value_objects.DepartamentoVO;
-
 public class Funcionario extends Consumidor{
-	private DepartamentoVO departamento;
+	private Departamento departamento;
 
-	public Funcionario(String nome, int matricula, int anoIngresso, DepartamentoVO departamento) {
+	public Funcionario(String nome, int matricula, int anoIngresso, Departamento departamento) {
 		super(nome, matricula, anoIngresso);
 		this.departamento = departamento;
 	}
 
-	public Funcionario(String nome, int matricula, int anoIngresso, Sexo sexo, Titulo titulo, CPF cpf, DepartamentoVO departamento) {
+	public Funcionario(String nome, int matricula, int anoIngresso, Sexo sexo, Titulo titulo, CPF cpf, Departamento departamento) {
 		super(nome, matricula, anoIngresso, sexo, titulo, cpf);
 		this.departamento = departamento;
 	}
 	
-	public DepartamentoVO getDepartamento() {
+	public Departamento getDepartamento() {
 		return departamento;
 	}
 }

@@ -1,16 +1,14 @@
 package controladores;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import controladores.ccu.GerirDepartamento;
 import controladores.ccu.exceptions.DepartamentoNotFound;
-import entidades.value_objects.DepartamentoVO;
+import entidades.Departamento;
 
 @WebServlet("/VerDepartamento")
 public class VerDepartamento extends HttpServlet {
@@ -27,7 +25,7 @@ public class VerDepartamento extends HttpServlet {
 				request.getRequestDispatcher("ListarDepartamento").forward(request,response);
 				break;
 			default:
-			DepartamentoVO departamentoAntigo;
+				Departamento departamentoAntigo;
 			try {
 				departamentoAntigo = GerirDepartamento.buscarDepartamento(request.getSession(),request.getParameter("sigla"));
 				request.setAttribute("departamento antigo",departamentoAntigo);

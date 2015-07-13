@@ -1,16 +1,14 @@
 package controladores;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import controladores.ccu.GerirDepartamento;
 import controladores.ccu.exceptions.DepartamentoNotFound;
-import entidades.value_objects.DepartamentoVO;
+import entidades.Departamento;
 
 @WebServlet("/AtualizarDepartamento")
 public class AtualizarDepartamento extends HttpServlet {
@@ -32,7 +30,7 @@ public class AtualizarDepartamento extends HttpServlet {
 				break;
 			default:
 				try {
-					DepartamentoVO departamentoAntigo = GerirDepartamento.buscarDepartamento(request.getSession(),request.getParameter("sigla"));
+					Departamento departamentoAntigo = GerirDepartamento.buscarDepartamento(request.getSession(),request.getParameter("sigla"));
 					request.setAttribute("departamento antigo",departamentoAntigo);
 					request.getRequestDispatcher("WEB-INF/AtualizarDepartamento.jsp").forward(request,response);
 				} catch (DepartamentoNotFound e2) {

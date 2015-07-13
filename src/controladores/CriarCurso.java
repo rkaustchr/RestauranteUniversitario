@@ -15,7 +15,6 @@ import controladores.ccu.exceptions.NomeNotFoundException;
 import controladores.ccu.exceptions.SiglaAlreadyExistsException;
 import controladores.ccu.exceptions.SiglaNotFoundException;
 import entidades.Departamento;
-import entidades.value_objects.DepartamentoVO;
 import gateway.DepartamentoGateway;
 import roteiros.RoteiroListarDepartamento;
 

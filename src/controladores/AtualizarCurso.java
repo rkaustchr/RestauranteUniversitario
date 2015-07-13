@@ -12,7 +12,7 @@ import controladores.ccu.GerirDepartamento;
 import controladores.ccu.exceptions.CursoNotFound;
 import controladores.ccu.exceptions.DepartamentoNotFound;
 import entidades.Curso;
-import entidades.value_objects.DepartamentoVO;
+import entidades.Departamento;
 
 @WebServlet("/AtualizarCurso")
 public class AtualizarCurso extends HttpServlet {
@@ -21,7 +21,7 @@ public class AtualizarCurso extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String acao = (String) request.getParameter("acaoAtualizar");
-		Collection<DepartamentoVO> departamentosDisponiveis = GerirDepartamento.listarDepartamentos(request.getSession());
+		Collection<Departamento> departamentosDisponiveis = GerirDepartamento.listarDepartamentos(request.getSession());
 		request.setAttribute("departamentosDisponiveis", departamentosDisponiveis);
 		
 		if (acao == null)
