@@ -27,6 +27,10 @@ public class VerDepartamento extends HttpServlet {
 			default:
 				Departamento departamentoAntigo;
 			try {
+				if ( request.getParameter("sigla") == null ) {
+					request.setAttribute("erro", "Selecione um departamento!");
+					request.getRequestDispatcher("WEB-INF/ListarDepartamento.jsp").forward(request,response);
+				}
 				RoteiroVerDepartamento rVerDepartamento = new RoteiroVerDepartamento(request.getParameter("sigla"));
 				departamentoAntigo = rVerDepartamento.executar();
 				request.setAttribute("departamentoAntigo",departamentoAntigo);

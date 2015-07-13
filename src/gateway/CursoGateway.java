@@ -31,9 +31,9 @@ public class CursoGateway implements IGateway {
 	@Override
 	public void insert() {
 		int res;
-		String sql = "INSERT INTO Curso(sigla, nome, departamento) "
-				+ "VAUES('"+ this.sigla +"', '"+ this.nome +"', '"+ this.departamento +"');";
-		
+		String sql = "INSERT INTO Curso(sigla, nome, siglaDepartamento) "
+				+ "VALUES('"+ this.sigla +"', '"+ this.nome +"', '"+ this.departamento.getSigla() +"');";
+		System.out.println(sql);
 		if ( conexao.abrirConexao() ) {
 			res = conexao.executarCUDQuery(sql);
 			conexao.fecharConexao();
@@ -44,8 +44,8 @@ public class CursoGateway implements IGateway {
 	@Override
 	public void update() {
 		int res;
-		String sql = "UPDATE Curso"
-				+ "SET nome='"+ this.nome +"', '" + "'departamento='"+ this.departamento +"'"
+		String sql = "UPDATE Curso "
+				+ "SET nome='"+ this.nome +"', '" + "'siglaDepartamento='"+ this.departamento.getSigla() +"' "
 						+ "WHERE sigla='"+ this.sigla +"';";
 		
 		if ( conexao.abrirConexao() ) {

@@ -47,6 +47,7 @@ public class ConexaoBD {
 	
 	private Connection conexao;
 	
+	// request.getContextPath()
 	public boolean abrirConexao( )  {
 	    try {
 	    	

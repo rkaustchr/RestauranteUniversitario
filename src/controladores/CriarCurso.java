@@ -2,20 +2,16 @@ package controladores;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import controladores.ccu.GerirCurso;
-import controladores.ccu.GerirDepartamento;
-import controladores.ccu.exceptions.DepartamentoNotFound;
 import controladores.ccu.exceptions.NomeNotFoundException;
 import controladores.ccu.exceptions.SiglaAlreadyExistsException;
 import controladores.ccu.exceptions.SiglaNotFoundException;
 import entidades.Departamento;
-import gateway.DepartamentoGateway;
+import roteiros.RoteiroCriarCurso;
 import roteiros.RoteiroListarDepartamento;
 
 @WebServlet("/CriarCurso")
@@ -30,10 +26,8 @@ public class CriarCurso extends HttpServlet {
 			departamentosDisponiveis = rListarDepartamento.executar();
 			request.setAttribute("departamentosDisponiveis", departamentosDisponiveis);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
+		}		
 		
 		if (acao != null){
 			switch (acao) {
@@ -51,9 +45,11 @@ public class CriarCurso extends HttpServlet {
 	private void criarCurso(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nome = (String) request.getParameter("nome");
 		String sigla = (String) request.getParameter("sigla");
-		
+		String siglaDepartamento =  request.getParameter("departamento");
+
 		try {
-			GerirCurso.criarCurso(request.getSession(), nome, sigla, request.getParameter("departamento"));
+			RoteiroCriarCurso rCriarCurso = new RoteiroCriarCurso(nome, sigla, siglaDepartamento);
+			rCriarCurso.execute();
 			request.setAttribute("message", "Novo departamento criado!");
 			request.getRequestDispatcher("ListarCurso").forward(request,response);
 		} catch (SiglaNotFoundException | NomeNotFoundException e2) {
@@ -61,9 +57,6 @@ public class CriarCurso extends HttpServlet {
 			request.getRequestDispatcher("WEB-INF/CriarCurso.jsp").forward(request,response);
 		}catch (SiglaAlreadyExistsException e) {
 			request.setAttribute("erro", "Sigla informada já existe");
-			request.getRequestDispatcher("WEB-INF/CriarCurso.jsp").forward(request,response);
-		}catch (DepartamentoNotFound e) {
-			request.setAttribute("erro", "Informe um departamento valido");
 			request.getRequestDispatcher("WEB-INF/CriarCurso.jsp").forward(request,response);
 		}
 		

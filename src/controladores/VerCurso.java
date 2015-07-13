@@ -1,16 +1,13 @@
 package controladores;
 
 import java.io.IOException;
-import java.util.Collection;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import controladores.ccu.GerirCurso;
-import controladores.ccu.GerirDepartamento;
 import controladores.ccu.exceptions.CursoNotFound;
-import controladores.ccu.exceptions.DepartamentoNotFound;
 import entidades.Curso;
 
 @WebServlet("/VerCurso")

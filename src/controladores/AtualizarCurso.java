@@ -1,6 +1,7 @@
 package controladores;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,11 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import controladores.ccu.GerirCurso;
-import controladores.ccu.GerirDepartamento;
 import controladores.ccu.exceptions.CursoNotFound;
 import controladores.ccu.exceptions.DepartamentoNotFound;
 import entidades.Curso;
 import entidades.Departamento;
+import gateway.DepartamentoFinder;
+import roteiros.RoteiroAtualizarCurso;
+import roteiros.RoteiroListarDepartamento;
 
 @WebServlet("/AtualizarCurso")
 public class AtualizarCurso extends HttpServlet {
@@ -21,8 +24,16 @@ public class AtualizarCurso extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String acao = (String) request.getParameter("acaoAtualizar");
-		Collection<Departamento> departamentosDisponiveis = GerirDepartamento.listarDepartamentos(request.getSession());
-		request.setAttribute("departamentosDisponiveis", departamentosDisponiveis);
+		RoteiroListarDepartamento rListarDepartamento = new RoteiroListarDepartamento();
+		ArrayList<Departamento> departamentosDisponiveis;
+		try {
+			departamentosDisponiveis = rListarDepartamento.executar();
+			request.setAttribute("departamentosDisponiveis", departamentosDisponiveis);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 		if (acao == null)
 			acao = "";
@@ -37,8 +48,10 @@ public class AtualizarCurso extends HttpServlet {
 				break;
 			default:
 				try {
-					Curso cursoAntigo = GerirCurso.buscarCurso(request.getSession(),request.getParameter("sigla"));
-					request.setAttribute("curso antigo",cursoAntigo);
+					RoteiroAtualizarCurso rAlterarCurso = new RoteiroAtualizarCurso(request.getParameter("sigla"), request.getParameter("nome"), request.getParameter("departamento"));
+					Curso cursoAntigo = rAlterarCurso.execute();
+					//Curso cursoAntigo = GerirCurso.buscarCurso(request.getSession(),request.getParameter("sigla"));
+					request.setAttribute("cursoAntigo",cursoAntigo);
 					request.getRequestDispatcher("WEB-INF/AtualizarCurso.jsp").forward(request,response);
 				} catch (CursoNotFound e2) {
 					request.setAttribute("erro", "O curso informado nao existe");

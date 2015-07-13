@@ -6,7 +6,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import controladores.ccu.GerirDepartamento;
 import controladores.ccu.exceptions.DepartamentoNotFound;
 import entidades.Departamento;
 import roteiros.RoteiroAtualizarDepartamento;
@@ -50,8 +49,8 @@ public class AtualizarDepartamento extends HttpServlet {
 		try {
 			Departamento departamentoNovo = rAtualizarDepartamento.executar();
 			
-			request.setAttribute("departamentoNovo",departamentoNovo);
-			request.getRequestDispatcher("WEB-INF/AtualizarDepartamento.jsp").forward(request,response);
+			//request.setAttribute("departamentoNovo",departamentoNovo);
+			request.getRequestDispatcher("ListarDepartamento").forward(request,response);
 		} catch (DepartamentoNotFound e2) {
 			request.setAttribute("erro", "O departamento informado nao existe");
 			request.getRequestDispatcher("WEB-INF/AtualizarDepartamento.jsp").forward(request,response);

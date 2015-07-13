@@ -2,13 +2,11 @@ package controladores;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import entidades.Refeicao;
 import entidades.Turno;
 import gateway.IGateway;
@@ -34,8 +32,7 @@ public class ListarRefeicao extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		RoteiroListarRefeicao rListarRefeicao = new RoteiroListarRefeicao();
 		try {
 			ArrayList<Refeicao> refeicoes = rListarRefeicao.executar();
@@ -73,7 +70,7 @@ public class ListarRefeicao extends HttpServlet {
 			//		break;
 			case "":
 			default:
-				listarRefeicoes(request, response);			
+				doGet(request,response); //listarRefeicoes(request, response);			
 		}
 		
 		doGet(request, response);

@@ -14,11 +14,10 @@ public class RoteiroAtualizarDepartamento {
 	}
 
 	public Departamento executar() throws DepartamentoNotFound {
-		DepartamentoGateway gDepartamento = new DepartamentoGateway(this.id, this.nome);
+		DepartamentoGateway gDepartamento = new DepartamentoGateway(this.nome, this.id);
 		gDepartamento.update();
 		
-		if ( gDepartamento == null )
-			throw new DepartamentoNotFound();
+		if ( gDepartamento == null ) throw new DepartamentoNotFound();
 		
 		return new Departamento(gDepartamento.getNome(), gDepartamento.getSigla());
 		

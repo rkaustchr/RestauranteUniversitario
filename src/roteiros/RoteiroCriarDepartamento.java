@@ -1,11 +1,9 @@
 package roteiros;
 
 import java.io.IOException;
-
 import controladores.ccu.exceptions.NomeNotFoundException;
 import controladores.ccu.exceptions.SiglaAlreadyExistsException;
 import controladores.ccu.exceptions.SiglaNotFoundException;
-import entidades.Departamento;
 import gateway.DepartamentoFinder;
 import gateway.DepartamentoGateway;
 
