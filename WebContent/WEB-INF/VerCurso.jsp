@@ -8,7 +8,7 @@
 <title>Ver curso</title>
 </head>
 <%@include file="messagePage.jsp" %>
-<% Curso curso = (Curso)request.getAttribute("curso antigo");%>
+<% Curso curso = (Curso)request.getAttribute("cursoAntigo");%>
 <body>
 	<form action="VerCurso" method="post">
 <% try{ 

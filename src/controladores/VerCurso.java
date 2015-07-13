@@ -6,9 +6,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import controladores.ccu.GerirCurso;
 import controladores.ccu.exceptions.CursoNotFound;
 import entidades.Curso;
+import roteiros.RoteiroVerCurso;
 
 @WebServlet("/VerCurso")
 public class VerCurso extends HttpServlet {
@@ -25,10 +25,11 @@ public class VerCurso extends HttpServlet {
 				request.getRequestDispatcher("ListarCurso").forward(request,response);
 				break;
 			default:
-				Curso cursoAntigo;
 				try {
-					cursoAntigo = GerirCurso.buscarCurso(request.getSession(),request.getParameter("sigla"));
-					request.setAttribute("curso antigo",cursoAntigo);
+					RoteiroVerCurso rVerCurso = new RoteiroVerCurso(request.getParameter("sigla"));
+					Curso cursoAntigo = rVerCurso.executar();
+					
+					request.setAttribute("cursoAntigo",cursoAntigo);
 					request.getRequestDispatcher("WEB-INF/VerCurso.jsp").forward(request,response);
 				} catch (CursoNotFound e) {
 					request.setAttribute("erro", "Curso não existe!");

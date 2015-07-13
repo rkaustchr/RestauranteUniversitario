@@ -2,7 +2,6 @@ package controladores;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,8 +13,10 @@ import controladores.ccu.exceptions.DepartamentoNotFound;
 import entidades.Curso;
 import entidades.Departamento;
 import gateway.DepartamentoFinder;
+import gateway.DepartamentoGateway;
 import roteiros.RoteiroAtualizarCurso;
 import roteiros.RoteiroListarDepartamento;
+import roteiros.RoteiroVerCurso;
 
 @WebServlet("/AtualizarCurso")
 public class AtualizarCurso extends HttpServlet {
@@ -24,16 +25,6 @@ public class AtualizarCurso extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String acao = (String) request.getParameter("acaoAtualizar");
-		RoteiroListarDepartamento rListarDepartamento = new RoteiroListarDepartamento();
-		ArrayList<Departamento> departamentosDisponiveis;
-		try {
-			departamentosDisponiveis = rListarDepartamento.executar();
-			request.setAttribute("departamentosDisponiveis", departamentosDisponiveis);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		
 		if (acao == null)
 			acao = "";
@@ -47,10 +38,10 @@ public class AtualizarCurso extends HttpServlet {
 				atualizarCursoAntigo(request,response);
 				break;
 			default:
-				try {
-					RoteiroAtualizarCurso rAlterarCurso = new RoteiroAtualizarCurso(request.getParameter("sigla"), request.getParameter("nome"), request.getParameter("departamento"));
-					Curso cursoAntigo = rAlterarCurso.execute();
-					//Curso cursoAntigo = GerirCurso.buscarCurso(request.getSession(),request.getParameter("sigla"));
+				try {					
+					RoteiroVerCurso rVerCurso = new RoteiroVerCurso(request.getParameter("sigla"));
+					Curso cursoAntigo = rVerCurso.execute();
+
 					request.setAttribute("cursoAntigo",cursoAntigo);
 					request.getRequestDispatcher("WEB-INF/AtualizarCurso.jsp").forward(request,response);
 				} catch (CursoNotFound e2) {

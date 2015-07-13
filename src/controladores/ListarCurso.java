@@ -48,13 +48,8 @@ public class ListarCurso extends HttpServlet {
 				break;
 			case "":
 			default:
-				listarCursos(request,response);				
+				doGet(request,response);			
 		}
-	}
-
-	
-	private void listarCursos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("WEB-INF/ListarCurso.jsp").forward(request,response);
 	}
 
 }

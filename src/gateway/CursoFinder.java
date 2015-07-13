@@ -42,8 +42,7 @@ public class CursoFinder implements IFinder {
 
 	@Override
 	public IGateway find(String id) {
-		String sql = "SELECT * FROM curso"
-				+ "WHERE sigla='"+ id +"';";
+		String sql = "SELECT * FROM curso WHERE sigla='"+ id +"';";
 		IGateway gCurso = null;
 		
 		if (conexao.abrirConexao()) {
@@ -57,7 +56,6 @@ public class CursoFinder implements IFinder {
 						gCurso = new CursoGateway(rs.getString("nome"), rs.getString("sigla"), gDept);
 					}
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				

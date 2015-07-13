@@ -33,7 +33,7 @@ public class CursoGateway implements IGateway {
 		int res;
 		String sql = "INSERT INTO Curso(sigla, nome, siglaDepartamento) "
 				+ "VALUES('"+ this.sigla +"', '"+ this.nome +"', '"+ this.departamento.getSigla() +"');";
-		System.out.println(sql);
+		
 		if ( conexao.abrirConexao() ) {
 			res = conexao.executarCUDQuery(sql);
 			conexao.fecharConexao();
