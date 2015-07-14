@@ -1,23 +1,23 @@
 package entidades;
 
 public class Refeicao {
-	private int id;
+	private String id;
 	private String descricao;
 	private Turno turno;
 	private String opcaoVegan;
 	
-	public Refeicao( int id,String descricao, Turno turno, String opcaoVegan) {
+	public Refeicao( String id,String descricao, Turno turno, String opcaoVegan) {
 		this.id = id;
 		this.descricao = descricao;
 		this.turno = turno;
 		this.opcaoVegan = opcaoVegan;
 	}
 	
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

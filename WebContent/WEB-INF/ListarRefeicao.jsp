@@ -12,16 +12,12 @@
 </head>
 <body>
 
-<%! 
-
-%>
-
 <%@include file="messagePage.jsp" %>
 
 	<form action="ListarRefeicao" method="post">
 		<input type="submit" name ="acaoListar" value = "Atualizar">
 		<input type="submit" name ="acaoListar" value = "Ver">
-		<input type="submit" name ="acaoListar" value = "Criar Refeição">
+		<input type="submit" name ="acaoListar" value = "Criar">
 				
 		<table width="80%">
 		  <tr><th>op</<th><th>Turno</th><th>Descrição</th><th>Opção Vegetariana</th></tr>
@@ -32,7 +28,7 @@
 				  for (i=0; i < listaRefeicao.size(); i++){
 					  %> <tr align="center"> 
 					  <td><input type='radio' name ='id' value = '<%=listaRefeicao.get(i).getId() %>'></td>
-					  <td><%=listaRefeicao.get(i).getTurno() %></td> 
+					  <td><%=listaRefeicao.get(i).getTurno().toString() %></td> 
 					  <td><%=listaRefeicao.get(i).getDescricao() %></td>
 					  <td><%=listaRefeicao.get(i).getOpcaoVegan() %></td>
 					  </tr> <%
