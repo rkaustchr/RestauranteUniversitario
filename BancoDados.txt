@@ -10,7 +10,7 @@ create table Aluno(cpfConsumidor varchar(11) PRIMARY KEY, siglaCurso varchar(255
 
 create table Refeicao(id integer auto_increment PRIMARY KEY, turno varchar(255), descricao varchar(255), opcaoVegan varchar(255));
 
-create table Ticket(pago boolean, idRefeicao integer, FOREIGN KEY (idRefeicao) references Refeicao(id), cpfConsumidor varchar(11), FOREIGN KEY (cpfConsumidor) references Consumidor(cpf) );
+create table Ticket(id integer auto_increment PRIMARY KEY, idRefeicao integer, pago boolean, FOREIGN KEY (idRefeicao) references Refeicao(id), cpfConsumidor varchar(11), FOREIGN KEY (cpfConsumidor) references Consumidor(cpf) );
 
 create table status(id int primary key, value varchar(10));
 

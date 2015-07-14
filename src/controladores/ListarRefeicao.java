@@ -8,9 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import entidades.Refeicao;
-import entidades.Turno;
-import gateway.IGateway;
-import roteiros.RoteiroListarDepartamento;
 import roteiros.RoteiroListarRefeicao;
 
 /**
@@ -25,7 +22,6 @@ public class ListarRefeicao extends HttpServlet {
      */
     public ListarRefeicao() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -37,9 +33,9 @@ public class ListarRefeicao extends HttpServlet {
 		try {
 			ArrayList<Refeicao> refeicoes = rListarRefeicao.executar();
 			request.setAttribute("listaRefeicoes", refeicoes);
+			
 			request.getRequestDispatcher("WEB-INF/ListarRefeicao.jsp").forward(request,response);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -48,48 +44,25 @@ public class ListarRefeicao extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		
 		String acao = (String) request.getParameter("acaoListar");
 		
 		if (acao == null) acao = "";
-		
 		switch (acao) {
 			case "Criar":
-				criarRefeicao(request,response);
+				request.getRequestDispatcher("CriarRefeicao").forward(request,response);
 				break;
 			case "Atualizar":
-				atualizarRefeicao(request,response);
+				request.getRequestDispatcher("AtualizarRefeicao").forward(request,response);
 				break;
 			case "Ver":
-				verRefeicao(request,response);
+				request.getRequestDispatcher("VerRefeicao").forward(request,response);
 				break;
-			// nos requisitos nao podemos remover consumidores
-			//	case "Remover":
-			//		removeConsumidor(request,response);
-			//		break;
 			case "":
 			default:
 				doGet(request,response); //listarRefeicoes(request, response);			
 		}
-		
-		doGet(request, response);
-	}
-	
-	public void listarRefeicoes(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("WEB-INF/ListarRefeicao.jsp").forward(request,response);
-	}
-	
-	private void criarRefeicao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("CriarRefeicao").forward(request,response);
-	}
-	
-	private void atualizarRefeicao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("AtualizarRefeicao").forward(request,response);
-	}	
 
-	private void verRefeicao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("VerRefeicao").forward(request,response);
 	}
 
 }

@@ -1,6 +1,5 @@
 package roteiros;
 
-import java.io.IOException;
 import controladores.ccu.exceptions.NomeNotFoundException;
 import controladores.ccu.exceptions.SiglaAlreadyExistsException;
 import controladores.ccu.exceptions.SiglaNotFoundException;
@@ -15,6 +14,7 @@ public class RoteiroCriarDepartamento {
 		this.nome = nome;
 		this.sigla = sigla;
 	}
+	
 	public void executar() throws SiglaNotFoundException, NomeNotFoundException, SiglaAlreadyExistsException{
 		
 		DepartamentoFinder fDepartamento = new DepartamentoFinder();
