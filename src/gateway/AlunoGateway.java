@@ -16,6 +16,10 @@ public class AlunoGateway extends ConsumidorGateway implements IGateway {
 		
 		conexao = new ConexaoBD();
 	}
+	
+	public CursoGateway getCurso(){
+		return this.gCurso;
+	}
 	@Override
 	public void insert() {
 		int res;
