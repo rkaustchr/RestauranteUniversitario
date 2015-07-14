@@ -6,6 +6,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import controladores.ccu.exceptions.DepartamentoNotFound;
+import controladores.ccu.exceptions.RefeicaoNotFound;
+import entidades.Departamento;
+import entidades.Refeicao;
+import roteiros.RoteiroVerDepartamento;
+import roteiros.RoteiroVerRefeicao;
 /**
  * Servlet implementation class VerRefeicao
  */
@@ -43,18 +50,23 @@ public class VerRefeicao extends HttpServlet {
 				request.getRequestDispatcher("ListarRefeicao").forward(request,response);
 				break;
 			default:
-				// 
-				// Atulaizar para 
-				//
-				/*Refeicao refeicaoAntigo;
+				Refeicao refeicaoAntigo;
 				try {
-					refeicaoAntigo = GerirCurso.buscarCurso(request.getSession(),request.getParameter("sigla"));
-					request.setAttribute("curso antigo",cursoAntigo);
-					request.getRequestDispatcher("WEB-INF/VerCurso.jsp").forward(request,response);
-				} catch (CursoNotFound e) {
-					request.setAttribute("erro", "Curso não existe!");
-					request.getRequestDispatcher("WEB-INF/VerCurso.jsp").forward(request,response);
-				}	*/			
+					if ( request.getParameter("id") == null ) {
+						request.setAttribute("erro", "Selecione uma refeição!");
+						request.getRequestDispatcher("WEB-INF/ListarRefeicao.jsp").forward(request,response);
+						return;
+					}
+
+					RoteiroVerRefeicao rVerRefeicao = new RoteiroVerRefeicao(request.getParameter("id"));
+					refeicaoAntigo = rVerRefeicao.executar();
+					request.setAttribute("refeicaoAntigo",refeicaoAntigo);
+					request.getRequestDispatcher("WEB-INF/VerRefeicao.jsp").forward(request,response);
+				} catch (RefeicaoNotFound e) {
+					request.setAttribute("erro", "Refeicao não existe!");
+					request.getRequestDispatcher("WEB-INF/VerRefeicao.jsp").forward(request,response);
+				}
+						
 		}
 	}
 
