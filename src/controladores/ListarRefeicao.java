@@ -8,9 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import entidades.Refeicao;
-import entidades.Turno;
-import gateway.IGateway;
-import roteiros.RoteiroListarDepartamento;
 import roteiros.RoteiroListarRefeicao;
 
 /**
@@ -56,7 +53,7 @@ public class ListarRefeicao extends HttpServlet {
 		
 		switch (acao) {
 			case "Criar":
-				criarRefeicao(request,response);
+				request.getRequestDispatcher("CriarRefeicao").forward(request,response);
 				break;
 			case "Atualizar":
 				atualizarRefeicao(request,response);

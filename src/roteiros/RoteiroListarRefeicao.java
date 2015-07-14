@@ -21,7 +21,7 @@ public class RoteiroListarRefeicao {
 		ArrayList<Refeicao> retorno = new ArrayList<Refeicao>();
 		
 		for (IGateway gRefeicao : fRefeicao.findAll()) {
-			retorno.add(new Refeicao(((RefeicaoGateway) gRefeicao).getId(), ((RefeicaoGateway) gRefeicao).getDescricao(), Turno.valueOf(((RefeicaoGateway) gRefeicao).getTurno()), ((RefeicaoGateway) gRefeicao).getOpcaoVegan()));
+			retorno.add(new Refeicao( ((Refeicao) gRefeicao).getId(), ((Refeicao) gRefeicao).getDescricao(), ((Refeicao) gRefeicao).getTurno(), ((Refeicao) gRefeicao).getOpcaoVegan() ));
 		}
 		
 		return retorno;		

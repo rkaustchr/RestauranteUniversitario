@@ -27,7 +27,7 @@ public class RefeicaoFinder implements IFinder {
 			if ( rs != null ) {
 				try {
 					while (rs.next()) {
-						gRefeicoes.add(new RefeicaoGateway(rs.getInt("id"), rs.getString("descricao"), rs.getString("opcaoVegan"), rs.getString("turno")));
+						gRefeicoes.add(new RefeicaoGateway(rs.getString("id"), rs.getString("descricao"), Turno.valueOf(rs.getString("turno")), rs.getString("opcaoVegan")));
 					}
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
@@ -52,7 +52,7 @@ public class RefeicaoFinder implements IFinder {
 			if ( rs != null ) {
 				try {
 					while (rs.next()) {
-						gRefeicao = new RefeicaoGateway(rs.getInt("id"), rs.getString("descricao"), rs.getString("opcaoVegan"), rs.getString("turno"));
+						gRefeicao = new RefeicaoGateway(rs.getString("id"), rs.getString("descricao"), Turno.valueOf(rs.getString("turno")), rs.getString("opcaoVegan"));
 					}
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
