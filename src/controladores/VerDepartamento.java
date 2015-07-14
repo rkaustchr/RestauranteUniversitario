@@ -26,19 +26,19 @@ public class VerDepartamento extends HttpServlet {
 				break;
 			default:
 				Departamento departamentoAntigo;
-			try {
-				if ( request.getParameter("sigla") == null ) {
-					request.setAttribute("erro", "Selecione um departamento!");
-					request.getRequestDispatcher("WEB-INF/ListarDepartamento.jsp").forward(request,response);
+				try {
+					if ( request.getParameter("sigla") == null ) {
+						request.setAttribute("erro", "Selecione um departamento!");
+						request.getRequestDispatcher("WEB-INF/ListarDepartamento.jsp").forward(request,response);
+					}
+					RoteiroVerDepartamento rVerDepartamento = new RoteiroVerDepartamento(request.getParameter("sigla"));
+					departamentoAntigo = rVerDepartamento.executar();
+					request.setAttribute("departamentoAntigo",departamentoAntigo);
+					request.getRequestDispatcher("WEB-INF/VerDepartamento.jsp").forward(request,response);
+				} catch (DepartamentoNotFound e) {
+					request.setAttribute("erro", "Departamento não existe!");
+					request.getRequestDispatcher("WEB-INF/VerDepartamento.jsp").forward(request,response);
 				}
-				RoteiroVerDepartamento rVerDepartamento = new RoteiroVerDepartamento(request.getParameter("sigla"));
-				departamentoAntigo = rVerDepartamento.executar();
-				request.setAttribute("departamentoAntigo",departamentoAntigo);
-				request.getRequestDispatcher("WEB-INF/VerDepartamento.jsp").forward(request,response);
-			} catch (DepartamentoNotFound e) {
-				request.setAttribute("erro", "Departamento não existe!");
-				request.getRequestDispatcher("WEB-INF/VerDepartamento.jsp").forward(request,response);
-			}
 		}
 	}
 }

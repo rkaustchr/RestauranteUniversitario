@@ -43,8 +43,7 @@ public class RefeicaoFinder implements IFinder {
 
 	@Override
 	public IGateway find(String id) {
-		String sql = "SELECT * FROM refeicao"
-				+ "WHERE id='"+ id +"';";
+		String sql = "SELECT * FROM refeicao WHERE id='"+ id +"';";
 		IGateway gRefeicao = null;
 		
 		if (conexao.abrirConexao()) {
