@@ -20,6 +20,7 @@
 	Nome : <input type="text" name ="nome" value = "<%=nome%>">
 	Sigla : <%=sigla%> <input type="hidden" name ="sigla" value = "<%=sigla%>">
 	Departamento : 	<%=curso.getDepartamento().getSigla()%><br>
+	<input type="hidden" name="departamento" value="<%=curso.getDepartamento().getSigla()%>" />
 	<input type="submit" name="acaoAtualizar" value="Atualizar">
 	<input type="submit" name="acaoAtualizar" value="Cancelar">
 <% } catch (NullPointerException e)  { %>

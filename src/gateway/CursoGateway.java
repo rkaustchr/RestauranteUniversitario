@@ -44,9 +44,8 @@ public class CursoGateway implements IGateway {
 	@Override
 	public void update() {
 		int res;
-		String sql = "UPDATE Curso "
-				+ "SET nome='"+ this.nome +"', '" + "'siglaDepartamento='"+ this.departamento.getSigla() +"' "
-						+ "WHERE sigla='"+ this.sigla +"';";
+		String sql = "UPDATE curso SET nome='"+ this.nome +"', siglaDepartamento='"+ this.departamento.getSigla() +"' "
+		+ "WHERE sigla='"+ this.sigla +"';";
 		
 		if ( conexao.abrirConexao() ) {
 			res = conexao.executarCUDQuery(sql);

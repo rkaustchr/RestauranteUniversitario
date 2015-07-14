@@ -48,9 +48,9 @@ public class AtualizarCurso extends HttpServlet {
 	private void atualizarCursoAntigo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nome = (String) request.getParameter("nome");
 		String sigla = (String) request.getParameter("sigla");
-		String siglaDepartamento = request.getParameter("departamento");
+		String siglaDepartamento = (String) request.getParameter("departamento");
 		
-		if (nome=="" || sigla=="" || siglaDepartamento == ""){
+		if (nome=="" || sigla=="" || siglaDepartamento == null){
 			request.setAttribute("erro", "Um curso deve conter um nome, uma sigla e um departamento");
 			request.getRequestDispatcher("WEB-INF/AtualizarCurso.jsp").forward(request,response);
 		}else{
