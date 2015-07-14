@@ -51,7 +51,6 @@ public class CursoGateway implements IGateway {
 			res = conexao.executarCUDQuery(sql);
 			conexao.fecharConexao();
 		}
-		
 	}
 
 	@Override
