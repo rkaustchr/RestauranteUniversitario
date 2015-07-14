@@ -54,7 +54,7 @@ public class RefeicaoGateway implements IGateway {
 	public void update() {
 		int res;
 		String sql = "UPDATE refeicao "
-				+ "SET descricao='"+ this.descricao +"', '" + "'opcaoVegan='"+ this.opcaoVegan +"' "
+				+ "SET descricao='"+ this.descricao +"', opcaoVegan='"+ this.opcaoVegan +"' "
 						+ "WHERE id='"+ this.id +"';";
 		
 		if ( conexao.abrirConexao() ) {
