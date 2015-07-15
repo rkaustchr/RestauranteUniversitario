@@ -7,6 +7,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import controladores.ccu.exceptions.CursoNotFound;
+import controladores.ccu.exceptions.NomeNotFoundException;
+import controladores.ccu.exceptions.SiglaNotFoundException;
 import entidades.CPF;
 import entidades.Sexo;
 import entidades.Titulo;
@@ -39,8 +43,19 @@ public class CriarAluno extends HttpServlet {
 		Titulo titulo = Titulo.valueOf(request.getParameter("titulo"));
 		CPF cpf = new CPF(request.getParameter("cpf"));
 		String siglaCurso = (String) request.getParameter("siglaCurso");
-		RoteiroCriarAluno rCriarAluno = new RoteiroCriarAluno();
-		
+		RoteiroCriarAluno rCriarAluno = new RoteiroCriarAluno(nome, matricula, anoIngresso, sexo, titulo, cpf, siglaCurso);
+		try {
+			rCriarAluno.execute();
+		} catch (NomeNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SiglaNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (CursoNotFound e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		request.getRequestDispatcher("WEB-INF/CriarAluno.jsp").forward(request,response);
 	}
 

@@ -14,6 +14,7 @@ import gateway.CursoGateway;
 
 
 public class RoteiroCriarAluno {
+
 	private String nome;
 	private int matricula;
 	private String anoIngresso;
@@ -22,6 +23,18 @@ public class RoteiroCriarAluno {
 	private CPF cpf;
 	private String siglaCurso;
 	
+	public RoteiroCriarAluno(String nome, int matricula, String anoIngresso, Sexo sexo, Titulo titulo, CPF cpf,
+			String siglaCurso) {
+		super();
+		this.nome = nome;
+		this.matricula = matricula;
+		this.anoIngresso = anoIngresso;
+		this.sexo = sexo;
+		this.titulo = titulo;
+		this.cpf = cpf;
+		this.siglaCurso = siglaCurso;
+	}
+
 	public void execute() throws NomeNotFoundException, SiglaNotFoundException, CursoNotFound{
 		CursoFinder fCurso = new CursoFinder();
 		CursoGateway gCurso = (CursoGateway) fCurso.find(this.siglaCurso);
