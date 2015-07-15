@@ -24,7 +24,7 @@ public class AlunoGateway extends ConsumidorGateway implements IGateway {
 	public void insert() {
 		int res;
 		
-		String sql = "INSERT INTO aluno(cpfConsumidor, siglaCurso)"
+		String sql = "INSERT INTO aluno(cpfConsumidor, siglaCurso) "
 				+ "VALUES('"+ this.getCpf() +"','"+this.gCurso.getSigla()+"';";
 		
 		if ( conexao.abrirConexao() ) {

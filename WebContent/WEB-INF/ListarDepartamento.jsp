@@ -10,7 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style type="text/css">  
   <%@include file="css/estilo.css" %>  
-</style> 
+</style>
 <title>Listando departamentos</title>
 </head>
 

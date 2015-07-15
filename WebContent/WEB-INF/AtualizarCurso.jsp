@@ -10,7 +10,6 @@
 <style type="text/css">  
   <%@include file="css/estilo.css" %>  
 </style>
-<link rel="stylesheet" type="text/css" href="estilo.css">
 <title>SisRU - Atualizar Curso</title>
 </head>
 
@@ -43,6 +42,7 @@
 		<div class="rodape">
 			<%@include file="rodape.jsp" %>
 		</div>
+	
 	</div>
 </body>
 

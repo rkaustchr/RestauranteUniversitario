@@ -18,7 +18,9 @@ public class FuncionarioGateway extends ConsumidorGateway implements IGateway {
 		conexao = new ConexaoBD();
 	}
 	
-	
+	public DepartamentoGateway getDepartamento(){
+		return gDepartamento;
+	}
 	
 	@Override
 	public void insert() {
