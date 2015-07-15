@@ -1,3 +1,4 @@
+package controladores;
 
 
 import java.io.IOException;
@@ -7,17 +8,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class CriarAluno
- */
-@WebServlet("/CriarAluno")
-public class CriarAluno extends HttpServlet {
+@WebServlet("/CriarFuncionario")
+public class CriarFuncionario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CriarAluno() {
+    public CriarFuncionario() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,7 +25,7 @@ public class CriarAluno extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("WEB-INF/CriarAluno.jsp").forward(request,response);
+		request.getRequestDispatcher("WEB-INF/CriarFuncionario.jsp").forward(request,response);
 	}
 
 	/**

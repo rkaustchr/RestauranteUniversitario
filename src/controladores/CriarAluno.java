@@ -1,3 +1,4 @@
+package controladores;
 
 
 import java.io.IOException;
@@ -6,15 +7,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import roteiros.RoteiroCriarAluno;
 
-@WebServlet("/CriarFuncionario")
-public class CriarFuncionario extends HttpServlet {
+/**
+ * Servlet implementation class CriarAluno
+ */
+@WebServlet("/CriarAluno")
+public class CriarAluno extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CriarFuncionario() {
+    public CriarAluno() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -24,7 +29,16 @@ public class CriarFuncionario extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("WEB-INF/CriarFuncionario.jsp").forward(request,response);
+		String nome = (String) request.getParameter("nome");
+		int matricula = Interger.parseInt(request.getParameter("matricula"));
+		int anoIngresso = Integer.parseInt(request.getParameter("anoIngresso"));
+		Sexo sexo = Sexo.valueOf(request.getParameter("sexo"));
+		Titulo titulo = Titulo.valueOf(request.getParameter("titulo"));
+		CPF cpf = (String) request.getParameter("cpf");
+		String siglaCurso = (String) request.getParameter("siglaCurso");
+		RoteiroCriarAluno rCriarAluno = new RoteiroCriarAluno();
+		
+		request.getRequestDispatcher("WEB-INF/CriarAluno.jsp").forward(request,response);
 	}
 
 	/**
