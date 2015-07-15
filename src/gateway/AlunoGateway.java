@@ -10,7 +10,7 @@ public class AlunoGateway extends ConsumidorGateway implements IGateway {
 	
 	protected ConexaoBD conexao;
 	
-	public AlunoGateway( String nome, int matricula, int anoIngresso, Sexo sexo, Titulo titulo, CPF cpf, IGateway curso ) {
+	public AlunoGateway( String nome, int matricula, String anoIngresso, Sexo sexo, Titulo titulo, CPF cpf, IGateway curso ) {
 		super(nome, matricula, anoIngresso, sexo, titulo, cpf);
 		this.gCurso = (CursoGateway) curso;
 		

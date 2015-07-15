@@ -11,7 +11,7 @@ public class FuncionarioGateway extends ConsumidorGateway implements IGateway {
 	
 	protected ConexaoBD conexao;
 	
-	public FuncionarioGateway(String nome, int matricula, int anoIngresso, Sexo sexo, Titulo titulo, CPF cpf, IGateway departamento) {
+	public FuncionarioGateway(String nome, int matricula, String anoIngresso, Sexo sexo, Titulo titulo, CPF cpf, IGateway departamento) {
 		super(nome, matricula, anoIngresso, sexo, titulo, cpf);
 		this.gDepartamento = (DepartamentoGateway) departamento;
 		

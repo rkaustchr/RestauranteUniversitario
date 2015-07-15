@@ -3,18 +3,18 @@ package entidades;
 public abstract class Consumidor {
 	private String nome;
 	private int matricula;
-	private int anoIngresso;
+	private String anoIngresso;
 	private Sexo sexo;
 	private Titulo titulo;
 	private CPF cpf;
 	
-	public Consumidor(String nome, int matricula, int anoIngresso) {
+	public Consumidor(String nome, int matricula, String anoIngresso) {
 		this.nome = nome;
 		this.matricula = matricula;
 		this.anoIngresso = anoIngresso;
 	}
 
-	public Consumidor(String nome, int matricula, int anoIngresso, Sexo sexo, Titulo titulo, CPF cpf) {
+	public Consumidor(String nome, int matricula, String anoIngresso, Sexo sexo, Titulo titulo, CPF cpf) {
 		this(nome,matricula,anoIngresso);
 		this.sexo = sexo;
 		this.titulo = titulo;
@@ -29,7 +29,7 @@ public abstract class Consumidor {
 		return matricula;
 	}
 
-	public int getAnoIngresso() {
+	public String getAnoIngresso() {
 		return anoIngresso;
 	}
 

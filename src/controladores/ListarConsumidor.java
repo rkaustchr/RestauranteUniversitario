@@ -18,14 +18,12 @@ public class ListarConsumidor extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//listarConsumidores(request, response);
 		RoteiroListarConsumidor rListarConsumidor = new RoteiroListarConsumidor();
 		try {
 			ArrayList<Consumidor> consumidores = rListarConsumidor.executar();
 			request.setAttribute("listaConsumidores", consumidores);
 			request.getRequestDispatcher("WEB-INF/ListarConsumidor.jsp").forward(request,response);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -51,7 +49,7 @@ public class ListarConsumidor extends HttpServlet {
 				break;
 			case "":
 			default:
-				doGet(request, response); // listarConsumidores(request,response); 			
+				doGet(request, response); 		
 		}
 	}
 

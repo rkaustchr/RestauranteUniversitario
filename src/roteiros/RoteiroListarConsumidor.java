@@ -28,6 +28,7 @@ public class RoteiroListarConsumidor  {
 		
 		for (IGateway gConsumidor : fAluno.findAll()) {
 			CursoGateway gCurso = ((AlunoGateway) gConsumidor).getCurso();
+			System.out.println("CURSO: " + gCurso.getNome());
 			DepartamentoGateway gDepartamento = gCurso.getDepartamento();
 			Departamento departamento = new Departamento(gDepartamento.getNome(), gDepartamento.getSigla()); 
 			Curso curso = new Curso(gCurso.getNome(), gCurso.getSigla(), departamento);

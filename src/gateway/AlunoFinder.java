@@ -32,7 +32,7 @@ public class AlunoFinder implements IFinder {
 								new AlunoGateway(
 										rs.getString("nome"), 
 										rs.getInt("matricula"), 
-										rs.getInt("anoIngresso"), 
+										rs.getString("anoIngresso"), 
 										Sexo.valueOf(rs.getString("sexo")), 
 										Titulo.valueOf(rs.getString("titulo")),
 										new CPF(rs.getString("cpf")),
@@ -55,7 +55,7 @@ public class AlunoFinder implements IFinder {
 	@Override
 	public IGateway find(String id) {
 		String sql = "SELECT * FROM Aluno, Consumidor WHERE cpf='"+ id +"' AND cpf = cpfConsumidor;";
-		IGateway gAluno= new AlunoGateway("", 0, 0, null, null, null, null);
+		IGateway gAluno= new AlunoGateway("", 0, "", null, null, null, null);
 		
 		if (conexao.abrirConexao()) {
 			ResultSet rs = conexao.executarSelectQuery(sql);
@@ -66,7 +66,7 @@ public class AlunoFinder implements IFinder {
 						gAluno = new AlunoGateway(
 								rs.getString("nome"), 
 								rs.getInt("matricula"), 
-								rs.getInt("anoIngresso"), 
+								rs.getString("anoIngresso"), 
 								Sexo.valueOf(rs.getString("sexo")), 
 								Titulo.valueOf(rs.getString("titulo")),
 								new CPF(rs.getString("cpf")),

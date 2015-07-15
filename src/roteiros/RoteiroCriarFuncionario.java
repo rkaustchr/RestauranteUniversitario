@@ -14,7 +14,7 @@ import gateway.FuncionarioGateway;
 public class RoteiroCriarFuncionario {
 	private String nome;
 	private int matricula;
-	private int anoIngresso;
+	private String anoIngresso;
 	private Sexo sexo;
 	private Titulo titulo;
 	private CPF cpf;

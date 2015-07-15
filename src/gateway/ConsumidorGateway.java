@@ -14,7 +14,7 @@ import persistencia.ConexaoBD;
 public class ConsumidorGateway implements IGateway{
 	private String nome;
 	private int matricula;
-	private int anoIngresso;
+	private String anoIngresso;
 	private Sexo sexo;
 	private Titulo titulo;
 	private CPF cpf;
@@ -38,11 +38,11 @@ public class ConsumidorGateway implements IGateway{
 		this.matricula = matricula;
 	}
 
-	public int getAnoIngresso() {
+	public String getAnoIngresso() {
 		return anoIngresso;
 	}
 
-	public void setAnoIngresso(int anoIngresso) {
+	public void setAnoIngresso(String anoIngresso) {
 		this.anoIngresso = anoIngresso;
 	}
 
@@ -70,7 +70,7 @@ public class ConsumidorGateway implements IGateway{
 		
 	}
 	
-	public ConsumidorGateway(String nome, int matricula, int anoIngresso) {
+	public ConsumidorGateway(String nome, int matricula, String anoIngresso) {
 		this.nome = nome;
 		this.matricula = matricula;
 		this.anoIngresso = anoIngresso;
@@ -78,7 +78,7 @@ public class ConsumidorGateway implements IGateway{
 		conexao = new ConexaoBD();
 	}
 
-	public ConsumidorGateway(String nome, int matricula, int anoIngresso, Sexo sexo, Titulo titulo, CPF cpf) {
+	public ConsumidorGateway(String nome, int matricula, String anoIngresso, Sexo sexo, Titulo titulo, CPF cpf) {
 		this(nome,matricula,anoIngresso);
 		this.sexo = sexo;
 		this.titulo = titulo;

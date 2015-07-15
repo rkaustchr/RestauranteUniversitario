@@ -8,7 +8,7 @@ public class Aluno extends Consumidor{
 	//	this.curso = curso;
 	//}
 	
-	public Aluno(String nome, int matricula, int anoIngresso, Sexo sexo, Titulo titulo, CPF cpf, Curso curso) {
+	public Aluno(String nome, int matricula, String anoIngresso, Sexo sexo, Titulo titulo, CPF cpf, Curso curso) {
 		super(nome, matricula, anoIngresso, sexo, titulo, cpf);
 		this.curso = curso;
 	}
