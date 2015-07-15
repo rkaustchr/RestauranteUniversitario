@@ -7,28 +7,43 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Atualizar curso</title>
+<style type="text/css">  
+  <%@include file="css/estilo.css" %>  
+</style>
+<link rel="stylesheet" type="text/css" href="estilo.css">
+<title>SisRU - Atualizar Curso</title>
 </head>
-<%@include file="messagePage.jsp" %>
-<% Curso curso = (Curso)request.getAttribute("cursoAntigo");%>
 
 <body>
-	<form action="AtualizarCurso" method="post">
-<% try{ 
-	String nome = curso.getNome();
-	String sigla = curso.getSigla(); %>
-	Nome : <input type="text" name ="nome" value = "<%=nome%>">
-	Sigla : <%=sigla%> <input type="hidden" name ="sigla" value = "<%=sigla%>">
-	Departamento : 	<%=curso.getDepartamento().getSigla()%><br>
-	<input type="hidden" name="departamento" value="<%=curso.getDepartamento().getSigla()%>" />
-	<input type="submit" name="acaoAtualizar" value="Atualizar">
-	<input type="submit" name="acaoAtualizar" value="Cancelar">
-<% } catch (NullPointerException e)  { %>
-	<input type="submit" name="acaoAtualizar" value="Voltar">
-<% } %>
-	</form>
-
-
+	<div class="tudo">
+		<div class="topo">
+			<%@include file="topo.jsp" %>
+		</div>
+			
+		<div class="conteudo">
+			<%@include file="messagePage.jsp" %>
+			<% Curso curso = (Curso)request.getAttribute("cursoAntigo");%>
+			<h2>Atualizar curso</h2>
+			<form action="AtualizarCurso" method="post">
+			<% try{ 
+			String nome = curso.getNome();
+			String sigla = curso.getSigla(); %>
+			Nome : <input type="text" name ="nome" value = "<%=nome%>"> <br />
+			Sigla : <%=sigla%> <input type="hidden" name ="sigla" value = "<%=sigla%>"> <br />
+			Departamento : 	<%=curso.getDepartamento().getSigla()%><br> <br />
+			<input type="hidden" name="departamento" value="<%=curso.getDepartamento().getSigla()%>" />
+			<input type="submit" name="acaoAtualizar" value="Atualizar">
+			<input type="submit" name="acaoAtualizar" value="Cancelar">
+			<% } catch (NullPointerException e)  { %>
+			<input type="submit" name="acaoAtualizar" value="Voltar">
+			<% } %>
+			</form>
+		</div>
+		
+		<div class="rodape">
+			<%@include file="rodape.jsp" %>
+		</div>
+	</div>
 </body>
 
 </html>

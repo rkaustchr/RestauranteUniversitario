@@ -8,36 +8,54 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">  
+  <%@include file="css/estilo.css" %>  
+</style> 
 <title>SisRU - Gerenciamento de Refeições</title>
 </head>
 <body>
-
-<%@include file="messagePage.jsp" %>
-
-	<form action="ListarRefeicao" method="post">
-		<input type="submit" name ="acaoListar" value = "Atualizar">
-		<input type="submit" name ="acaoListar" value = "Ver">
-		<input type="submit" name ="acaoListar" value = "Criar">
-				
-		<table width="80%">
-		  <tr><th>op</<th><th>Turno</th><th>Descrição</th><th>Opção Vegetariana</th></tr>
-		  <%
-			  try{
-				  ArrayList<Refeicao> listaRefeicao = (ArrayList<Refeicao>)request.getAttribute("listaRefeicoes");
-				  int i;
-				  for (i=0; i < listaRefeicao.size(); i++){
-					  %> <tr align="center"> 
-					  <td><input type='radio' name ='id' value = '<%=listaRefeicao.get(i).getId() %>'></td>
-					  <td><%=listaRefeicao.get(i).getTurno().toString() %></td> 
-					  <td><%=listaRefeicao.get(i).getDescricao() %></td>
-					  <td><%=listaRefeicao.get(i).getOpcaoVegan() %></td>
-					  </tr> <%
-				  }
-			  }catch(Exception e){ }
-		  %>
-		  
-		</table>
-	</form>
-
+	<div class="tudo">
+		<div class="topo">
+			<%@include file="topo.jsp" %>
+		</div>
+			
+		<div class="conteudo">
+			<%@include file="messagePage.jsp" %>
+		
+			<form action="ListarRefeicao" method="post">
+				<center>
+					<h2>Listagem dos departamentos</h2>
+					<input type="submit" name ="acaoListar" value = "Criar">
+					<input type="submit" name ="acaoListar" value = "Atualizar">
+					<input type="submit" name ="acaoListar" value = "Ver">
+				<br />
+				<br />
+						
+				<table width="80%">
+				  <tr><th>op</<th><th>Turno</th><th>Descrição</th><th>Opção Vegetariana</th></tr>
+				  <%
+					  try{
+						  ArrayList<Refeicao> listaRefeicao = (ArrayList<Refeicao>)request.getAttribute("listaRefeicoes");
+						  int i;
+						  for (i=0; i < listaRefeicao.size(); i++){
+							  %> <tr align="center"> 
+							  <td><input type='radio' name ='id' value = '<%=listaRefeicao.get(i).getId() %>'></td>
+							  <td><%=listaRefeicao.get(i).getTurno().toString() %></td> 
+							  <td><%=listaRefeicao.get(i).getDescricao() %></td>
+							  <td><%=listaRefeicao.get(i).getOpcaoVegan() %></td>
+							  </tr> <%
+						  }
+					  }catch(Exception e){ }
+				  %>
+				  
+				</table>
+				</center>
+			</form>
+		</div>
+		
+		<div class="rodape">
+			<%@include file="rodape.jsp" %>
+		</div>
+	</div>
 </body>
 </html>

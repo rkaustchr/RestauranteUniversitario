@@ -103,7 +103,7 @@ public class ConsumidorGateway implements IGateway{
 		 * sexo varchar(255), 
 		 * titulo varchar(255)*/
 		String sql = "INSERT INTO Consumidor("
-				+ "cpf, nome, matricula, anoIngresso, sexo, titulo)"
+				+ "cpf, nome, matricula, anoIngresso, sexo, titulo) "
 				+ "VALUES('"+ this.cpf +"','"+this.nome+"','"+this.matricula+"'"
 						+ ",'"+this.anoIngresso+"','"+this.sexo+"','"+this.titulo+"';";
 		

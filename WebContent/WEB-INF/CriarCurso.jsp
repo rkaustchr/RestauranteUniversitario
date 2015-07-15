@@ -6,25 +6,41 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Criar curso</title>
+<title>SisRu - Criar curso</title>
+<style type="text/css">  
+  <%@include file="css/estilo.css" %>  
+</style> 
 </head>
 <%@include file="messagePage.jsp" %>
 <% ArrayList<Departamento> departamentosDisponiveis = (ArrayList<Departamento>)request.getAttribute("departamentosDisponiveis"); %>
 
 <body>
-	<form action="CriarCurso" method="post">
-	Nome : <input type="text" name ="nome" value = "">
-	Sigla : <input type="text" name ="sigla" value = "">
-	Departamento : <select name ="departamento">
-	<option value=""></option>
-	<% for(Departamento dptoi : departamentosDisponiveis){ %>
-		<option value="<%=dptoi.getSigla()%>"><%=dptoi.getNome()%></option>
-	<% } %>
-	</select>
-	<br>
-	<input type="submit" name="acaoCriar" value="Criar">
-	<input type="submit" name="acaoCriar" value="Cancelar">
-	</form>
+	<div class="tudo">
+		<div class="topo">
+			<%@include file="topo.jsp" %>
+		</div>
+			
+		<div class="conteudo">
+			<h2>Criar novo curso</h2>
+			<form action="CriarCurso" method="post">
+				Nome : <input type="text" name ="nome" value = ""> <br />
+				Sigla : <input type="text" name ="sigla" value = ""> <br />
+				Departamento : <select name ="departamento"> 
+				<option value=""></option>
+				<% for(Departamento dptoi : departamentosDisponiveis){ %>
+					<option value="<%=dptoi.getSigla()%>"><%=dptoi.getNome()%></option>
+				<% } %>
+				</select> <br />
+				<br>
+				<input type="submit" name="acaoCriar" value="Criar">
+				<input type="submit" name="acaoCriar" value="Cancelar">
+			</form>
+			</div>
+		
+		<div class="rodape">
+			<%@include file="rodape.jsp" %>
+		</div>
+	</div>
 </body>
 
 </html>

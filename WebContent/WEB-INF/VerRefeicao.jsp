@@ -6,25 +6,35 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">  
+  <%@include file="css/estilo.css" %>  
+</style> 
 <title>SisRU - Ver Refeição</title>
 </head>
-<%@include file="messagePage.jsp" %>
-<% Refeicao refeicao = (Refeicao)request.getAttribute("refeicaoAntigo");%>
 <body>
-	<form action="VerRefeicao" method="post">
-<% try{ 
-	String id = refeicao.getId();
-	String descricao = refeicao.getDescricao();
-	Turno turno = refeicao.getTurno(); 
-	String opcaoVegan = refeicao.getOpcaoVegan();
-%>
-	Descrição: <%=descricao %> <br />
-	Opção Vegetariana: <%=opcaoVegan%> <input type="hidden" name ="id" value = "<%=id%>"> <br />
-	Horário: <%=  turno.toString() %> <br />
-	<br>
-<% } catch (NullPointerException e)  {  } %>
-<input type="submit" name="acaoVer" value="Voltar">
-	</form>
+	<div class="tudo">
+		<div class="topo">
+			<%@include file="topo.jsp" %>
+		</div>
+			
+		<div class="conteudo">
+			<%@include file="messagePage.jsp" %>
+			<% Refeicao refeicao = (Refeicao)request.getAttribute("refeicaoAntigo");%>
+				<h2>Ver refeição</h2>
+				<form action="VerRefeicao" method="post">
+				<% try{ 
+					String id = refeicao.getId();
+					String descricao = refeicao.getDescricao();
+					Turno turno = refeicao.getTurno(); 
+					String opcaoVegan = refeicao.getOpcaoVegan();
+				%>
+					Descrição: <%=descricao %> <br />
+					Opção Vegetariana: <%=opcaoVegan%> <input type="hidden" name ="id" value = "<%=id%>"> <br />
+					Horário: <%=  turno.toString() %> <br />
+					<br>
+				<% } catch (NullPointerException e)  {  } %>
+				<input type="submit" name="acaoVer" value="Voltar">
+			</form>
 
 
 </body>

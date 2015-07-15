@@ -6,43 +6,62 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Listando cursos</title>
+<style type="text/css">  
+  <%@include file="css/estilo.css" %>  
+</style> 
+<title>SisRU - Listando Cursos</title>
 </head>
 
 <body>
+	<div class="tudo">
+		<div class="topo">
+			<%@include file="topo.jsp" %>
+		</div>
+			
+		<div class="conteudo">
 
-<%@include file="messagePage.jsp" %>
-
-	<form action="ListarCurso" method="post">
-		<table width="80%">
-		  <tr>
-		    <th>Sigla</th>
-		    <th>Nome</th>
-		    <th>Departamento</th>
-		  </tr>
-		  
-		  <%
-			  try{
-				  ArrayList<Curso> listaCurso = (ArrayList<Curso>)request.getAttribute("listaCursos");
-				  int i;
-				  for (i=0; i < listaCurso.size(); i++){
-		  %>
-			  <tr align="center">
-			    <td><input type="radio" name='sigla' value='<%=listaCurso.get(i).getSigla()%>'><%=listaCurso.get(i).getSigla()%></td>
-			    <td><%=listaCurso.get(i).getNome()%></td>
-			    <td><%=listaCurso.get(i).getDepartamento().getSigla()%></td>
-			  </tr>
-		  <%
-				  }
-			  }catch(Exception e){ }
-		  %>
-		</table>
-
-		<input type="submit" name ="acaoListar" value = "Criar">
-		<input type="submit" name ="acaoListar" value = "Atualizar">
-		<input type="submit" name ="acaoListar" value = "Ver">
-		<!-- <input type="submit" name ="acaoListar" value = "Remover"> -->
-	</form>
+			<%@include file="messagePage.jsp" %>
+			<center>
+			<form action="ListarCurso" method="post">
+			<h2>Listando os cursos</h2>
+				<input type="submit" name ="acaoListar" value = "Criar">
+				<input type="submit" name ="acaoListar" value = "Atualizar">
+				<input type="submit" name ="acaoListar" value = "Ver">
+				<br />
+				<br />
+					<table width="80%">
+					  <tr>
+					    <th>Sigla</th>
+					    <th>Nome</th>
+					    <th>Departamento</th>
+					  </tr>
+					  
+					  <%
+						  try{
+							  ArrayList<Curso> listaCurso = (ArrayList<Curso>)request.getAttribute("listaCursos");
+							  int i;
+							  for (i=0; i < listaCurso.size(); i++){
+					  %>
+						  <tr >
+						    <td><input type="radio" name='sigla' value='<%=listaCurso.get(i).getSigla()%>'><%=listaCurso.get(i).getSigla()%></td>
+						    <td><%=listaCurso.get(i).getNome()%></td>
+						    <td><%=listaCurso.get(i).getDepartamento().getSigla()%></td>
+						  </tr>
+					  <%
+							  }
+						  }catch(Exception e){ }
+					  %>
+					</table>
+			
+					
+					</center>
+				</form>
+			</div>
+		
+		<div class="rodape">
+			<%@include file="rodape.jsp" %>
+		</div>
+	</div>
 </body>
 
 </html>
