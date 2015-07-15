@@ -2,11 +2,7 @@
     <wb-module deploy-name="RestauranteUniversitario">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-<<<<<<< HEAD
-=======
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/xml"/>
-        <property name="java-output-path" value="/RestauranteUniversitario/build/classes"/>
->>>>>>> 640bfc711255c071cde51f376dc846e3123171a2
         <property name="context-root" value="RestauranteUniversitario"/>
         <property name="java-output-path" value="/RestauranteUniversitario/build/classes"/>
     </wb-module>
