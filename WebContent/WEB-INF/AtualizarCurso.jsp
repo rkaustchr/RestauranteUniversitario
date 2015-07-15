@@ -7,28 +7,37 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="estilo.css">
 <title>Atualizar curso</title>
 </head>
 <%@include file="messagePage.jsp" %>
 <% Curso curso = (Curso)request.getAttribute("cursoAntigo");%>
 
 <body>
-	<form action="AtualizarCurso" method="post">
-<% try{ 
-	String nome = curso.getNome();
-	String sigla = curso.getSigla(); %>
-	Nome : <input type="text" name ="nome" value = "<%=nome%>">
-	Sigla : <%=sigla%> <input type="hidden" name ="sigla" value = "<%=sigla%>">
-	Departamento : 	<%=curso.getDepartamento().getSigla()%><br>
-	<input type="hidden" name="departamento" value="<%=curso.getDepartamento().getSigla()%>" />
-	<input type="submit" name="acaoAtualizar" value="Atualizar">
-	<input type="submit" name="acaoAtualizar" value="Cancelar">
-<% } catch (NullPointerException e)  { %>
-	<input type="submit" name="acaoAtualizar" value="Voltar">
-<% } %>
-	</form>
-
-
+	<div class="topo">
+	
+	</div>
+	
+	<div class="conteudo">
+		<form action="AtualizarCurso" method="post">
+		<% try{ 
+		String nome = curso.getNome();
+		String sigla = curso.getSigla(); %>
+		Nome : <input type="text" name ="nome" value = "<%=nome%>">
+		Sigla : <%=sigla%> <input type="hidden" name ="sigla" value = "<%=sigla%>">
+		Departamento : 	<%=curso.getDepartamento().getSigla()%><br>
+		<input type="hidden" name="departamento" value="<%=curso.getDepartamento().getSigla()%>" />
+		<input type="submit" name="acaoAtualizar" value="Atualizar">
+		<input type="submit" name="acaoAtualizar" value="Cancelar">
+		<% } catch (NullPointerException e)  { %>
+		<input type="submit" name="acaoAtualizar" value="Voltar">
+		<% } %>
+		</form>
+	</div>
+	
+	<div class="rodape">
+	
+	</div>
 </body>
 
 </html>

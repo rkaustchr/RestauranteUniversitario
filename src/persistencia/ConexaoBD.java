@@ -50,13 +50,16 @@ public class ConexaoBD {
 	// request.getContextPath()
 	public boolean abrirConexao( )  {
 	    try {
-	    	
 			Class.forName("org.h2.Driver");
 			
-		//	if(ModoTeste.testeAtivo == false)
+
+			if(ModoTeste.testeAtivo == false)
+
+			if( ModoTeste.testeAtivo == false)
+				
 				conexao = DriverManager.getConnection("jdbc:h2:~/restaurante", "admin", "admin");
-//			else
-//				conexao = DriverManager.getConnection("jdbc:h2:~/restauranteTeste", "admin", "admin");
+			else
+				conexao = DriverManager.getConnection("jdbc:h2:~/restauranteTeste", "admin", "admin");
 			return true;
 			
 		} catch (ClassNotFoundException e) {
