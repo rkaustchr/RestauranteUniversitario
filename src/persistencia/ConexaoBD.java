@@ -58,6 +58,7 @@ public class ConexaoBD {
 			// /home/rk/workspaceEE/RestauranteUniversitario/
 			String pathBanco = Path.realPath + "RestauranteUniversitario/banco/"; // getServletContext().getRealPath("/") + "banco/";
 
+			System.out.println("ConexaoBD: " + pathBanco);
 			if( ModoTeste.testeAtivo == false)
 				
 				conexao = DriverManager.getConnection("jdbc:h2:" + pathBanco + "/restaurante", "admin", "admin");
