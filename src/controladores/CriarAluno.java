@@ -43,6 +43,7 @@ public class CriarAluno extends HttpServlet {
 		Titulo titulo = Titulo.valueOf(request.getParameter("titulo"));
 		CPF cpf = new CPF(request.getParameter("cpf"));
 		String siglaCurso = (String) request.getParameter("siglaCurso");
+
 		RoteiroCriarAluno rCriarAluno = new RoteiroCriarAluno(nome, matricula, anoIngresso, sexo, titulo, cpf, siglaCurso);
 		try {
 			rCriarAluno.execute();
@@ -56,6 +57,7 @@ public class CriarAluno extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 		request.getRequestDispatcher("WEB-INF/CriarAluno.jsp").forward(request,response);
 	}
 

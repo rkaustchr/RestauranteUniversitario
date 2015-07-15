@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class ConexaoBD {
 
@@ -52,12 +55,12 @@ public class ConexaoBD {
 	    try {
 			Class.forName("org.h2.Driver");
 			
-
-			if(ModoTeste.testeAtivo == false)
+			// /home/rk/workspaceEE/RestauranteUniversitario/
+			String pathBanco = Path.realPath + "RestauranteUniversitario/banco/"; // getServletContext().getRealPath("/") + "banco/";
 
 			if( ModoTeste.testeAtivo == false)
 				
-				conexao = DriverManager.getConnection("jdbc:h2:~/restaurante", "admin", "admin");
+				conexao = DriverManager.getConnection("jdbc:h2:" + pathBanco + "/restaurante", "admin", "admin");
 			else
 				conexao = DriverManager.getConnection("jdbc:h2:~/restauranteTeste", "admin", "admin");
 			return true;
