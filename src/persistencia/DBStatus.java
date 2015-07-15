@@ -64,7 +64,7 @@ public class DBStatus extends HttpServlet {
 			sql = 
 					"CREATE TABLE Departamento(sigla varchar(255) PRIMARY KEY NOT NULL, nome VARCHAR(255));"
 					+ "create table Curso(sigla varchar(255) PRIMARY KEY NOT NULL, nome varchar(255),  siglaDepartamento varchar(255), FOREIGN KEY (siglaDepartamento) references Departamento(sigla));"
-					+ "create table Consumidor(cpf varchar(11) PRIMARY KEY, nome varchar(255), matricula integer, anoIngresso date, sexo varchar(255), titulo varchar(255));"
+					+ "create table Consumidor(cpf varchar(11) PRIMARY KEY, nome varchar(255), matricula integer, anoIngresso varchar(10), sexo varchar(255), titulo varchar(255));"
 					+ "create table Funcionario(cpfConsumidor varchar(11) PRIMARY KEY, siglaDepartamento varchar(255), FOREIGN KEY (siglaDepartamento) references Departamento(sigla),  FOREIGN KEY (cpfConsumidor) references Consumidor(cpf));"
 					+ "create table Aluno(cpfConsumidor varchar(11) PRIMARY KEY, siglaCurso varchar(255), FOREIGN KEY (siglaCurso) references Curso(sigla), FOREIGN KEY (cpfConsumidor) references Consumidor(cpf));"
 					+ "create table Refeicao(id integer auto_increment PRIMARY KEY, turno varchar(255), descricao varchar(255), opcaoVegan varchar(255));"

@@ -34,7 +34,7 @@ public class CriarAluno extends HttpServlet {
 		// TODO Auto-generated method stub
 		String nome = (String) request.getParameter("nome");
 		int matricula = Integer.parseInt(request.getParameter("matricula"));
-		int anoIngresso = Integer.parseInt(request.getParameter("anoIngresso"));
+		String anoIngresso = (String) request.getParameter("anoIngresso");
 		Sexo sexo = Sexo.valueOf(request.getParameter("sexo"));
 		Titulo titulo = Titulo.valueOf(request.getParameter("titulo"));
 		CPF cpf = new CPF(request.getParameter("cpf"));
