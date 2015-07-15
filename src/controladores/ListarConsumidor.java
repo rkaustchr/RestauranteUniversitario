@@ -37,8 +37,11 @@ public class ListarConsumidor extends HttpServlet {
 		if (acao == null) acao = "";
 		
 		switch (acao) {
-			case "Criar":
-				criarConsumidor(request,response);
+			case "Criar Aluno":
+				criarAluno(request,response);
+				break;
+			case "Criar Funcionario":
+				criarFuncionario(request,response);
 				break;
 			case "Atualizar":
 				atualizarConsumidor(request,response);
@@ -52,8 +55,12 @@ public class ListarConsumidor extends HttpServlet {
 		}
 	}
 
-	private void criarConsumidor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("CriarConsumidor").forward(request,response);
+	private void criarAluno(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("CriarAluno").forward(request,response);
+	}
+	
+	private void criarFuncionario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("CriarFuncionario").forward(request,response);
 	}
 	
 	private void atualizarConsumidor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
