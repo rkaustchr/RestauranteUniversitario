@@ -40,7 +40,7 @@ public class CriarAluno extends HttpServlet {
 		CPF cpf = new CPF(request.getParameter("cpf"));
 		String siglaCurso = (String) request.getParameter("siglaCurso");
 		RoteiroCriarAluno rCriarAluno = new RoteiroCriarAluno();
-		
+		System.out.println("aqui");
 		request.getRequestDispatcher("WEB-INF/CriarAluno.jsp").forward(request,response);
 	}
 

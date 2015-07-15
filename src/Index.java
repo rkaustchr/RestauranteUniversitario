@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import persistencia.Path;
+
 /**
  * Servlet implementation class Index
  */
@@ -19,14 +21,19 @@ public class Index extends HttpServlet {
      */
     public Index() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+		String requestUrl = request.getRequestURI();
+		String realPath = getServletContext().getRealPath(requestUrl);
+		realPath = realPath.substring(0, realPath.indexOf("."));
+		
+		Path.realPath = realPath;
+
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		request.getRequestDispatcher("WEB-INF/index.jsp").forward(request,response);
 	}
