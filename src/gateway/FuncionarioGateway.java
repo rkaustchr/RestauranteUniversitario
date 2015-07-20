@@ -1,7 +1,6 @@
 package gateway;
 
 import entidades.CPF;
-import entidades.Departamento;
 import entidades.Sexo;
 import entidades.Titulo;
 import persistencia.ConexaoBD;
@@ -43,10 +42,10 @@ public class FuncionarioGateway extends ConsumidorGateway implements IGateway {
 
 	@Override
 	public void update() {
-		String sql = "UPDATE Funcionario"
+		String sql = "UPDATE Funcionario "
 				+ "SET siglaDepartamento='"+this.gDepartamento.getSigla()+"'"
 						+ "WHERE cpfConsumidor='"+ this.getCpf()+"';";
-		
+		super.update();
 		if ( conexao.abrirConexao() ) {
 			conexao.executarCUDQuery(sql);
 

@@ -22,19 +22,11 @@ public class AlunoGateway extends ConsumidorGateway implements IGateway {
 	}
 	@Override
 	public void insert() {
-		int res;
-		
 		String sql = "INSERT INTO aluno(cpfConsumidor, siglaCurso) "
 				+ "VALUES('"+ this.getCpf() +"','"+this.gCurso.getSigla()+"';";
-		
+		super.insert();
 		if ( conexao.abrirConexao() ) {
-			res = conexao.executarCUDQuery(sql);
-			
-			/*if ( res = -1 ) {
-				return false;
-			} else {
-				return true;
-			}*/
+			conexao.executarCUDQuery(sql);
 			conexao.fecharConexao();
 		}
 
@@ -48,20 +40,13 @@ public class AlunoGateway extends ConsumidorGateway implements IGateway {
 
 	@Override
 	public void update() {
-		int res;
-		
-		String sql = "UPDATE Aluno"
+		String sql = "UPDATE Aluno "
 				+ "SET siglaCurso='"+this.gCurso.getSigla()+"'"
 						+ "WHERE cpfConsumidor='"+ this.getCpf()+"';";
-		
+		super.update();
 		if ( conexao.abrirConexao() ) {
-			res = conexao.executarCUDQuery(sql);
+			conexao.executarCUDQuery(sql);
 			
-			/*if ( res = -1 ) {
-				return false;
-			} else {
-				return true;
-			}*/
 			conexao.fecharConexao();
 		}
 

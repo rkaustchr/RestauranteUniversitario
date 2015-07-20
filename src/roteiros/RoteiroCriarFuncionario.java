@@ -1,22 +1,16 @@
 package roteiros;
 
-
 import java.util.ArrayList;
-
-
 import controladores.ccu.exceptions.DepartamentoNotFound;
 import controladores.ccu.exceptions.NomeNotFoundException;
 import controladores.ccu.exceptions.SiglaNotFoundException;
 import entidades.CPF;
-
 import entidades.Departamento;
-
 import entidades.Sexo;
 import entidades.Titulo;
 import gateway.DepartamentoFinder;
 import gateway.DepartamentoGateway;
 import gateway.FuncionarioGateway;
-
 import gateway.IGateway;
 
 
@@ -29,7 +23,6 @@ public class RoteiroCriarFuncionario {
 	private CPF cpf;
 	private String siglaDepartamento;
 	
-
 	public RoteiroCriarFuncionario() {
 		
 	}

@@ -1,10 +1,6 @@
 package controladores;
 
 import entidades.Curso;
-import entidades.Departamento;
-import gateway.DepartamentoFinder;
-import gateway.DepartamentoGateway;
-import gateway.IGateway;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,21 +10,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.lang.Integer;
 
 import controladores.ccu.exceptions.CursoNotFound;
-import controladores.ccu.exceptions.DepartamentoNotFound;
 import controladores.ccu.exceptions.NomeNotFoundException;
-import controladores.ccu.exceptions.SiglaAlreadyExistsException;
 import controladores.ccu.exceptions.SiglaNotFoundException;
 import roteiros.RoteiroCriarAluno;
-import roteiros.RoteiroCriarCurso;
-import roteiros.RoteiroCriarFuncionario;
 
 @WebServlet("/CriarAluno")
 public class CriarAluno extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-
+	public CriarAluno(){
+		super();
+	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -57,7 +52,7 @@ public class CriarAluno extends HttpServlet {
 	
 	private void criarAluno(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nome = (String) request.getParameter("nome");
-		int matricula = Integer.parseInt((String)request.getParameter("matricula"));
+		int matricula = Integer.parseInt((String) request.getParameter("matricula"));
 		String anoIngresso =  (String)request.getParameter("anoIgresso");
 		String sexo =  (String)request.getParameter("sexo");
 		String titulo =  (String)request.getParameter("titulo");
@@ -71,11 +66,10 @@ public class CriarAluno extends HttpServlet {
 			request.getRequestDispatcher("ListarConsumidor").forward(request,response);
 		} catch (SiglaNotFoundException | NomeNotFoundException e2) {
 			request.setAttribute("erro", "Um curso deve conter um nome, uma sigla e um departamento");
-			request.getRequestDispatcher("WEB-INF/CriarFuncionario.jsp").forward(request,response);
+			request.getRequestDispatcher("WEB-INF/CriarAluno.jsp").forward(request,response);
 		}catch (CursoNotFound e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-
 }

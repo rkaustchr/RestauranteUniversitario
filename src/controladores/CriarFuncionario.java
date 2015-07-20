@@ -1,26 +1,16 @@
 package controladores;
 
-
 import entidades.Departamento;
-import gateway.DepartamentoFinder;
-import gateway.DepartamentoGateway;
-import gateway.IGateway;
-
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-
 import controladores.ccu.exceptions.DepartamentoNotFound;
 import controladores.ccu.exceptions.NomeNotFoundException;
-import controladores.ccu.exceptions.SiglaAlreadyExistsException;
 import controladores.ccu.exceptions.SiglaNotFoundException;
-import roteiros.RoteiroCriarCurso;
 import roteiros.RoteiroCriarFuncionario;
 
 @WebServlet("/CriarFuncionario")
@@ -81,5 +71,4 @@ public class CriarFuncionario extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-
 }

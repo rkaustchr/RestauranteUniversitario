@@ -1,13 +1,6 @@
 package gateway;
 
-import java.util.ArrayList;
-
-import entidades.Aluno;
 import entidades.CPF;
-import entidades.Consumidor;
-import entidades.Curso;
-import entidades.Departamento;
-
 import entidades.Sexo;
 import entidades.Titulo;
 import persistencia.ConexaoBD;
@@ -88,7 +81,6 @@ public class ConsumidorGateway implements IGateway{
 
 	@Override
 	public void insert() {
-	
 		String sql = "INSERT INTO Consumidor("
 				+ "cpf, nome, matricula, anoIngresso, sexo, titulo) "
 				+ "VALUES('"+ this.cpf +"','"+this.nome+"','"+this.matricula+"'"
@@ -110,7 +102,6 @@ public class ConsumidorGateway implements IGateway{
 
 	@Override
 	public void update() {
-		int res;
 		String sql = "UPDATE Consumidor"
 				+ "SET nome='"+ this.nome +"',"
 						+ "matricula='"+this.matricula+"',"
@@ -120,16 +111,7 @@ public class ConsumidorGateway implements IGateway{
 						+ "WHERE cpf='"+ this.cpf+"';";
 		
 		if ( conexao.abrirConexao() ) {
-			res = conexao.executarCUDQuery(sql);
-			
-<<<<<<< HEAD
-=======
-			/*if ( res = -1 ) {
-				return false;
-			} else {
-				return true;
-			}*/
->>>>>>> 049fb962ca62c49db84eea87e90e21671351d2d7
+			conexao.executarCUDQuery(sql);
 			conexao.fecharConexao();
 		}
 		

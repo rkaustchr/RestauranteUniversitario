@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import entidades.CPF;
-import entidades.Curso;
 import entidades.Sexo;
 import entidades.Titulo;
 import persistencia.ConexaoBD;

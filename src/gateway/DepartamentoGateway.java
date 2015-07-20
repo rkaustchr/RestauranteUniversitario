@@ -47,7 +47,6 @@ public class DepartamentoGateway implements IGateway{
 		int res;
 		String sql = "UPDATE departamento SET nome='"+ this.nome +"' WHERE sigla='"+ this.sigla +"';";
 		
-		System.out.println("SQL: " + sql);
 		if ( conexao.abrirConexao() ) {
 			res = conexao.executarCUDQuery(sql);
 			
