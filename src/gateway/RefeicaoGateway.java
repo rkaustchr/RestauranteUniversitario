@@ -43,6 +43,8 @@ public class RefeicaoGateway implements IGateway {
 		String sql = "INSERT INTO refeicao(turno, descricao, opcaoVegan) "
 				+ "VALUES('"+ this.turno.toString() +"', '"+ this.descricao +"', '"+ this.opcaoVegan +"');";
 
+
+
 		if ( conexao.abrirConexao() ) {
 			res = conexao.executarCUDQuery(sql);
 			conexao.fecharConexao();

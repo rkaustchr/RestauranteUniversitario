@@ -3,9 +3,6 @@ package gateway;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import entidades.Consumidor;
-import entidades.Refeicao;
 import persistencia.ConexaoBD;
 
 public class TicketFinder implements IFinder {
