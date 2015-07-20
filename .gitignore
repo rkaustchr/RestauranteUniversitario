@@ -13,6 +13,6 @@ build/*
 # Arquivos temporarios
 /*~
 
-/bin/
+bin/
 
-banco/
+banco/*
