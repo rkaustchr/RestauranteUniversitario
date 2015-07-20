@@ -21,7 +21,7 @@
 			<h2>Menu:</h2>
 			<a href="ListarConsumidor">Gerenciar Consumidor</a> <br />
 			<a href="ListarTicket">x Gerenciar Tickets</a> <br />
-			<a href="ListarRefeicao">x Gerenciar Refeições</a> <br />
+			<a href="ListarRefeicao">Gerenciar Refeições</a> <br />
 			<hr /> <br />
 			<a href="ListarDepartamento">Gerenciar Departamento</a> <br />
 			<a href="ListarCurso">Gerenciar Curso</a> <br />
