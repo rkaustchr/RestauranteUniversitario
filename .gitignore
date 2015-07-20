@@ -1,0 +1,16 @@
+# Arquivos compilados
+build/*
+
+# .classpath
+.classpath
+
+# .settings
+.settings
+
+# .project
+.project
+
+# Arquivos temporarios
+/*~
+
+/bin/
