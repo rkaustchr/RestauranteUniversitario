@@ -38,9 +38,9 @@ public class TicketGateway implements IGateway {
 
 	@Override
 	public void insert() {
-		int res;
-		String sql = "INSERT INTO ticket(id, pago, refeicao) "
-				+ "VAUES('"+ this.id +"', '"+ this.pago +"', '"+ this.refeicao +"');";
+		int res; 
+		String sql = "INSERT INTO ticket(pago, idRefeicao, cpfConsumidor ) "
+				+ "VALUES("+ this.pago +", "+ this.refeicao.getId() +", '"+ ( (ConsumidorGateway) this.consumidor).getCpf()+"');";
 		
 		if ( conexao.abrirConexao() ) {
 			res = conexao.executarCUDQuery(sql);
