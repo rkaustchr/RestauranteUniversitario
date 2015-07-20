@@ -2,19 +2,16 @@ package controladores;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import controladores.ccu.exceptions.CursoNotFound;
-import controladores.ccu.exceptions.NomeNotFoundException;
-import controladores.ccu.exceptions.SiglaNotFoundException;
-import entidades.CPF;
-import entidades.Sexo;
-import entidades.Titulo;
-import roteiros.RoteiroCriarAluno;
+import entidades.Departamento;
+import roteiros.RoteiroListarDepartamento;
 
 /**
  * Servlet implementation class CriarAluno
@@ -35,30 +32,20 @@ public class CriarAluno extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		String nome = (String) request.getParameter("nome");
-		int matricula = Integer.parseInt(request.getParameter("matricula"));
-		String anoIngresso = (String) request.getParameter("anoIngresso");
-		Sexo sexo = Sexo.valueOf(request.getParameter("sexo"));
-		Titulo titulo = Titulo.valueOf(request.getParameter("titulo"));
-		CPF cpf = new CPF(request.getParameter("cpf"));
-		String siglaCurso = (String) request.getParameter("siglaCurso");
-
-		RoteiroCriarAluno rCriarAluno = new RoteiroCriarAluno(nome, matricula, anoIngresso, sexo, titulo, cpf, siglaCurso);
-		try {
-			rCriarAluno.execute();
-		} catch (NomeNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SiglaNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (CursoNotFound e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		String acao = (String) request.getParameter("acaoCriar");
+	
+		 if (acao != null){
+			switch (acao) {
+				case "Criar":
+					//criarAluno(request,response);
+					request.getRequestDispatcher("WEB-INF/CriarAluno.jsp").forward(request,response);	
+					break;
+				default:
+					request.getRequestDispatcher("ListarConsumidor").forward(request,response);
+			}
+		}else{ 
+			request.getRequestDispatcher("WEB-INF/ListarConsumidor.jsp").forward(request,response);	
 		}
-
-		request.getRequestDispatcher("WEB-INF/CriarAluno.jsp").forward(request,response);
 	}
 
 	/**

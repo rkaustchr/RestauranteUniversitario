@@ -3,29 +3,48 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">  
+  <%@include file="css/estilo.css" %>  
+</style> 
 <title>Criar Aluno</title>
 </head>
 <%@include file="messagePage.jsp" %>
 <body>
-	<form action="CriarAluno" method="post">
-	Nome : <input type="text" name ="nome" value = "">
-	Matricula : <input type="text" name ="matricula" value = "">
-	Ano de Ingresso : <input type="text" name ="anoIgresso" value = "">
-	Sexo : <select name="sexo">
-				<option value="masculino">Masculino</option>
-				<option value="feminino">Feminino</option>
-			</select>
-	Titulo : <select name="titulo">
-				<option value="doutorado">Doutorado</option>
-				<option value="mestrado">Mestrado</option>
-				<option value="especializacao">Especialização</option>
-			</select>
-	CPF : <input type="text" name ="cpf" value = "">
-	
-	<br>
-	<input type="submit" name="acaoCriar" value="Criar">
-	<input type="submit" name="acaoCriar" value="Cancelar">
-	</form>
+	<div class="tudo">
+		<div class="topo">
+			<%@include file="topo.jsp" %>
+		</div>
+			
+		<div class="conteudo">
+			<h2>Criar Aluno</h2>
+			<form action="CriarAluno" method="post">
+			<input type="submit" name="acaoCriar" value="Criar">
+			<input type="submit" name="acaoCriar" value="Cancelar">
+			<br />
+			<br />
+			Nome : <input type="text" name ="nome" value = ""> <br />
+			Matricula : <input type="text" name ="matricula" value = ""><br />
+			Ano de Ingresso : <input type="text" name ="anoIgresso" value = ""><br />
+			Sexo : <select name="sexo">
+						<option value="masculino">Masculino</option>
+						<option value="feminino">Feminino</option>
+					</select><br />
+			Titulo : <select name="titulo">
+						<option value="doutorado">Doutorado</option>
+						<option value="mestrado">Mestrado</option>
+						<option value="especializacao">Especialização</option>
+					</select><br />
+			CPF : <input type="text" name ="cpf" value = ""><br />
+			
+			<br>
+			
+			</form>
+	</div>
+		
+		<div class="rodape">
+			<%@include file="rodape.jsp" %>
+		</div>
+	</div>
 </body>
 
 </html>

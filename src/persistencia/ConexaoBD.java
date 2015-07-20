@@ -4,9 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 public class ConexaoBD {
 
@@ -56,14 +53,12 @@ public class ConexaoBD {
 			Class.forName("org.h2.Driver");
 			
 			// /home/rk/workspaceEE/RestauranteUniversitario/
-			String pathBanco = Path.realPath + "RestauranteUniversitario/banco/"; // getServletContext().getRealPath("/") + "banco/";
+			String pathBanco = Path.realPath + "RestauranteUniversitario/banco"; // getServletContext().getRealPath("/") + "banco/";
 
-			System.out.println("ConexaoBD: " + pathBanco);
-			if( ModoTeste.testeAtivo == false)
-				
+			if( ModoTeste.testeAtivo == false)				
 				conexao = DriverManager.getConnection("jdbc:h2:" + pathBanco + "/restaurante", "admin", "admin");
 			else
-				conexao = DriverManager.getConnection("jdbc:h2:~/restauranteTeste", "admin", "admin");
+				conexao = DriverManager.getConnection("jdbc:h2:/media/fellipe/Thiago Damasceno/Comp 3/RestauranteUniversitario/banco/restauranteTeste", "admin", "admin");
 			return true;
 			
 		} catch (ClassNotFoundException e) {
