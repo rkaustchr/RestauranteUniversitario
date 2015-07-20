@@ -53,9 +53,9 @@ public class AlunoFinder implements IFinder {
 	}
 
 	@Override
-	public IGateway find(String id) {
-		String sql = "SELECT * FROM Aluno, Consumidor WHERE cpf='"+ id +"' AND cpf = cpfConsumidor;";
-		IGateway gAluno= new AlunoGateway("", 0, "", null, null, null, null);
+	public IGateway find(String cpf) {
+		String sql = "SELECT * FROM Aluno, Consumidor WHERE cpf='"+ cpf +"' AND cpf = cpfConsumidor;";
+		IGateway gAluno = null;
 		
 		if (conexao.abrirConexao()) {
 			ResultSet rs = conexao.executarSelectQuery(sql);

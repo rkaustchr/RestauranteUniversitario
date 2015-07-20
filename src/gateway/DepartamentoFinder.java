@@ -3,10 +3,7 @@ package gateway;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import persistencia.ConexaoBD;
-
-
 
 public class DepartamentoFinder implements IFinder {
 	protected ConexaoBD conexao;

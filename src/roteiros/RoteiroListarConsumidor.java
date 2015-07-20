@@ -1,17 +1,14 @@
 package roteiros;
 
 import java.util.ArrayList;
-
 import entidades.Aluno;
 import entidades.Consumidor;
 import entidades.Curso;
 import entidades.Departamento;
 import entidades.Funcionario;
-import entidades.Titulo;
 import gateway.AlunoFinder;
 import gateway.AlunoGateway;
-import gateway.ConsumidorGateway;
-import gateway.CursoFinder;
+import gateway.ConsumidorFinder;
 import gateway.CursoGateway;
 import gateway.DepartamentoGateway;
 import gateway.FuncionarioFinder;
@@ -21,10 +18,15 @@ import gateway.IGateway;
 public class RoteiroListarConsumidor  {
 
 	public ArrayList<Consumidor> executar() throws Exception {
+		/*
+		 * Refatorar para usar ConsumidorFinder invez de AlunoFinder + FuncionarioFinder
+		 */
+		// ConsumidorFinder fConsumidor = new ConsumidorFinder();
 		AlunoFinder fAluno = new AlunoFinder();
 		FuncionarioFinder fFuncionario = new FuncionarioFinder();
 		
 		ArrayList<Consumidor> retorno = new ArrayList<Consumidor>();
+		
 		
 		for (IGateway gConsumidor : fAluno.findAll()) {
 			CursoGateway gCurso = ((AlunoGateway) gConsumidor).getCurso();
@@ -40,8 +42,7 @@ public class RoteiroListarConsumidor  {
 			retorno.add(new Funcionario(((FuncionarioGateway) gConsumidor).getNome(), ((FuncionarioGateway) gConsumidor).getMatricula(), ((FuncionarioGateway) gConsumidor).getAnoIngresso(), ((FuncionarioGateway) gConsumidor).getSexo(), ((FuncionarioGateway) gConsumidor).getTitulo(), ((FuncionarioGateway) gConsumidor).getCpf(), departamento));
 		}
 		
-		return retorno;		
-	
+		return retorno;	
 	}
 
 }

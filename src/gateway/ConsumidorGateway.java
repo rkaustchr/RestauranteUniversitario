@@ -1,12 +1,6 @@
 package gateway;
 
-import java.util.ArrayList;
-
-import entidades.Aluno;
 import entidades.CPF;
-import entidades.Consumidor;
-import entidades.Curso;
-import entidades.Departamento;
 import entidades.Sexo;
 import entidades.Titulo;
 import persistencia.ConexaoBD;
