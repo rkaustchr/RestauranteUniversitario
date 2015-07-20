@@ -7,6 +7,7 @@ import entidades.CPF;
 import entidades.Consumidor;
 import entidades.Curso;
 import entidades.Departamento;
+
 import entidades.Sexo;
 import entidades.Titulo;
 import persistencia.ConexaoBD;
@@ -121,6 +122,14 @@ public class ConsumidorGateway implements IGateway{
 		if ( conexao.abrirConexao() ) {
 			res = conexao.executarCUDQuery(sql);
 			
+<<<<<<< HEAD
+=======
+			/*if ( res = -1 ) {
+				return false;
+			} else {
+				return true;
+			}*/
+>>>>>>> 049fb962ca62c49db84eea87e90e21671351d2d7
 			conexao.fecharConexao();
 		}
 		

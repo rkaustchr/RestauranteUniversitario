@@ -7,11 +7,13 @@ import entidades.Consumidor;
 import entidades.Curso;
 import entidades.Departamento;
 import entidades.Funcionario;
+
 import entidades.Titulo;
 import gateway.AlunoFinder;
 import gateway.AlunoGateway;
 import gateway.ConsumidorGateway;
 import gateway.CursoFinder;
+
 import gateway.CursoGateway;
 import gateway.DepartamentoGateway;
 import gateway.FuncionarioFinder;
@@ -21,6 +23,7 @@ import gateway.IGateway;
 public class RoteiroListarConsumidor  {
 
 	public ArrayList<Consumidor> executar() throws Exception {
+
 		AlunoFinder fAluno = new AlunoFinder();
 		FuncionarioFinder fFuncionario = new FuncionarioFinder();
 		
@@ -39,9 +42,8 @@ public class RoteiroListarConsumidor  {
 			Departamento departamento = new Departamento(gDepartamento.getNome(), gDepartamento.getSigla()); 
 			retorno.add(new Funcionario(((FuncionarioGateway) gConsumidor).getNome(), ((FuncionarioGateway) gConsumidor).getMatricula(), ((FuncionarioGateway) gConsumidor).getAnoIngresso(), ((FuncionarioGateway) gConsumidor).getSexo(), ((FuncionarioGateway) gConsumidor).getTitulo(), ((FuncionarioGateway) gConsumidor).getCpf(), departamento));
 		}
-		
+
 		return retorno;		
-	
 	}
 
 }

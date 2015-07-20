@@ -1,7 +1,10 @@
 package roteiros;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
 
+=======
+>>>>>>> 049fb962ca62c49db84eea87e90e21671351d2d7
 import controladores.ccu.exceptions.CursoNotFound;
 import controladores.ccu.exceptions.NomeNotFoundException;
 import controladores.ccu.exceptions.SiglaAlreadyExistsException;
@@ -25,12 +28,14 @@ public class RoteiroCriarAluno {
 	private CPF cpf;
 	private String siglaCurso;
 	
+
 	public RoteiroCriarAluno(String nome, int matricula, String anoIngresso, String sexo, String titulo, String cpf,
 			String siglaCurso) {
 		super();
 		this.nome = nome;
 		this.matricula = matricula;
 		this.anoIngresso = anoIngresso;
+
 		this.sexo = Sexo.valueOf(sexo);
 		this.titulo = Titulo.valueOf(titulo);
 		this.cpf = new CPF(cpf);
@@ -65,4 +70,5 @@ public class RoteiroCriarAluno {
 		
 		return null;
 	}
+
 }

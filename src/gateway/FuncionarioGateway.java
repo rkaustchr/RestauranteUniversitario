@@ -49,7 +49,7 @@ public class FuncionarioGateway extends ConsumidorGateway implements IGateway {
 		
 		if ( conexao.abrirConexao() ) {
 			conexao.executarCUDQuery(sql);
-	
+
 			conexao.fecharConexao();
 		}
 

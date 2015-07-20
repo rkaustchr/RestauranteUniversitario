@@ -34,11 +34,7 @@ public class DepartamentoGateway implements IGateway{
 		
 		if ( conexao.abrirConexao() ) {
 			conexao.executarCUDQuery(sql);
-			/*if ( res = -1 ) {
-				return false;
-			} else {
-				return true;
-			}*/
+
 			conexao.fecharConexao();
 		} else {
 			System.out.println("Erro: Não foi possivel abrir a conexão!");

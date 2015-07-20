@@ -6,8 +6,6 @@ import java.util.ArrayList;
 
 import persistencia.ConexaoBD;
 
-
-
 public class DepartamentoFinder implements IFinder {
 	protected ConexaoBD conexao;
 	

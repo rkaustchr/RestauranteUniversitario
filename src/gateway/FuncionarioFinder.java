@@ -56,7 +56,7 @@ public class FuncionarioFinder implements IFinder {
 	public IGateway find(String id) {
 		String sql = "SELECT * FROM Funcionario, Consumidor WHERE cpf='"+ id +"' AND cpf = cpfConsumidor;";
 		IGateway gFuncionario= new FuncionarioGateway("", 0, "", null, null, null, null);
-		
+
 		if (conexao.abrirConexao()) {
 			ResultSet rs = conexao.executarSelectQuery(sql);
 			if ( rs != null ) {
