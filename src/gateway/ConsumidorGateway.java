@@ -85,7 +85,7 @@ public class ConsumidorGateway implements IGateway{
 				+ "cpf, nome, matricula, anoIngresso, sexo, titulo) "
 				+ "VALUES('"+ this.cpf +"','"+this.nome+"','"+this.matricula+"'"
 						+ ",'"+this.anoIngresso+"','"+this.sexo+"','"+this.titulo+"');";
-
+		
 		if ( conexao.abrirConexao() ) {
 			conexao.executarCUDQuery(sql);
 			
@@ -102,7 +102,7 @@ public class ConsumidorGateway implements IGateway{
 
 	@Override
 	public void update() {
-		String sql = "UPDATE Consumidor"
+		String sql = "UPDATE Consumidor "
 				+ "SET nome='"+ this.nome +"',"
 						+ "matricula='"+this.matricula+"',"
 						+ "anoIngresso='"+this.anoIngresso+"',"

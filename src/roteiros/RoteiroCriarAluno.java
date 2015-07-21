@@ -1,5 +1,6 @@
 package roteiros;
 
+
 import java.util.ArrayList;
 
 import controladores.ccu.exceptions.CursoNotFound;
@@ -26,8 +27,9 @@ public class RoteiroCriarAluno {
 	private CPF cpf;
 	private String siglaCurso;
 	
+	
 	public RoteiroCriarAluno() {
-		
+		super();
 	}
 
 	public RoteiroCriarAluno(String nome, int matricula, String anoIngresso, String sexo, String titulo, String cpf,
