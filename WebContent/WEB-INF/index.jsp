@@ -20,7 +20,7 @@
 			
 			<h2>Menu:</h2>
 			<a href="ListarConsumidor">Gerenciar Consumidor</a> <br />
-			<a href="ListarTicket">x Gerenciar Tickets</a> <br />
+			<a href="ListarTicket">Gerenciar Tickets</a> <br />
 			<a href="ListarRefeicao">Gerenciar Refeições</a> <br />
 			<hr /> <br />
 			<a href="ListarDepartamento">Gerenciar Departamento</a> <br />

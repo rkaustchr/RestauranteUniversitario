@@ -53,8 +53,7 @@ public class TicketGateway implements IGateway {
 	public void update() {
 		int res;
 		String sql = "UPDATE ticket "
-				+ "SET pago='"+ this.pago +"','refeicao='"+ this.refeicao +"' "
-						+ "WHERE id='"+ this.id +"';";
+				+ "SET pago="+ this.pago + " WHERE id='"+ this.id +"';";
 		
 		if ( conexao.abrirConexao() ) {
 			res = conexao.executarCUDQuery(sql);
