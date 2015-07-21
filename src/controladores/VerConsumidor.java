@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import roteiros.RoteiroVerConsumidor;
 import roteiros.RoteiroVerDepartamento;
-import controladores.ccu.exceptions.ConsumidorNotFound;
-import controladores.ccu.exceptions.DepartamentoNotFound;
+import controladores.exceptions.ConsumidorNotFound;
+import controladores.exceptions.DepartamentoNotFound;
 import entidades.Consumidor;
 import entidades.Departamento;
 

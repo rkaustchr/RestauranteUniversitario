@@ -1,7 +1,7 @@
 package roteiros;
 
-import controladores.ccu.exceptions.CursoNotFound;
-import controladores.ccu.exceptions.DepartamentoNotFound;
+import controladores.exceptions.CursoNotFound;
+import controladores.exceptions.DepartamentoNotFound;
 import entidades.Curso;
 import entidades.Departamento;
 import gateway.CursoFinder;

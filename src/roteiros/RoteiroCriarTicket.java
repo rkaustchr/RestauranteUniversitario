@@ -9,11 +9,11 @@ import gateway.IGateway;
 import gateway.RefeicaoFinder;
 import gateway.RefeicaoGateway;
 import gateway.TicketGateway;
-import controladores.ccu.exceptions.ConsumidorNotFoundException;
-import controladores.ccu.exceptions.NomeNotFoundException;
-import controladores.ccu.exceptions.RefeicaoNotFoundException;
-import controladores.ccu.exceptions.SiglaAlreadyExistsException;
-import controladores.ccu.exceptions.SiglaNotFoundException;
+import controladores.exceptions.ConsumidorNotFoundException;
+import controladores.exceptions.NomeNotFoundException;
+import controladores.exceptions.RefeicaoNotFoundException;
+import controladores.exceptions.SiglaAlreadyExistsException;
+import controladores.exceptions.SiglaNotFoundException;
 
 public class RoteiroCriarTicket {
 	private String idRefeicao;

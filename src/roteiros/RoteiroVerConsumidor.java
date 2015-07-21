@@ -12,7 +12,7 @@ import gateway.AlunoGateway;
 import gateway.ConsumidorFinder;
 import gateway.FuncionarioGateway;
 import gateway.IGateway;
-import controladores.ccu.exceptions.ConsumidorNotFound;
+import controladores.exceptions.ConsumidorNotFound;
 
 public class RoteiroVerConsumidor {
 	private String cpf;

@@ -1,6 +1,6 @@
 package roteiros;
 
-import controladores.ccu.exceptions.DepartamentoNotFound;
+import controladores.exceptions.DepartamentoNotFound;
 import entidades.Departamento;
 import gateway.DepartamentoFinder;
 import gateway.DepartamentoGateway;

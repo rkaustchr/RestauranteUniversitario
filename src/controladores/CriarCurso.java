@@ -2,14 +2,16 @@ package controladores;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import controladores.ccu.exceptions.NomeNotFoundException;
-import controladores.ccu.exceptions.SiglaAlreadyExistsException;
-import controladores.ccu.exceptions.SiglaNotFoundException;
+
+import controladores.exceptions.NomeNotFoundException;
+import controladores.exceptions.SiglaAlreadyExistsException;
+import controladores.exceptions.SiglaNotFoundException;
 import entidades.Departamento;
 import roteiros.RoteiroCriarCurso;
 import roteiros.RoteiroListarDepartamento;

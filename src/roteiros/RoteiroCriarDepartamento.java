@@ -1,8 +1,8 @@
 package roteiros;
 
-import controladores.ccu.exceptions.NomeNotFoundException;
-import controladores.ccu.exceptions.SiglaAlreadyExistsException;
-import controladores.ccu.exceptions.SiglaNotFoundException;
+import controladores.exceptions.NomeNotFoundException;
+import controladores.exceptions.SiglaAlreadyExistsException;
+import controladores.exceptions.SiglaNotFoundException;
 import gateway.DepartamentoFinder;
 import gateway.DepartamentoGateway;
 

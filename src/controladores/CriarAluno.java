@@ -10,11 +10,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import java.lang.Integer;
 
-import controladores.ccu.exceptions.CursoNotFound;
-import controladores.ccu.exceptions.NomeNotFoundException;
-import controladores.ccu.exceptions.SiglaNotFoundException;
+import controladores.exceptions.CursoNotFound;
+import controladores.exceptions.NomeNotFoundException;
+import controladores.exceptions.SiglaNotFoundException;
 import roteiros.RoteiroCriarAluno;
 
 @WebServlet("/CriarAluno")

@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import controladores.ccu.exceptions.CursoNotFound;
+import controladores.exceptions.CursoNotFound;
 import entidades.Consumidor;
 import roteiros.RoteiroAtualizarConsumidor;
 import roteiros.RoteiroAtualizarCurso;

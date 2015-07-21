@@ -1,9 +1,9 @@
 package Teste;
 
-import controladores.ccu.exceptions.CursoNotFound;
-import controladores.ccu.exceptions.NomeNotFoundException;
-import controladores.ccu.exceptions.SiglaAlreadyExistsException;
-import controladores.ccu.exceptions.SiglaNotFoundException;
+import controladores.exceptions.CursoNotFound;
+import controladores.exceptions.NomeNotFoundException;
+import controladores.exceptions.SiglaAlreadyExistsException;
+import controladores.exceptions.SiglaNotFoundException;
 import entidades.Curso;
 import gateway.CursoFinder;
 import gateway.CursoGateway;

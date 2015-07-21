@@ -1,7 +1,7 @@
 package roteiros;
 
 
-import controladores.ccu.exceptions.RefeicaoNotFound;
+import controladores.exceptions.RefeicaoNotFound;
 import entidades.Refeicao;
 import entidades.Turno;
 import gateway.RefeicaoGateway;
