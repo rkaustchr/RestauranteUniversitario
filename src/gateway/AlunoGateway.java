@@ -23,7 +23,7 @@ public class AlunoGateway extends ConsumidorGateway implements IGateway {
 	@Override
 	public void insert() {
 		String sql = "INSERT INTO aluno(cpfConsumidor, siglaCurso) "
-				+ "VALUES('"+ this.getCpf() +"','"+this.gCurso.getSigla()+"';";
+				+ "VALUES('"+ this.getCpf() +"','"+this.gCurso.getSigla()+"');";
 		super.insert();
 		if ( conexao.abrirConexao() ) {
 			conexao.executarCUDQuery(sql);
