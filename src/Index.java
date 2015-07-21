@@ -1,13 +1,20 @@
 
 
+import java.io.File;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import persistencia.Path;
+
+import java.io.File;  
+import java.io.UnsupportedEncodingException;  
+import java.net.URLDecoder;  
+import java.sql.Connection;  
+import java.sql.DriverManager;  
+import java.util.ArrayList;  
 
 /**
  * Servlet implementation class Index
@@ -28,11 +35,11 @@ public class Index extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String requestUrl = request.getRequestURI();
+		/*String requestUrl = request.getRequestURI();
 		String realPath = getServletContext().getRealPath(requestUrl);
 		realPath = realPath.substring(0, realPath.indexOf("."));
 		
-		Path.realPath = realPath;
+		Path.realPath = realPath;*/
 
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		request.getRequestDispatcher("WEB-INF/index.jsp").forward(request,response);

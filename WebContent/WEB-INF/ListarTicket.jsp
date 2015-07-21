@@ -21,7 +21,7 @@
 		<div class="conteudo">
 
 			<%@include file="messagePage.jsp" %>
-			<form action="ListarCurso" method="post">
+			<form action="ListarTicket" method="post">
 			<center>
 			<h2>Listando os tickets</h2>
 				<input type="submit" name ="acaoListar" value = "Criar">
@@ -31,7 +31,7 @@
 				<br />
 					<table width="80%">
 					  <tr>
-					    <th>id</th>
+					    <th></th>
 					    <th>Refeição</th>
 					    <th>Pago</th>
 					  </tr>
@@ -43,9 +43,15 @@
 							  for (i=0; i < listaTickets.size(); i++){
 					  %>
 						  <tr >
-						    <td><input type="radio" name='id' value='<%=listaTickets.get(i).getId()%>'><%=listaTickets.get(i).getId()%></td>
+						    <td><input type="radio" name='id' value='<%=listaTickets.get(i).getId()%>'></td>
 						    <td><%=listaTickets.get(i).getRefeicao().getDescricao()%></td>
-						    <td><%=listaTickets.get(i).isPago()%></td>
+						    <td>
+						    	<% if ( listaTickets.get(i).isPago() == true ) { %>
+						    		<img src="https://cdn2.iconfinder.com/data/icons/function_icon_set/accepted_48.png" alt="Pago" width="16" height="16"/>
+						    	<% } else { %>
+									<img src="https://cdn2.iconfinder.com/data/icons/function_icon_set/cancel_48.png" alt="Não Pago" width="16" height="16"/>
+								<% } %> 
+							</td>
 						  </tr>
 					  <%
 							  }
