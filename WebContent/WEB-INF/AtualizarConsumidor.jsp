@@ -15,7 +15,7 @@
 <style type="text/css">  
   <%@include file="css/estilo.css" %>  
 </style>
-<title>Atualizar Consumidor</title>
+<title>SisRU - Atualizar Consumidor</title>
 </head>
 <body>
 	<div class="tudo">
@@ -26,36 +26,38 @@
 		<div class="conteudo">
 			<%@include file="messagePage.jsp" %>
 			<% Consumidor consumidor = (Consumidor)request.getAttribute("consumidorAntigo");%>
-			<h2>Atualizar curso</h2>
+			<h2>Atualizar consumidor</h2>
 			<form action="AtualizarConsumidor" method="post">
-			<% try{ 
-			String nome = consumidor.getNome();
-			int matricula = consumidor.getMatricula();
-			String anoIngresso = consumidor.getAnoIngresso(); 
-			Sexo sexo = consumidor.getSexo();
-			Titulo titulo = consumidor.getTitulo();
-			CPF cpf = consumidor.getCpf();%>
+			<%  
+				String nome = consumidor.getNome();
+				int matricula = consumidor.getMatricula();
+				String anoIngresso = consumidor.getAnoIngresso(); 
+				String sexo = consumidor.getSexo().toString();
+				Titulo titulo = consumidor.getTitulo();
+				CPF cpf = consumidor.getCpf();
+			%>
 			Nome : <input type="text" name ="nome" value = "<%=nome%>"> <br />
-			Matricula : <%=matricula%> <input type="hidden" name ="matricula" value = "<%=matricula%>"> <br />
-			Ano de Ingresso : <%=anoIngresso%> <input type="hidden" name ="anoIngresso" value = "<%=anoIngresso%>"> <br />
-			Sexo : <%=sexo%> <input type="hidden" name ="sexo" value = "<%=sexo%>"> <br />
-			Titulo : <%=titulo%> <input type="hidden" name ="titulo" value = "<%=titulo%>"> <br />
-			CPF : <%=cpf%> <input type="hidden" name ="cpf" value = "<%=cpf%>"> <br />
+			Matricula : <input type="text" name ="matricula" value = "<%=matricula%>"> <br />
+			Ano de Ingresso : <input type="text" name ="anoIngresso" value = "<%=anoIngresso%>"> <br />
+			Sexo : <select name="sexo">
+						<option value="MASCULINO" <%= (sexo.equals("MASCULINO"))? "selected" : "" %>>Masculino</option>
+						<option value="FEMININO" <%= (sexo.equals("FEMININO"))? "selected" : "" %>>Feminino</option>
+					</select><br />
+			Titulo : <%=titulo%> <br />
+			CPF : <%=cpf%> <input type="hidden" name ="cpf" value="<%=cpf%>"> <br />
 			<% try {
-				  		Curso curso = ((Aluno) consumidor).getCurso(); %>
-			  		 - <input type="hidden" name ="tipo" value = "A">
-			  		<%=curso.getNome() %><br />
-		  		<%} catch (Exception e) {
-		  			Departamento departamento = ((Funcionario) consumidor).getDepartamento();%>
-		  			- <input type="hidden" name ="tipo" value = "F">
-		  			<%=departamento.getNome() %>
-		  			<td> - </td>
-		  		<%}%>
+				  Curso curso = ((Aluno) consumidor).getCurso(); 
+			%>
+		  		Curso: <%=curso.getNome() %><br />
+		  		<input type="hidden" name ="tipo" value = "A">
+	  		<%} catch (Exception e) {
+	  			Departamento departamento = ((Funcionario) consumidor).getDepartamento();%>
+	  			Departamento: <%=departamento.getNome() %><br />
+	  			<input type="hidden" name ="tipo" value = "F">
+	  		<%}%>
 			<input type="submit" name="acaoAtualizar" value="Atualizar">
 			<input type="submit" name="acaoAtualizar" value="Cancelar">
-			<% } catch (NullPointerException e)  { %>
-			<input type="submit" name="acaoAtualizar" value="Voltar">
-			<% } %>
+			<input type="submit" name="acaoAtualizar" value="Voltar">			
 			</form>
 		</div>
 		

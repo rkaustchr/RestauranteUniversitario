@@ -16,7 +16,7 @@ public class DepartamentoFinder implements IFinder {
 	@Override
 	public ArrayList<IGateway> findAll() {
 		ArrayList<IGateway> gDepartamentos = new ArrayList<IGateway>();
-		String sql = "SELECT * FROM departamento;";
+		String sql = "SELECT * FROM departamento ORDER BY nome ASC;";
 		
 		if (conexao.abrirConexao()) {
 			ResultSet rs = conexao.executarSelectQuery(sql);

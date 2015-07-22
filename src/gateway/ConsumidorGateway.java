@@ -103,13 +103,12 @@ public class ConsumidorGateway implements IGateway{
 	@Override
 	public void update() {
 		String sql = "UPDATE Consumidor "
-				+ "SET nome='"+ this.nome +"',"
-						+ "matricula='"+this.matricula+"',"
-						+ "anoIngresso='"+this.anoIngresso+"',"
-						+ "sexo='"+this.sexo+"',"
-						+ "titulo='"+this.titulo+"',"
+				+ "SET nome='"+ this.nome +"', "
+						+ "matricula='"+this.matricula+"', "
+						+ "anoIngresso='"+this.anoIngresso+"', "
+						+ "sexo='"+this.sexo+"' "
 						+ "WHERE cpf='"+ this.cpf+"';";
-		
+		System.out.println("SQL: " + sql);
 		if ( conexao.abrirConexao() ) {
 			conexao.executarCUDQuery(sql);
 			conexao.fecharConexao();

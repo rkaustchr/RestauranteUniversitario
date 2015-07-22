@@ -8,10 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import controladores.exceptions.CursoNotFound;
+import controladores.exceptions.ConsumidorNotFound;
 import entidades.Consumidor;
 import roteiros.RoteiroAtualizarConsumidor;
-import roteiros.RoteiroAtualizarCurso;
 import roteiros.RoteiroVerConsumidor;
 
 @WebServlet("/AtualizarConsumidor")
@@ -34,8 +33,15 @@ public class AtualizarConsumidor extends HttpServlet {
 				atualizarConsumidorAntigo(request,response);
 				break;
 			default:
-				RoteiroAtualizarConsumidor rAtualizarConsumidor = new RoteiroAtualizarConsumidor();
-				Consumidor consumidorAntigo = rAtualizarConsumidor.getConsumidor(request.getParameter("cpf"));
+				Consumidor consumidorAntigo;
+				try {
+					RoteiroVerConsumidor rVerConsumidor = new RoteiroVerConsumidor(request.getParameter("cpf"));
+					consumidorAntigo = rVerConsumidor.executar();
+				} catch (ConsumidorNotFound e) {
+					request.setAttribute("erro", "Consumidor não encontrado");
+					request.getRequestDispatcher("ListarConsumidor").forward(request,response);
+					return;
+				}
 	
 				request.setAttribute("consumidorAntigo", consumidorAntigo);
 				request.getRequestDispatcher("WEB-INF/AtualizarConsumidor.jsp").forward(request,response);	
@@ -49,19 +55,21 @@ public class AtualizarConsumidor extends HttpServlet {
 		int matricula = Integer.parseInt(request.getParameter("matricula"));
 		String anoIngresso = (String) request.getParameter("anoIngresso");
 		String sexo = (String) request.getParameter("sexo");
-		String titulo = (String) request.getParameter("titulo");
 		String cpf = (String) request.getParameter("cpf");
-		String sigla = (String) request.getParameter("sigla");
-		String tipo = (String) request.getParameter("tipo");
 		
 		if (nome == ""){
 			request.setAttribute("erro", "Um Consumidor deve conter um nome");
 			request.getRequestDispatcher("WEB-INF/AtualizarConsumidor.jsp").forward(request,response);
 		}else{
-			RoteiroAtualizarConsumidor rAlterarConsumidor = new RoteiroAtualizarConsumidor(nome, matricula, anoIngresso, sexo, titulo, cpf, sigla, tipo);
-			Consumidor consumidorNovo = rAlterarConsumidor.executar();
+			try {
+				RoteiroAtualizarConsumidor rAlterarConsumidor = new RoteiroAtualizarConsumidor(nome, matricula, anoIngresso, sexo, cpf);
+				rAlterarConsumidor.executar();
+			} catch (ConsumidorNotFound e) {
+				request.setAttribute("erro", "Consumidor não encontrado");
+				request.getRequestDispatcher("ListarConsumidor").forward(request,response);
+			}
 			
-			request.setAttribute("message", "Novo consumidor criado!");
+			request.setAttribute("message", "Consumidor alterado!");
 			request.getRequestDispatcher("ListarConsumidor").forward(request,response);			
 		}
 	}

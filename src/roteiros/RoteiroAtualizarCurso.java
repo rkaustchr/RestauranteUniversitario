@@ -1,10 +1,8 @@
 package roteiros;
 
 import controladores.exceptions.CursoNotFound;
-import controladores.exceptions.DepartamentoNotFound;
 import entidades.Curso;
 import entidades.Departamento;
-import gateway.CursoFinder;
 import gateway.CursoGateway;
 import gateway.DepartamentoFinder;
 import gateway.DepartamentoGateway;
