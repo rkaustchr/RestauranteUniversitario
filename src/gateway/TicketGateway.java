@@ -37,14 +37,21 @@ public class TicketGateway implements IGateway {
 	}
 
 	@Override
-	public void insert() {
-		int res; 
+	public boolean insert() {
+		int res= 0; 
 		String sql = "INSERT INTO ticket(pago, idRefeicao, cpfConsumidor ) "
 				+ "VALUES("+ this.pago +", "+ this.refeicao.getId() +", '"+ ( (ConsumidorGateway) this.consumidor).getCpf()+"');";
 		
 		if ( conexao.abrirConexao() ) {
 			res = conexao.executarCUDQuery(sql);
 			conexao.fecharConexao();
+		}
+		
+		if ( res == 0 ) {
+			System.out.println("SQL: " + sql);
+			return false;
+		} else {
+			return true;
 		}
 		
 	}

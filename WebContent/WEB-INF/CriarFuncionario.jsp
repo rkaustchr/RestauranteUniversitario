@@ -9,7 +9,7 @@
 <style type="text/css">  
   <%@include file="css/estilo.css" %>  
 </style> 
-<title>Criar Funcionario</title>
+<title>SisRU - Criar Funcionario</title>
 </head>
 <%@include file="messagePage.jsp" %>
 <% ArrayList<Departamento> departamentosDisponiveis = (ArrayList<Departamento>)request.getAttribute("departamentosDisponiveis"); %>

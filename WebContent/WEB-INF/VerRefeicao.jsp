@@ -25,12 +25,23 @@
 				<% try{ 
 					String id = refeicao.getId();
 					String descricao = refeicao.getDescricao();
-					Turno turno = refeicao.getTurno(); 
+					String turno = "";
+					switch ( refeicao.getTurno().toString() ) {
+						case "MANHA" :
+							turno = "Desjejum";
+							break;
+						case "TARDE" :
+							turno = "Almoço";
+							break;
+						case "NOITE" :
+							turno = "Jantar";
+							break;
+					}
 					String opcaoVegan = refeicao.getOpcaoVegan();
 				%>
 					Descrição: <%=descricao %> <br />
 					Opção Vegetariana: <%=opcaoVegan%> <input type="hidden" name ="id" value = "<%=id%>"> <br />
-					Horário: <%=  turno.toString() %> <br />
+					Horário: <%=turno%> <br />
 					<br>
 				<% } catch (NullPointerException e)  {  } %>
 				<input type="submit" name="acaoVer" value="Voltar">

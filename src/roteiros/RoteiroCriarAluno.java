@@ -1,21 +1,15 @@
 package roteiros;
 
-
-import java.util.ArrayList;
-
+import controladores.exceptions.CpfAlreadyExistsException;
 import controladores.exceptions.CursoNotFound;
 import controladores.exceptions.NomeNotFoundException;
 import controladores.exceptions.SiglaNotFoundException;
 import entidades.CPF;
-import entidades.Curso;
-import entidades.Departamento;
 import entidades.Sexo;
 import entidades.Titulo;
 import gateway.AlunoGateway;
 import gateway.CursoFinder;
 import gateway.CursoGateway;
-import gateway.DepartamentoGateway;
-import gateway.IGateway;
 
 
 public class RoteiroCriarAluno {
@@ -44,7 +38,7 @@ public class RoteiroCriarAluno {
 		this.siglaCurso = siglaCurso;
 	}
 
-	public void execute() throws NomeNotFoundException, SiglaNotFoundException, CursoNotFound{
+	public void execute() throws NomeNotFoundException, SiglaNotFoundException, CursoNotFound, CpfAlreadyExistsException{
 		CursoFinder fCurso = new CursoFinder();
 		CursoGateway gCurso = (CursoGateway) fCurso.find(this.siglaCurso);
 		if( gCurso != null ){			
@@ -55,25 +49,13 @@ public class RoteiroCriarAluno {
 					throw new NomeNotFoundException();
 				}else{
 					AlunoGateway gAluno = new AlunoGateway(this.nome, this.matricula, this.anoIngresso, this.sexo, this.titulo, this.cpf, gCurso);
-					gAluno.insert();
+					if ( gAluno.insert() == false ) 
+						throw new CpfAlreadyExistsException(this.cpf);
 				}
 			}
 		}
 		else{
 			throw new CursoNotFound();
 		}
-	}
-
-	public ArrayList<Curso> getListaCurso() {
-		CursoFinder fCurso = new CursoFinder();
-		ArrayList<Curso> retorno = new ArrayList<Curso>();
-		
-		for (IGateway gCurso : fCurso.findAll()) {
-			DepartamentoGateway Gdept = ((CursoGateway) gCurso).getDepartamento();
-			Departamento dept = new Departamento(Gdept.getNome(), Gdept.getSigla());
-			retorno.add(new Curso(((CursoGateway) gCurso).getNome(), ((CursoGateway) gCurso).getSigla(), dept));
-		}
-		
-		return retorno;	
 	}
 }

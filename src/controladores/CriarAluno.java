@@ -13,10 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.lang.Integer;
 
+import controladores.exceptions.CpfAlreadyExistsException;
 import controladores.exceptions.CursoNotFound;
 import controladores.exceptions.NomeNotFoundException;
 import controladores.exceptions.SiglaNotFoundException;
 import roteiros.RoteiroCriarAluno;
+import roteiros.RoteiroListarCurso;
 
 @WebServlet("/CriarAluno")
 public class CriarAluno extends HttpServlet {
@@ -32,11 +34,18 @@ public class CriarAluno extends HttpServlet {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		String acao = (String) request.getParameter("acaoCriar");
-
-		RoteiroCriarAluno rCriarAluno = new RoteiroCriarAluno();
 		
-		ArrayList<Curso> cursosDisponiveis = rCriarAluno.getListaCurso();
-		request.setAttribute("cursosDisponiveis", cursosDisponiveis);
+		try {
+			RoteiroListarCurso rListarCurso = new RoteiroListarCurso();
+			ArrayList<Curso> cursosDisponiveis;
+			
+			cursosDisponiveis = rListarCurso.executar();
+			request.setAttribute("cursosDisponiveis", cursosDisponiveis);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	
 		 if (acao != null){
 			switch (acao) {
@@ -72,6 +81,9 @@ public class CriarAluno extends HttpServlet {
 		}catch (CursoNotFound e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (CpfAlreadyExistsException e) {
+			request.setAttribute("erro", "CPF já existe!");
+			request.getRequestDispatcher("WEB-INF/CriarAluno.jsp").forward(request,response);
 		}
 	}
 }

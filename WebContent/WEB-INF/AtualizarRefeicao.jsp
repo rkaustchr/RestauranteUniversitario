@@ -26,11 +26,24 @@
 					String id = refeicao.getId();
 					String descricao = refeicao.getDescricao(); 
 					String opcaoVegan = refeicao.getOpcaoVegan();
-					String turno = refeicao.getTurno().toString();
 				%>
 					<h2>Atualizar refeição</h2>
 					Descrição: <input type="text" name ="descricao" value = "<%=descricao%>"> <br />
 					Opção Vegetariana: <input type="text" name ="opcaoVegan" value = "<%=opcaoVegan%>"> <br />
+					<%
+					String turno = "";
+						switch ( refeicao.getTurno().toString() ) {
+							case "MANHA" :
+								turno = "Desjejum";
+								break;
+							case "TARDE" :
+								turno = "Almoço";
+								break;
+							case "NOITE" :
+								turno = "Jantar";
+								break;
+						}
+					%>
 					Turno: <%=turno %> <br />
 					<input type="hidden" name ="turno" value = "<%=turno%>">
 					<input type="hidden" name ="id" value = "<%=id%>">

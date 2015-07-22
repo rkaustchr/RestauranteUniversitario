@@ -80,18 +80,23 @@ public class ConsumidorGateway implements IGateway{
 	}
 
 	@Override
-	public void insert() {
-		String sql = "INSERT INTO Consumidor("
-				+ "cpf, nome, matricula, anoIngresso, sexo, titulo) "
+	public boolean insert()  {
+		int res = 0;
+		String sql = "INSERT INTO Consumidor(cpf, nome, matricula, anoIngresso, sexo, titulo) "
 				+ "VALUES('"+ this.cpf +"','"+this.nome+"','"+this.matricula+"'"
 						+ ",'"+this.anoIngresso+"','"+this.sexo+"','"+this.titulo+"');";
 		
 		if ( conexao.abrirConexao() ) {
-			conexao.executarCUDQuery(sql);
-			
+			res = conexao.executarCUDQuery(sql);
+					
 			conexao.fecharConexao();
 		}
-		
+		if ( res == 0 ) {
+			System.out.println("SQL: " + sql);
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	@Override
@@ -108,7 +113,7 @@ public class ConsumidorGateway implements IGateway{
 						+ "anoIngresso='"+this.anoIngresso+"', "
 						+ "sexo='"+this.sexo+"' "
 						+ "WHERE cpf='"+ this.cpf+"';";
-		System.out.println("SQL: " + sql);
+
 		if ( conexao.abrirConexao() ) {
 			conexao.executarCUDQuery(sql);
 			conexao.fecharConexao();

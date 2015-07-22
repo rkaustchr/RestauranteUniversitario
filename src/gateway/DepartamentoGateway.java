@@ -28,7 +28,8 @@ public class DepartamentoGateway implements IGateway{
 	}
 
 	@Override
-	public void insert() {
+	public boolean insert() {
+		int res = 0;
 		String sql = "INSERT INTO departamento(sigla, nome) "
 				+ "VALUES('"+ this.sigla +"', '"+ this.nome +"');";
 		
@@ -38,6 +39,13 @@ public class DepartamentoGateway implements IGateway{
 			conexao.fecharConexao();
 		} else {
 			System.out.println("Erro: Não foi possivel abrir a conexão!");
+		}
+		
+		if ( res == 0 ) {
+			System.out.println("SQL: " + sql);
+			return false;
+		} else {
+			return true;
 		}
 		
 	}

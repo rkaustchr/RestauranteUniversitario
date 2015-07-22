@@ -11,10 +11,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import controladores.exceptions.CpfAlreadyExistsException;
 import controladores.exceptions.DepartamentoNotFound;
 import controladores.exceptions.NomeNotFoundException;
 import controladores.exceptions.SiglaNotFoundException;
 import roteiros.RoteiroCriarFuncionario;
+import roteiros.RoteiroListarDepartamento;
 
 @WebServlet("/CriarFuncionario")
 public class CriarFuncionario extends HttpServlet {
@@ -34,10 +36,16 @@ public class CriarFuncionario extends HttpServlet {
 		//doGet(request, response);
 		String acao = (String) request.getParameter("acaoCriar");
 
-		RoteiroCriarFuncionario rCriarFuncionario = new RoteiroCriarFuncionario();
-		
-		ArrayList<Departamento> departamentosDisponiveis = rCriarFuncionario.getListaDepartamento();
-		request.setAttribute("departamentosDisponiveis", departamentosDisponiveis);
+		try {
+			RoteiroListarDepartamento rListarDepartamento = new RoteiroListarDepartamento();
+			ArrayList<Departamento> departamentosDisponiveis;
+			
+			departamentosDisponiveis = rListarDepartamento.executar();
+			request.setAttribute("departamentosDisponiveis", departamentosDisponiveis);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
 	
 		 if (acao != null){
 			switch (acao) {
@@ -68,11 +76,14 @@ public class CriarFuncionario extends HttpServlet {
 			request.setAttribute("message", "Novo Funcionario criado!");
 			request.getRequestDispatcher("ListarConsumidor").forward(request,response);
 		} catch (SiglaNotFoundException | NomeNotFoundException e2) {
-			request.setAttribute("erro", "Um curso deve conter um nome, uma sigla e um departamento");
+			request.setAttribute("erro", "Funcionário deve ter CPF");
 			request.getRequestDispatcher("WEB-INF/CriarFuncionario.jsp").forward(request,response);
 		}catch (DepartamentoNotFound e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (CpfAlreadyExistsException e) {
+			request.setAttribute("erro", "CPF já existe!");
+			request.getRequestDispatcher("WEB-INF/CriarFuncionario.jsp").forward(request,response);
 		}
 	}
 }

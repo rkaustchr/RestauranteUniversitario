@@ -40,7 +40,23 @@
 						  for (i=0; i < listaRefeicao.size(); i++){
 							  %> <tr align="center"> 
 							  <td><input type='radio' name ='id' value = '<%=listaRefeicao.get(i).getId() %>'></td>
-							  <td><%=listaRefeicao.get(i).getTurno().toString() %></td> 
+							  <td>
+							  <%
+							  		String turno = "";
+									  switch ( listaRefeicao.get(i).getTurno().toString() ) {
+										case "MANHA" :
+											turno = "Desjejum";
+											break;
+										case "TARDE" :
+											turno = "Almoço";
+											break;
+										case "NOITE" :
+											turno = "Jantar";
+											break;
+									}
+							  %>
+							  <%= turno %>
+							  </td>
 							  <td><%=listaRefeicao.get(i).getDescricao() %></td>
 							  <td><%=listaRefeicao.get(i).getOpcaoVegan() %></td>
 							  </tr> <%

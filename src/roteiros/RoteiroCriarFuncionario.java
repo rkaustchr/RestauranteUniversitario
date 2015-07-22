@@ -1,18 +1,15 @@
 package roteiros;
 
-import java.util.ArrayList;
-
+import controladores.exceptions.CpfAlreadyExistsException;
 import controladores.exceptions.DepartamentoNotFound;
 import controladores.exceptions.NomeNotFoundException;
 import controladores.exceptions.SiglaNotFoundException;
 import entidades.CPF;
-import entidades.Departamento;
 import entidades.Sexo;
 import entidades.Titulo;
 import gateway.DepartamentoFinder;
 import gateway.DepartamentoGateway;
 import gateway.FuncionarioGateway;
-import gateway.IGateway;
 
 
 public class RoteiroCriarFuncionario {
@@ -40,7 +37,7 @@ public class RoteiroCriarFuncionario {
 		this.siglaDepartamento = siglaDepartamento;
 	}
 
-	public void execute() throws NomeNotFoundException, SiglaNotFoundException, DepartamentoNotFound{
+	public void execute() throws NomeNotFoundException, SiglaNotFoundException, DepartamentoNotFound, CpfAlreadyExistsException{
 		DepartamentoFinder fDepartamento = new DepartamentoFinder();
 		DepartamentoGateway gDepartamento = (DepartamentoGateway) fDepartamento.find(this.siglaDepartamento);
 		if( gDepartamento != null ){			
@@ -51,7 +48,9 @@ public class RoteiroCriarFuncionario {
 					throw new NomeNotFoundException();
 				}else{
 					FuncionarioGateway gFuncionario = new FuncionarioGateway(this.nome, this.matricula, this.anoIngresso, this.sexo, this.titulo, this.cpf, gDepartamento);
-					gFuncionario.insert();
+					if ( gFuncionario.insert() == false ) {
+						throw new CpfAlreadyExistsException(this.cpf);
+					}
 				}
 			}
 		}
@@ -60,14 +59,4 @@ public class RoteiroCriarFuncionario {
 		}
 	}
 
-	public ArrayList<Departamento> getListaDepartamento(){
-		DepartamentoFinder fDepartamento = new DepartamentoFinder();
-		ArrayList<Departamento> retorno = new ArrayList<Departamento>();
-		
-		for (IGateway gDepartamento : fDepartamento.findAll()) {
-			retorno.add(new Departamento(((DepartamentoGateway) gDepartamento).getNome(), ((DepartamentoGateway) gDepartamento).getSigla()));
-		}
-		
-		return retorno;
-	}
 }
