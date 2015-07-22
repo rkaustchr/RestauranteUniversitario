@@ -44,7 +44,8 @@ public class CriarAluno extends HttpServlet {
 					criarAluno(request, response);
 					break;
 				default:
-					request.getRequestDispatcher("WEB-INF/ListarConsumidor.jsp").forward(request,response);
+					//request.getRequestDispatcher("WEB-INF/ListarConsumidor.jsp").forward(request,response);
+					response.sendRedirect("ListarConsumidor"); 
 			}
 		}else{ 
 			request.getRequestDispatcher("WEB-INF/CriarAluno.jsp").forward(request,response);	

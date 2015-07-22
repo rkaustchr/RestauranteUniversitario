@@ -45,7 +45,8 @@ public class CriarFuncionario extends HttpServlet {
 					criarFuncionario(request, response);
 					break;
 				default:
-					request.getRequestDispatcher("WEB-INF/ListarConsumidor.jsp").forward(request,response);
+					//request.getRequestDispatcher("WEB-INF/ListarConsumidor.jsp").forward(request,response);
+					response.sendRedirect("ListarConsumidor"); 
 			}
 		}else{ 
 			request.getRequestDispatcher("WEB-INF/CriarFuncionario.jsp").forward(request,response);	
