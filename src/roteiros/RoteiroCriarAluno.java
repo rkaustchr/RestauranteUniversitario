@@ -38,7 +38,7 @@ public class RoteiroCriarAluno {
 		this.siglaCurso = siglaCurso;
 	}
 
-	public void execute() throws NomeNotFoundException, SiglaNotFoundException, CursoNotFound, CpfAlreadyExistsException{
+	public void executar() throws NomeNotFoundException, SiglaNotFoundException, CursoNotFound, CpfAlreadyExistsException{
 		CursoFinder fCurso = new CursoFinder();
 		CursoGateway gCurso = (CursoGateway) fCurso.find(this.siglaCurso);
 		if( gCurso != null ){			

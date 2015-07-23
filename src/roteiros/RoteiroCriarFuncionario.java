@@ -37,7 +37,7 @@ public class RoteiroCriarFuncionario {
 		this.siglaDepartamento = siglaDepartamento;
 	}
 
-	public void execute() throws NomeNotFoundException, SiglaNotFoundException, DepartamentoNotFound, CpfAlreadyExistsException{
+	public void executar() throws NomeNotFoundException, SiglaNotFoundException, DepartamentoNotFound, CpfAlreadyExistsException{
 		DepartamentoFinder fDepartamento = new DepartamentoFinder();
 		DepartamentoGateway gDepartamento = (DepartamentoGateway) fDepartamento.find(this.siglaDepartamento);
 		if( gDepartamento != null ){			

@@ -80,7 +80,7 @@ public class CriarFuncionario extends HttpServlet {
 
 		try {
 			RoteiroCriarFuncionario rCriarFuncionario = new RoteiroCriarFuncionario(nome, matricula, anoIngresso, sexo, titulo, cpf, siglaDepartamento);
-			rCriarFuncionario.execute();
+			rCriarFuncionario.executar();
 			request.setAttribute("message", "Novo Funcionario criado!");
 			request.getRequestDispatcher("ListarConsumidor").forward(request,response);
 		} catch (SiglaNotFoundException | NomeNotFoundException e2) {

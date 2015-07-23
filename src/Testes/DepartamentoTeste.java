@@ -1,4 +1,4 @@
-package Teste;
+package Testes;
 
 import controladores.exceptions.DepartamentoNotFound;
 import controladores.exceptions.NomeNotFoundException;
@@ -14,7 +14,7 @@ import roteiros.RoteiroVerDepartamento;
 public class DepartamentoTeste extends TestCase {	
 	
 	public void testCriarDepartamento() throws SiglaAlreadyExistsException, NomeNotFoundException, SiglaNotFoundException{
-		Teste.zerar();
+		BancoTeste.zerar();
 		RoteiroCriarDepartamento rCriarDepartamento = new RoteiroCriarDepartamento("Departamento de Computacao", "DCC");
 		rCriarDepartamento.executar();
 		
@@ -24,7 +24,7 @@ public class DepartamentoTeste extends TestCase {
 	}
 	
 	public void testVerDepartamento() throws DepartamentoNotFound, SiglaNotFoundException, NomeNotFoundException, SiglaAlreadyExistsException{
-		Teste.zerar();		
+		BancoTeste.zerar();		
 		RoteiroCriarDepartamento rCriarDepartamento = new RoteiroCriarDepartamento("Departamento de Computacao", "DCC");
 		rCriarDepartamento.executar();
 		

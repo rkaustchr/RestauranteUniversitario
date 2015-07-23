@@ -1,7 +1,6 @@
-package Teste;
+package Testes;
 
 import java.io.FileInputStream;
-import java.sql.Connection;
 import java.sql.SQLException;
 import org.dbunit.Assertion;
 import org.dbunit.DBTestCase;
@@ -9,18 +8,15 @@ import org.dbunit.PropertiesBasedJdbcDatabaseTester;
 import org.dbunit.database.DatabaseConfig;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.ITable;
-import org.dbunit.dataset.filter.DefaultColumnFilter;
 import org.dbunit.dataset.xml.FlatXmlDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.ext.h2.H2DataTypeFactory;
 import org.dbunit.operation.DatabaseOperation;
 import org.junit.Before;
-import entidades.Departamento;
 import roteiros.RoteiroCriarDepartamento;
-import roteiros.RoteiroVerDepartamento;
 
-public class TesteFuncionalVerDepartamento extends DBTestCase{
-	private static Connection conn;
+public class TesteFuncionalCriarDepartamento extends DBTestCase{
+
 	private FlatXmlDataSet bancoCarregado;
 	
 	@Before
@@ -39,45 +35,30 @@ public class TesteFuncionalVerDepartamento extends DBTestCase{
 		return DatabaseOperation.DELETE_ALL;
 	}
 	
-	public void testVerDepartamento() throws SQLException, Exception
+	public void testCriarDepartamento() throws SQLException, Exception
 	{
-		Teste.zerar();		
+		BancoTeste.zerar();
+		
 		RoteiroCriarDepartamento rCriarDepartamento = new RoteiroCriarDepartamento("Departamento de Computacao", "DCC");
-		rCriarDepartamento.executar();
-		
-		RoteiroVerDepartamento rVerDepartamento = new RoteiroVerDepartamento("DCC");
-		Departamento de = rVerDepartamento.executar();
-		
-		
-		
-		
+		rCriarDepartamento.executar();		
 	
 		IDataSet dadosSetBanco = getConnection().createDataSet();
 		ITable dadosNoBanco = dadosSetBanco.getTable("departamento");
 		
-		ITable filteredTable = DefaultColumnFilter.excludedColumnsTable(dadosNoBanco, new String[]{"id"});
-		
-		IDataSet dadosSetEsperado = new FlatXmlDataSetBuilder().build(new FileInputStream("xml/dataset.xml"));
+		IDataSet dadosSetEsperado = new FlatXmlDataSetBuilder().build(new FileInputStream("xml/datasetDepartamento.xml"));
 		ITable dadosEsperados = dadosSetEsperado.getTable("departamento");
 		
 		Assertion.assertEquals(dadosEsperados, dadosNoBanco);
-		
-		
-		
-		
-		
-		
-		
-	}		
-		@Override
-		protected void setUpDatabaseConfig(DatabaseConfig config){
-			config.setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY, new H2DataTypeFactory());
-		}
+	}
+	
+	@Override
+	protected void setUpDatabaseConfig(DatabaseConfig config){
+		config.setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY, new H2DataTypeFactory());
+	}
 
-		@Override
-		protected IDataSet getDataSet() throws Exception {
-			bancoCarregado = new FlatXmlDataSetBuilder().build( new FileInputStream("xml/dataset.xml"));
-			return bancoCarregado;
-		}
-
+	@Override
+	protected IDataSet getDataSet() throws Exception {
+		bancoCarregado = new FlatXmlDataSetBuilder().build( new FileInputStream("xml/datasetDepartamento.xml"));
+		return bancoCarregado;
+	}
 }

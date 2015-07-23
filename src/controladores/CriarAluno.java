@@ -76,7 +76,7 @@ public class CriarAluno extends HttpServlet {
 		
 		try {
 			RoteiroCriarAluno rCriarAluno = new RoteiroCriarAluno(nome, matricula, anoIngresso, sexo, titulo, cpf, siglaCurso);
-			rCriarAluno.execute();
+			rCriarAluno.executar();
 			request.setAttribute("message", "Novo Aluno criado!");
 			request.getRequestDispatcher("ListarConsumidor").forward(request,response);
 		} catch (SiglaNotFoundException | NomeNotFoundException e2) {

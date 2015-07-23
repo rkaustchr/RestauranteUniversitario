@@ -1,4 +1,4 @@
-package Teste;
+package Testes;
 
 import controladores.exceptions.CursoNotFound;
 import controladores.exceptions.NomeNotFoundException;
@@ -15,7 +15,7 @@ import roteiros.RoteiroVerCurso;
 public class CursoTeste extends TestCase {
 	
 	public void testCriarCurso() throws SiglaAlreadyExistsException, NomeNotFoundException, SiglaNotFoundException, CursoNotFound{
-		Teste.zerar();		
+		BancoTeste.zerar();		
 		RoteiroCriarDepartamento rCriarDepartamento = new RoteiroCriarDepartamento("Departamento de Computacao", "DCC");
 		rCriarDepartamento.executar();		
 		RoteiroCriarCurso rCriarCurso = new RoteiroCriarCurso("Ciencia da Computacao", "CC", "DCC");
@@ -27,7 +27,7 @@ public class CursoTeste extends TestCase {
 	}
 	
 	public void testVerCurso() throws CursoNotFound, SiglaAlreadyExistsException, NomeNotFoundException, SiglaNotFoundException{
-		Teste.zerar();	
+		BancoTeste.zerar();	
 		RoteiroCriarDepartamento rCriarDepartamento = new RoteiroCriarDepartamento("Departamento de Computacao", "DCC");
 		rCriarDepartamento.executar();		
 		RoteiroCriarCurso rCriarCurso = new RoteiroCriarCurso("Ciencia da Computacao", "CC", "DCC");

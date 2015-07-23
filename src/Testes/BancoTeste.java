@@ -1,8 +1,8 @@
-package Teste;
+package Testes;
 
 import persistencia.ModoTeste;
 
-public class Teste {
+public class BancoTeste {
 	
 	public static void zerar()
 	{		

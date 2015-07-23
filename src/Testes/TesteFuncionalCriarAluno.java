@@ -1,8 +1,8 @@
-package Teste;
+package Testes;
 
 import java.io.FileInputStream;
-import java.sql.Connection;
 import java.sql.SQLException;
+
 import org.dbunit.Assertion;
 import org.dbunit.DBTestCase;
 import org.dbunit.PropertiesBasedJdbcDatabaseTester;
@@ -15,18 +15,22 @@ import org.dbunit.ext.h2.H2DataTypeFactory;
 import org.dbunit.operation.DatabaseOperation;
 import org.junit.Before;
 
-import roteiros.RoteiroCriarRefeicao;
+import entidades.Sexo;
+import entidades.Titulo;
+import roteiros.RoteiroCriarAluno;
+import roteiros.RoteiroCriarCurso;
+import roteiros.RoteiroCriarDepartamento;
 
-public class TesteFuncionalCriarRefeicao extends DBTestCase {
-	private static Connection conn;
-	private FlatXmlDataSet bancoCarregado;
+public class TesteFuncionalCriarAluno extends DBTestCase{
+	
+private FlatXmlDataSet bancoCarregado;
 	
 	@Before
 	public void setUp() throws Exception {
 		 	System.setProperty( PropertiesBasedJdbcDatabaseTester.DBUNIT_DRIVER_CLASS, "org.h2.Driver" );
 	        System.setProperty( PropertiesBasedJdbcDatabaseTester.DBUNIT_CONNECTION_URL, "jdbc:h2:~/restauranteTeste" );
 	        System.setProperty( PropertiesBasedJdbcDatabaseTester.DBUNIT_USERNAME, "admin" );
-	        System.setProperty( PropertiesBasedJdbcDatabaseTester.DBUNIT_PASSWORD, "admin" );       
+	        System.setProperty( PropertiesBasedJdbcDatabaseTester.DBUNIT_PASSWORD, "admin" );        
 	}
 	
 	protected DatabaseOperation getSetUpOperation() throws Exception{			
@@ -37,20 +41,27 @@ public class TesteFuncionalCriarRefeicao extends DBTestCase {
 		return DatabaseOperation.DELETE_ALL;
 	}
 	
-	public void testCriarRefeicao() throws SQLException, Exception
+	public void testCriarAluno() throws SQLException, Exception
 	{
-		Teste.zerar();		
-		RoteiroCriarRefeicao rCriarDepartamento = new RoteiroCriarRefeicao("Farofa", "NOITE", "Alface");
+		BancoTeste.zerar();		
+		
+		RoteiroCriarDepartamento rCriarDepartamento = new RoteiroCriarDepartamento("Departamento de Computacao", "DCC");
 		rCriarDepartamento.executar();		
+		
+		RoteiroCriarCurso rCriarCurso = new RoteiroCriarCurso("Ciencia da Computacao", "CC", "DCC");
+		rCriarCurso.executar();		
+		
+		RoteiroCriarAluno rCriarAluno = new RoteiroCriarAluno("Kaustchr", 2010780154, "2010", Sexo.MASCULINO.toString(), Titulo.DOUTORADO.toString(), "12345678901", "CC" );
+		rCriarAluno.executar();		
 	
 		IDataSet dadosSetBanco = getConnection().createDataSet();
-		ITable dadosNoBanco = dadosSetBanco.getTable("refeicao");
+		ITable dadosNoBanco = dadosSetBanco.getTable("aluno");
 		
-		IDataSet dadosSetEsperado = new FlatXmlDataSetBuilder().build(new FileInputStream("xml/datasetRefeicao.xml"));
-		ITable dadosEsperados = dadosSetEsperado.getTable("refeicao");
+		IDataSet dadosSetEsperado = new FlatXmlDataSetBuilder().build(new FileInputStream("xml/datasetAluno.xml"));
+		ITable dadosEsperados = dadosSetEsperado.getTable("aluno");
 		
 		Assertion.assertEquals(dadosEsperados, dadosNoBanco);
-	}	
+	}
 	
 	@Override
 	protected void setUpDatabaseConfig(DatabaseConfig config){
@@ -59,7 +70,8 @@ public class TesteFuncionalCriarRefeicao extends DBTestCase {
 
 	@Override
 	protected IDataSet getDataSet() throws Exception {
-		bancoCarregado = new FlatXmlDataSetBuilder().build( new FileInputStream("xml/datasetRefeicao.xml"));
+		bancoCarregado = new FlatXmlDataSetBuilder().build( new FileInputStream("xml/datasetAluno.xml"));
 		return bancoCarregado;
 	}
+
 }

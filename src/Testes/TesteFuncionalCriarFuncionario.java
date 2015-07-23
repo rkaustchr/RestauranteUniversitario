@@ -1,26 +1,28 @@
-package Teste;
+package Testes;
 
 import java.io.FileInputStream;
-import java.sql.Connection;
 import java.sql.SQLException;
+
 import org.dbunit.Assertion;
 import org.dbunit.DBTestCase;
 import org.dbunit.PropertiesBasedJdbcDatabaseTester;
 import org.dbunit.database.DatabaseConfig;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.ITable;
-import org.dbunit.dataset.filter.DefaultColumnFilter;
 import org.dbunit.dataset.xml.FlatXmlDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.ext.h2.H2DataTypeFactory;
 import org.dbunit.operation.DatabaseOperation;
 import org.junit.Before;
+
+import entidades.Sexo;
+import entidades.Titulo;
 import roteiros.RoteiroCriarDepartamento;
+import roteiros.RoteiroCriarFuncionario;
 
-public class TesteFuncionalCriarDepartamento extends DBTestCase{
-
-	private static Connection conn;
-	private FlatXmlDataSet bancoCarregado;
+public class TesteFuncionalCriarFuncionario extends DBTestCase{
+	
+private FlatXmlDataSet bancoCarregado;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -38,19 +40,21 @@ public class TesteFuncionalCriarDepartamento extends DBTestCase{
 		return DatabaseOperation.DELETE_ALL;
 	}
 	
-	public void testCriarDepartamento() throws SQLException, Exception
+	public void testCriarFuncionario() throws SQLException, Exception
 	{
-		Teste.zerar();
+		BancoTeste.zerar();		
+		
 		RoteiroCriarDepartamento rCriarDepartamento = new RoteiroCriarDepartamento("Departamento de Computacao", "DCC");
-		rCriarDepartamento.executar();		
+		rCriarDepartamento.executar();
+		
+		RoteiroCriarFuncionario rCriarFuncionario = new RoteiroCriarFuncionario("Kaustchr", 2010780154, "2010", Sexo.MASCULINO.toString(), Titulo.DOUTORADO.toString(), "12345678901", "DCC" );
+		rCriarFuncionario.executar();		
 	
 		IDataSet dadosSetBanco = getConnection().createDataSet();
-		ITable dadosNoBanco = dadosSetBanco.getTable("departamento");
+		ITable dadosNoBanco = dadosSetBanco.getTable("funcionario");
 		
-		//ITable filteredTable = DefaultColumnFilter.excludedColumnsTable(dadosNoBanco, new String[]{"id"});
-		
-		IDataSet dadosSetEsperado = new FlatXmlDataSetBuilder().build(new FileInputStream("xml/datasetDepartamento.xml"));
-		ITable dadosEsperados = dadosSetEsperado.getTable("departamento");
+		IDataSet dadosSetEsperado = new FlatXmlDataSetBuilder().build(new FileInputStream("xml/datasetFuncionario.xml"));
+		ITable dadosEsperados = dadosSetEsperado.getTable("funcionario");
 		
 		Assertion.assertEquals(dadosEsperados, dadosNoBanco);
 	}
@@ -62,7 +66,8 @@ public class TesteFuncionalCriarDepartamento extends DBTestCase{
 
 	@Override
 	protected IDataSet getDataSet() throws Exception {
-		bancoCarregado = new FlatXmlDataSetBuilder().build( new FileInputStream("xml/datasetDepartamento.xml"));
+		bancoCarregado = new FlatXmlDataSetBuilder().build( new FileInputStream("xml/datasetFuncionario.xml"));
 		return bancoCarregado;
 	}
+
 }
