@@ -1,18 +1,15 @@
 package controladores;
 
+import entidades.CPF;
 import entidades.Curso;
-
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import java.lang.Integer;
-
 import controladores.exceptions.CpfAlreadyExistsException;
 import controladores.exceptions.CursoNotFound;
 import controladores.exceptions.NomeNotFoundException;
@@ -70,6 +67,13 @@ public class CriarAluno extends HttpServlet {
 		String cpf =  (String)request.getParameter("cpf");
 		String siglaCurso =  (String)request.getParameter("curso");
 
+		CPF testeCPF = new CPF(cpf);
+		if ( testeCPF.isCpfValido() == false ) {
+			request.setAttribute("erro", "Deve ser informado um CPF válido!");
+			request.getRequestDispatcher("WEB-INF/CriarAluno.jsp").forward(request,response);
+			return;
+		}
+		
 		try {
 			RoteiroCriarAluno rCriarAluno = new RoteiroCriarAluno(nome, matricula, anoIngresso, sexo, titulo, cpf, siglaCurso);
 			rCriarAluno.execute();

@@ -10,7 +10,6 @@
 </style> 
 <title>Criar Aluno</title>
 </head>
-<%@include file="messagePage.jsp" %>
 <% ArrayList<Curso> cursosDisponiveis = (ArrayList<Curso>)request.getAttribute("cursosDisponiveis"); %>
 <body>
 	<div class="tudo">
@@ -19,10 +18,8 @@
 		</div>
 		<div class="conteudo">
 			<h2>Criar Aluno</h2>
+			<%@include file="messagePage.jsp" %>
 			<form action="CriarAluno" method="post">
-			<input type="submit" name="acaoCriar" value="Criar">
-			<input type="submit" name="acaoCriar" value="Cancelar">
-			<br />
 			<br />
 			Nome : <input type="text" name ="nome" value = ""> <br />
 			Matricula : <input type="text" name ="matricula" value = ""><br />
@@ -44,6 +41,9 @@
 			<% } %>
 			</select> <br />
 			<br>
+			<br/>
+			<input type="submit" name="acaoCriar" value="Criar">
+			<input type="submit" name="acaoCriar" value="Cancelar">
 			
 			</form>
 	</div>

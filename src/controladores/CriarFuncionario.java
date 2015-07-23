@@ -1,5 +1,6 @@
 package controladores;
 
+import entidades.CPF;
 import entidades.Departamento;
 
 import java.io.IOException;
@@ -69,6 +70,13 @@ public class CriarFuncionario extends HttpServlet {
 		String titulo =  (String)request.getParameter("titulo");
 		String cpf =  (String)request.getParameter("cpf");
 		String siglaDepartamento =  (String)request.getParameter("departamento");
+		
+		CPF testeCPF = new CPF(cpf);
+		if ( testeCPF.isCpfValido() == false ) {
+			request.setAttribute("erro", "Deve ser informado um CPF válido!");
+			request.getRequestDispatcher("WEB-INF/CriarFuncionario.jsp").forward(request,response);
+			return;
+		}
 
 		try {
 			RoteiroCriarFuncionario rCriarFuncionario = new RoteiroCriarFuncionario(nome, matricula, anoIngresso, sexo, titulo, cpf, siglaDepartamento);

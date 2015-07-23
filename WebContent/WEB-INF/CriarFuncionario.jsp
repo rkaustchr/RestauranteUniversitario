@@ -11,7 +11,6 @@
 </style> 
 <title>SisRU - Criar Funcionario</title>
 </head>
-<%@include file="messagePage.jsp" %>
 <% ArrayList<Departamento> departamentosDisponiveis = (ArrayList<Departamento>)request.getAttribute("departamentosDisponiveis"); %>
 <body>
 	<div class="tudo">
@@ -23,6 +22,7 @@
 			<br />
 			<br />
 			<h2>Criar um novo Funcionário</h2>
+			<%@include file="messagePage.jsp" %>
 			<br />
 			<form action="CriarFuncionario" method="post">
 			Nome : <input type="text" name ="nome" value = ""> <br />
