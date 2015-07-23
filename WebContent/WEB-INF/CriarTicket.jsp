@@ -18,6 +18,7 @@
 <% ArrayList<Refeicao> refeicoesDisponiveis = (ArrayList<Refeicao>)request.getAttribute("refeicoesDisponiveis"); %>
 <% ArrayList<Consumidor> consumidoresDisponiveis = (ArrayList<Consumidor>)request.getAttribute("consumidoresDisponiveis"); %>
 
+
 <body>
 	<div class="tudo">
 		<div class="topo">
@@ -34,7 +35,7 @@
 				</select> <br />
 				Consumidor : <select name ="cpfConsumidor" selected="1"> 
 				<% for(Consumidor consumidor : consumidoresDisponiveis){ %>
-					<option value="<%=consumidor.getCpf()%>"><%=consumidor.getNome()%></option>
+					<option value="<%=consumidor.getCpf().toString()%>"><%=consumidor.getNome()%></option>
 				<% } %>
 				</select> <br />
 				Pago : <input type="checkbox" name="pago" value="1"> <br />
