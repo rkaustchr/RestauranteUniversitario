@@ -58,12 +58,11 @@ public class TicketGateway implements IGateway {
 
 	@Override
 	public void update() {
-		int res;
 		String sql = "UPDATE ticket "
 				+ "SET pago="+ this.pago + " WHERE id='"+ this.id +"';";
 		
 		if ( conexao.abrirConexao() ) {
-			res = conexao.executarCUDQuery(sql);
+			conexao.executarCUDQuery(sql);
 			conexao.fecharConexao();
 		}
 		

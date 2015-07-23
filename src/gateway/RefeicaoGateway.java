@@ -59,13 +59,12 @@ public class RefeicaoGateway implements IGateway {
 
 	@Override
 	public void update() {
-		int res;
 		String sql = "UPDATE refeicao "
 				+ "SET descricao='"+ this.descricao +"', opcaoVegan='"+ this.opcaoVegan +"' "
 						+ "WHERE id='"+ this.id +"';";
 		
 		if ( conexao.abrirConexao() ) {
-			res = conexao.executarCUDQuery(sql);
+			conexao.executarCUDQuery(sql);
 			conexao.fecharConexao();
 		}
 		

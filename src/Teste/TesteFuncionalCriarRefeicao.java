@@ -3,14 +3,12 @@ package Teste;
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
-
 import org.dbunit.Assertion;
 import org.dbunit.DBTestCase;
 import org.dbunit.PropertiesBasedJdbcDatabaseTester;
 import org.dbunit.database.DatabaseConfig;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.ITable;
-import org.dbunit.dataset.filter.DefaultColumnFilter;
 import org.dbunit.dataset.xml.FlatXmlDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.ext.h2.H2DataTypeFactory;
@@ -20,7 +18,6 @@ import org.junit.Before;
 import roteiros.RoteiroCriarRefeicao;
 
 public class TesteFuncionalCriarRefeicao extends DBTestCase {
-	
 	private static Connection conn;
 	private FlatXmlDataSet bancoCarregado;
 	

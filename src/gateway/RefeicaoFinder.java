@@ -3,8 +3,6 @@ package gateway;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import entidades.Refeicao;
 import entidades.Turno;
 import persistencia.ConexaoBD;
 

@@ -52,17 +52,11 @@ public class DepartamentoGateway implements IGateway{
 
 	@Override
 	public void update() {
-		int res;
 		String sql = "UPDATE departamento SET nome='"+ this.nome +"' WHERE sigla='"+ this.sigla +"';";
 		
 		if ( conexao.abrirConexao() ) {
-			res = conexao.executarCUDQuery(sql);
-			
-			/*if ( res = -1 ) {
-				return false;
-			} else {
-				return true;
-			}*/
+			conexao.executarCUDQuery(sql);
+
 			conexao.fecharConexao();
 		} else {
 			System.out.println("Erro: Não foi possivel abrir a conexão!");

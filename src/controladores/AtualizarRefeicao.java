@@ -1,20 +1,14 @@
 package controladores;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import controladores.exceptions.DepartamentoNotFound;
 import controladores.exceptions.RefeicaoNotFound;
-import entidades.Departamento;
 import entidades.Refeicao;
-import roteiros.RoteiroAtualizarDepartamento;
 import roteiros.RoteiroAtualizarRefeicao;
-import roteiros.RoteiroVerDepartamento;
 import roteiros.RoteiroVerRefeicao;
 
 @WebServlet("/AtualizarRefeicao")
@@ -53,7 +47,7 @@ public class AtualizarRefeicao extends HttpServlet {
 		RoteiroAtualizarRefeicao rAtualizarRefeicao = new RoteiroAtualizarRefeicao(request.getParameter("id"), request.getParameter("descricao"), request.getParameter("opcaoVegan"), request.getParameter("turno"));
 		
 		try {
-			Refeicao refeicaoNovo = rAtualizarRefeicao.executar();
+			rAtualizarRefeicao.executar();
 			
 			//request.setAttribute("departamentoNovo",departamentoNovo);
 			request.getRequestDispatcher("ListarRefeicao").forward(request,response);

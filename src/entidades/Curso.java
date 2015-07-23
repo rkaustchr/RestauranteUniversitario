@@ -1,9 +1,6 @@
 package entidades;
 
 import java.io.Serializable;
-import java.util.Collection;
-import javax.servlet.http.HttpSession;
-import persistencia.RepositorioCurso;
 
 public class Curso implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -37,23 +34,4 @@ public class Curso implements Serializable {
 		this.departamento = departamento;
 	}
 
-	public static Collection<Curso> _listarCursosDisponiveis(HttpSession session){
-		RepositorioCurso repositorio = new RepositorioCurso(session);
-		return repositorio.listar();
-	}
-	
-	public static void _adicionarCurso(HttpSession session, Curso curso) {
-		RepositorioCurso repositorio = new RepositorioCurso(session);
-		repositorio.adicionar(curso);
-	}
-
-	public static Curso _buscarCurso(HttpSession session, String sigla) {
-		RepositorioCurso repositorio = new RepositorioCurso(session);
-		return repositorio.buscar(new Curso(null, sigla, null));
-	}
-
-	public static void _atualizarCurso(HttpSession session, Curso curso) {
-		RepositorioCurso repositorio = new RepositorioCurso(session);
-		repositorio.atualizar(new Curso(null,curso.getSigla(),null), curso);	
-	}
 }

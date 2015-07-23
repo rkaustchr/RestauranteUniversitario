@@ -17,8 +17,6 @@ public class RoteiroAtualizarDepartamento {
 		DepartamentoGateway gDepartamento = new DepartamentoGateway(this.nome, this.id);
 		gDepartamento.update();
 		
-		if ( gDepartamento == null ) throw new DepartamentoNotFound();
-		
 		return new Departamento(gDepartamento.getNome(), gDepartamento.getSigla());
 		
 	}

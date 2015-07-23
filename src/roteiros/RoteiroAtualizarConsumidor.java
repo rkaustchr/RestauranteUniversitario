@@ -14,7 +14,6 @@ public class RoteiroAtualizarConsumidor {
 	private CPF cpf;
 
 	public RoteiroAtualizarConsumidor(String nome, int matricula, String anoIngresso, String sexo, String cpf ) {
-		// TODO Auto-generated constructor stub
 		this.nome = nome;
 		this.matricula = matricula;
 		this.anoIngresso = anoIngresso;
@@ -23,12 +22,8 @@ public class RoteiroAtualizarConsumidor {
 	}
 
 	public void executar() throws ConsumidorNotFound {
-		
 		ConsumidorGateway gConsumidor = new ConsumidorGateway(nome, matricula, anoIngresso, sexo, null, cpf);
-		gConsumidor.update();
-
-		if ( gConsumidor == null ) throw new ConsumidorNotFound();
-		
+		gConsumidor.update();		
 	}
 
 }

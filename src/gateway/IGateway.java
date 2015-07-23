@@ -1,7 +1,5 @@
 package gateway;
 
-import controladores.exceptions.CpfAlreadyExistsException;
-
 public interface IGateway {
 		/**
 		 *  Substituir retornos para boolean e remover delete

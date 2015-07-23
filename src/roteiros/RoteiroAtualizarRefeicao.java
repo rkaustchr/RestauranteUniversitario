@@ -1,6 +1,5 @@
 package roteiros;
 
-
 import controladores.exceptions.RefeicaoNotFound;
 import entidades.Refeicao;
 import entidades.Turno;
@@ -21,8 +20,6 @@ public class RoteiroAtualizarRefeicao {
 
 	public Refeicao executar() throws RefeicaoNotFound {
 		RefeicaoGateway gRefeicao = new RefeicaoGateway(this.id, this.descricao, this.turno, this.opcaoVegan);
-		if ( gRefeicao == null ) throw new RefeicaoNotFound();
-		
 		gRefeicao.update();
 
 		return new Refeicao(gRefeicao.getId(), gRefeicao.getDescricao(), gRefeicao.getTurno(), gRefeicao.getOpcaoVegan());

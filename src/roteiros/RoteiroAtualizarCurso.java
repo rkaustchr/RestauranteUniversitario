@@ -23,10 +23,7 @@ public class RoteiroAtualizarCurso {
 		CursoGateway gCurso = new CursoGateway(this.nome, this.id, (DepartamentoGateway) fDepartamento.find(siglaDepartamento));
 		gCurso.update();
 		
-		if ( gCurso == null ) throw new CursoNotFound();
-		
 		return new Curso(gCurso.getNome(), gCurso.getSigla(), new Departamento(gCurso.getDepartamento().getNome(), gCurso.getDepartamento().getSigla()) );
-		
 	}
 
 }

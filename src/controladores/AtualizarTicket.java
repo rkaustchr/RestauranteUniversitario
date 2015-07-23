@@ -1,22 +1,14 @@
 package controladores;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import roteiros.RoteiroAtualizarCurso;
 import roteiros.RoteiroAtualizarTicket;
-import roteiros.RoteiroVerCurso;
 import roteiros.RoteiroVerTicket;
-import controladores.exceptions.CursoNotFound;
 import controladores.exceptions.TicketNotFound;
-import entidades.Consumidor;
-import entidades.Curso;
-import entidades.Refeicao;
 import entidades.Ticket;
 
 /**

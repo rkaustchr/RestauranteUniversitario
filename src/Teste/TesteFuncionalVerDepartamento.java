@@ -3,7 +3,6 @@ package Teste;
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
-
 import org.dbunit.Assertion;
 import org.dbunit.DBTestCase;
 import org.dbunit.PropertiesBasedJdbcDatabaseTester;
@@ -16,16 +15,11 @@ import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.ext.h2.H2DataTypeFactory;
 import org.dbunit.operation.DatabaseOperation;
 import org.junit.Before;
-
 import entidades.Departamento;
-import gateway.DepartamentoFinder;
-import gateway.DepartamentoGateway;
 import roteiros.RoteiroCriarDepartamento;
 import roteiros.RoteiroVerDepartamento;
 
 public class TesteFuncionalVerDepartamento extends DBTestCase{
-	
-
 	private static Connection conn;
 	private FlatXmlDataSet bancoCarregado;
 	

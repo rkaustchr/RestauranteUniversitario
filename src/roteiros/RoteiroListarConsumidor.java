@@ -1,19 +1,13 @@
 package roteiros;
 
 import java.util.ArrayList;
-
 import entidades.Aluno;
 import entidades.Consumidor;
 import entidades.Curso;
 import entidades.Departamento;
 import entidades.Funcionario;
-
-import entidades.Titulo;
 import gateway.AlunoFinder;
 import gateway.AlunoGateway;
-import gateway.ConsumidorGateway;
-import gateway.CursoFinder;
-
 import gateway.CursoGateway;
 import gateway.DepartamentoGateway;
 import gateway.FuncionarioFinder;

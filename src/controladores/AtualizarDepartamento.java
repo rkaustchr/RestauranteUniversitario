@@ -49,7 +49,7 @@ public class AtualizarDepartamento extends HttpServlet {
 		RoteiroAtualizarDepartamento rAtualizarDepartamento = new RoteiroAtualizarDepartamento(request.getParameter("sigla"), request.getParameter("nome"));
 		
 		try {
-			Departamento departamentoNovo = rAtualizarDepartamento.executar();
+			rAtualizarDepartamento.executar();
 			
 			//request.setAttribute("departamentoNovo",departamentoNovo);
 			request.getRequestDispatcher("ListarDepartamento").forward(request,response);

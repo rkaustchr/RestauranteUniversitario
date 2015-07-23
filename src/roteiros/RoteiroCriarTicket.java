@@ -2,18 +2,12 @@ package roteiros;
 
 import gateway.ConsumidorFinder;
 import gateway.ConsumidorGateway;
-import gateway.CursoGateway;
-import gateway.DepartamentoFinder;
-import gateway.DepartamentoGateway;
 import gateway.IGateway;
 import gateway.RefeicaoFinder;
 import gateway.RefeicaoGateway;
 import gateway.TicketGateway;
 import controladores.exceptions.ConsumidorNotFoundException;
-import controladores.exceptions.NomeNotFoundException;
 import controladores.exceptions.RefeicaoNotFoundException;
-import controladores.exceptions.SiglaAlreadyExistsException;
-import controladores.exceptions.SiglaNotFoundException;
 
 public class RoteiroCriarTicket {
 	private String idRefeicao;

@@ -58,7 +58,7 @@ public class AtualizarCurso extends HttpServlet {
 		}else{
 			try {
 				RoteiroAtualizarCurso rAlterarCurso = new RoteiroAtualizarCurso( sigla, nome, siglaDepartamento );
-				Curso cursoNovo = rAlterarCurso.executar();
+				rAlterarCurso.executar();
 				
 				//request.setAttribute("cursoNovo", cursoNovo);
 				request.setAttribute("message", "Novo curso criado!");

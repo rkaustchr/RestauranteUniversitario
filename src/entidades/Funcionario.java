@@ -1,7 +1,5 @@
 package entidades;
 
-import java.util.Collection;
-
 public class Funcionario extends Consumidor{
 	private Departamento departamento;
 

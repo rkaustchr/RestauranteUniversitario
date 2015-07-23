@@ -1,19 +1,14 @@
 package controladores;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import roteiros.RoteiroVerConsumidor;
-import roteiros.RoteiroVerDepartamento;
 import controladores.exceptions.ConsumidorNotFound;
-import controladores.exceptions.DepartamentoNotFound;
 import entidades.Consumidor;
-import entidades.Departamento;
 
 /**
  * Servlet implementation class VerConsumidor

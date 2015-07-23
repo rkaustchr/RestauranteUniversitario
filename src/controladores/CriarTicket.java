@@ -2,25 +2,17 @@ package controladores;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import controladores.exceptions.ConsumidorNotFoundException;
-import controladores.exceptions.NomeNotFoundException;
 import controladores.exceptions.RefeicaoNotFoundException;
-import controladores.exceptions.SiglaAlreadyExistsException;
-import controladores.exceptions.SiglaNotFoundException;
-import roteiros.RoteiroCriarCurso;
 import roteiros.RoteiroCriarTicket;
 import roteiros.RoteiroListarConsumidor;
-import roteiros.RoteiroListarDepartamento;
 import roteiros.RoteiroListarRefeicao;
 import entidades.Consumidor;
-import entidades.Departamento;
 import entidades.Refeicao;
 
 /**
