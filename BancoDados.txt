@@ -1,4 +1,4 @@
-CREATE TABLE Departamento(sigla varchar(255) PRIMARY KEY NOT NULL, nome VARCHAR(255));
+create table Departamento(sigla varchar(255) PRIMARY KEY NOT NULL, nome VARCHAR(255));
 
 create table Curso(sigla varchar(255) PRIMARY KEY NOT NULL, nome varchar(255),  siglaDepartamento varchar(255), FOREIGN KEY (siglaDepartamento) references Departamento(sigla));
 

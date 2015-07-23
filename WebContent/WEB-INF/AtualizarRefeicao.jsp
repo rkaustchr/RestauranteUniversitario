@@ -45,7 +45,7 @@
 						}
 					%>
 					Turno: <%=turno %> <br />
-					<input type="hidden" name ="turno" value = "<%=turno%>">
+					<input type="hidden" name ="turno" value = "<%=refeicao.getTurno().toString()%>">
 					<input type="hidden" name ="id" value = "<%=id%>">
 					
 					<input type="submit" name="acaoAtualizar" value="Atualizar">
