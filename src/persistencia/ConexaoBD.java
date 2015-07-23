@@ -52,20 +52,23 @@ public class ConexaoBD {
 	    try {
 			Class.forName("org.h2.Driver");
 			
-			// /home/rk/workspaceEE/.metadata/
-			String url = getClass().getResource(getClass().getSimpleName() + ".class").getPath();  
-			// /home/rk/workspaceEE/
-			String realPath = url.substring(0, url.indexOf("."));
-			
-			Path.realPath = realPath;
-			
-			// /home/rk/workspaceEE/RestauranteUniversitario/
-			String pathBanco = Path.realPath + "RestauranteUniversitario/banco"; // getServletContext().getRealPath("/") + "banco/";
-			
-			if( ModoTeste.testeAtivo == false)				
+			if( ModoTeste.testeAtivo == false)	{
+				// /home/rk/workspaceEE/.metadata/
+				String url = getClass().getResource(getClass().getSimpleName() + ".class").getPath();  
+				// /home/rk/workspaceEE/
+				String realPath = url.substring(0, url.indexOf("."));
+				
+				Path.realPath = realPath;
+				
+				// /home/rk/workspaceEE/RestauranteUniversitario/
+				String pathBanco = Path.realPath + "RestauranteUniversitario/banco"; // getServletContext().getRealPath("/") + "banco/";
+				
 				conexao = DriverManager.getConnection("jdbc:h2:" + pathBanco + "/restaurante", "admin", "admin");
-			else
-				conexao = DriverManager.getConnection("jdbc:h2:" + pathBanco + "/restauranteTeste", "admin", "admin");
+			} else {
+				
+				conexao = DriverManager.getConnection("jdbc:h2:~/restauranteTeste", "admin", "admin");
+			}
+			
 			return true;
 			
 		} catch (ClassNotFoundException e) {

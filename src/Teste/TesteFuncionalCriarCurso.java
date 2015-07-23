@@ -19,8 +19,6 @@ import roteiros.RoteiroCriarCurso;
 import roteiros.RoteiroCriarDepartamento;
 
 public class TesteFuncionalCriarCurso extends DBTestCase{
-	
-	private static Connection conn;
 	private FlatXmlDataSet bancoCarregado;
 	
 	@Before
