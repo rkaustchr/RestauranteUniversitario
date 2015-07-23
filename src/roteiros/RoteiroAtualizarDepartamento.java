@@ -20,6 +20,4 @@ public class RoteiroAtualizarDepartamento {
 		return new Departamento(gDepartamento.getNome(), gDepartamento.getSigla());
 		
 	}
-
-
 }
