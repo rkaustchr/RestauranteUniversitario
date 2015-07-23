@@ -34,7 +34,7 @@ public class DepartamentoGateway implements IGateway{
 				+ "VALUES('"+ this.sigla +"', '"+ this.nome +"');";
 		
 		if ( conexao.abrirConexao() ) {
-			conexao.executarCUDQuery(sql);
+			res = conexao.executarCUDQuery(sql);
 
 			conexao.fecharConexao();
 		} else {
