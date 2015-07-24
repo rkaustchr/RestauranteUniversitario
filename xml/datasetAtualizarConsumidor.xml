@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dataset>
+	<consumidor ANOINGRESSO = "2010" CPF = "12345678901" MATRICULA = "2010780154" nome = "Rafael" sexo = "MASCULINO" titulo = "DOUTORADO"/>
+</dataset>

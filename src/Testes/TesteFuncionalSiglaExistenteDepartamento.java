@@ -9,22 +9,16 @@ import org.dbunit.PropertiesBasedJdbcDatabaseTester;
 import org.dbunit.database.DatabaseConfig;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.ITable;
-import org.dbunit.dataset.filter.DefaultColumnFilter;
 import org.dbunit.dataset.xml.FlatXmlDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.ext.h2.H2DataTypeFactory;
 import org.dbunit.operation.DatabaseOperation;
 import org.junit.Before;
 
-import entidades.Sexo;
-import entidades.Titulo;
 import roteiros.RoteiroCriarDepartamento;
-import roteiros.RoteiroCriarFuncionario;
-import roteiros.RoteiroCriarRefeicao;
-import roteiros.RoteiroCriarTicket;
 
-public class TesteFuncionalCriarTicket extends DBTestCase{
-	
+public class TesteFuncionalSiglaExistenteDepartamento extends DBTestCase{
+
 private FlatXmlDataSet bancoCarregado;
 	
 	@Before
@@ -43,31 +37,23 @@ private FlatXmlDataSet bancoCarregado;
 		return DatabaseOperation.DELETE_ALL;
 	}
 	
-	public void testCriarTicket() throws SQLException, Exception
+	public void testCriarDepartamento() throws SQLException, Exception
 	{
-		BancoTeste.zerar();	
+		BancoTeste.zerar();
 		
 		RoteiroCriarDepartamento rCriarDepartamento = new RoteiroCriarDepartamento("Departamento de Computacao", "DCC");
 		rCriarDepartamento.executar();
 		
-		RoteiroCriarRefeicao rCriarRefeicao = new RoteiroCriarRefeicao("Farofa", "NOITE", "Alface");
-		rCriarRefeicao.executar();			
-		
-		RoteiroCriarFuncionario rCriarFuncionario = new RoteiroCriarFuncionario("Kaustchr", 2010780154, "2010", Sexo.MASCULINO.toString(), Titulo.DOUTORADO.toString(), "12345678901", "DCC" );
-		rCriarFuncionario.executar();			
-		
-		RoteiroCriarTicket rCriarTicket = new RoteiroCriarTicket("1", true, "12345678901");
-		rCriarTicket.executar();		
+		RoteiroCriarDepartamento rCriarDepartamento2 = new RoteiroCriarDepartamento("Departamento de Matematica", "DCC");
+		rCriarDepartamento2.executar();
 	
 		IDataSet dadosSetBanco = getConnection().createDataSet();
-		ITable dadosNoBanco = dadosSetBanco.getTable("ticket");
-		ITable filteredTable = DefaultColumnFilter.excludedColumnsTable(dadosNoBanco, new String[]{"id"});
+		ITable dadosNoBanco = dadosSetBanco.getTable("departamento");
 		
+		IDataSet dadosSetEsperado = new FlatXmlDataSetBuilder().build(new FileInputStream("xml/datasetDepartamento.xml"));
+		ITable dadosEsperados = dadosSetEsperado.getTable("departamento");
 		
-		IDataSet dadosSetEsperado = new FlatXmlDataSetBuilder().build(new FileInputStream("xml/datasetTicket.xml"));
-		ITable dadosEsperados = dadosSetEsperado.getTable("ticket");
-		
-		Assertion.assertEquals(dadosEsperados, filteredTable);
+		Assertion.assertEquals(dadosEsperados, dadosNoBanco);
 	}
 	
 	@Override
@@ -77,9 +63,8 @@ private FlatXmlDataSet bancoCarregado;
 
 	@Override
 	protected IDataSet getDataSet() throws Exception {
-		bancoCarregado = new FlatXmlDataSetBuilder().build( new FileInputStream("xml/datasetTicket.xml"));
+		bancoCarregado = new FlatXmlDataSetBuilder().build( new FileInputStream("xml/datasetDepartamento.xml"));
 		return bancoCarregado;
 	}
-
-
+	
 }

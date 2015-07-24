@@ -52,7 +52,7 @@ private FlatXmlDataSet bancoCarregado;
 		rCriarCurso.executar();		
 		
 		RoteiroCriarAluno rCriarAluno = new RoteiroCriarAluno("Kaustchr", 2010780154, "2010", Sexo.MASCULINO.toString(), Titulo.DOUTORADO.toString(), "12345678901", "CC" );
-		rCriarAluno.executar();		
+		rCriarAluno.executar();
 	
 		IDataSet dadosSetBanco = getConnection().createDataSet();
 		ITable dadosNoBanco = dadosSetBanco.getTable("aluno");

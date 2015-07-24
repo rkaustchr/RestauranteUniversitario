@@ -16,15 +16,14 @@ import org.dbunit.ext.h2.H2DataTypeFactory;
 import org.dbunit.operation.DatabaseOperation;
 import org.junit.Before;
 
-import entidades.Sexo;
-import entidades.Titulo;
+import roteiros.RoteiroAtualizarCurso;
+import roteiros.RoteiroAtualizarRefeicao;
+import roteiros.RoteiroCriarCurso;
 import roteiros.RoteiroCriarDepartamento;
-import roteiros.RoteiroCriarFuncionario;
 import roteiros.RoteiroCriarRefeicao;
-import roteiros.RoteiroCriarTicket;
 
-public class TesteFuncionalCriarTicket extends DBTestCase{
-	
+public class TesteFuncionalAtualizarRefeicao extends DBTestCase{
+
 private FlatXmlDataSet bancoCarregado;
 	
 	@Before
@@ -43,29 +42,22 @@ private FlatXmlDataSet bancoCarregado;
 		return DatabaseOperation.DELETE_ALL;
 	}
 	
-	public void testCriarTicket() throws SQLException, Exception
+	public void testAtualizarRefeicao() throws SQLException, Exception
 	{
-		BancoTeste.zerar();	
-		
-		RoteiroCriarDepartamento rCriarDepartamento = new RoteiroCriarDepartamento("Departamento de Computacao", "DCC");
-		rCriarDepartamento.executar();
+		BancoTeste.zerar();		
 		
 		RoteiroCriarRefeicao rCriarRefeicao = new RoteiroCriarRefeicao("Farofa", "NOITE", "Alface");
-		rCriarRefeicao.executar();			
+		rCriarRefeicao.executar();		
 		
-		RoteiroCriarFuncionario rCriarFuncionario = new RoteiroCriarFuncionario("Kaustchr", 2010780154, "2010", Sexo.MASCULINO.toString(), Titulo.DOUTORADO.toString(), "12345678901", "DCC" );
-		rCriarFuncionario.executar();			
+		RoteiroAtualizarRefeicao rAtualizarRefeicao = new RoteiroAtualizarRefeicao("1","Frango","Alface","NOITE");
+		rAtualizarRefeicao.executar();		
 		
-		RoteiroCriarTicket rCriarTicket = new RoteiroCriarTicket("1", true, "12345678901");
-		rCriarTicket.executar();		
-	
 		IDataSet dadosSetBanco = getConnection().createDataSet();
-		ITable dadosNoBanco = dadosSetBanco.getTable("ticket");
+		ITable dadosNoBanco = dadosSetBanco.getTable("refeicao");
 		ITable filteredTable = DefaultColumnFilter.excludedColumnsTable(dadosNoBanco, new String[]{"id"});
 		
-		
-		IDataSet dadosSetEsperado = new FlatXmlDataSetBuilder().build(new FileInputStream("xml/datasetTicket.xml"));
-		ITable dadosEsperados = dadosSetEsperado.getTable("ticket");
+		IDataSet dadosSetEsperado = new FlatXmlDataSetBuilder().build(new FileInputStream("xml/datasetAtualizarRefeicao.xml"));
+		ITable dadosEsperados = dadosSetEsperado.getTable("refeicao");
 		
 		Assertion.assertEquals(dadosEsperados, filteredTable);
 	}
@@ -77,9 +69,7 @@ private FlatXmlDataSet bancoCarregado;
 
 	@Override
 	protected IDataSet getDataSet() throws Exception {
-		bancoCarregado = new FlatXmlDataSetBuilder().build( new FileInputStream("xml/datasetTicket.xml"));
+		bancoCarregado = new FlatXmlDataSetBuilder().build( new FileInputStream("xml/datasetAtualizarRefeicao.xml"));
 		return bancoCarregado;
 	}
-
-
 }

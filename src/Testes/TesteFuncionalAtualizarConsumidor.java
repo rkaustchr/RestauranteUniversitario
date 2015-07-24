@@ -16,14 +16,18 @@ import org.dbunit.ext.h2.H2DataTypeFactory;
 import org.dbunit.operation.DatabaseOperation;
 import org.junit.Before;
 
-import entidades.Sexo;
-import entidades.Titulo;
+import roteiros.RoteiroAtualizarConsumidor;
+import roteiros.RoteiroAtualizarTicket;
+import roteiros.RoteiroCriarAluno;
+import roteiros.RoteiroCriarCurso;
 import roteiros.RoteiroCriarDepartamento;
 import roteiros.RoteiroCriarFuncionario;
 import roteiros.RoteiroCriarRefeicao;
 import roteiros.RoteiroCriarTicket;
+import entidades.Sexo;
+import entidades.Titulo;
 
-public class TesteFuncionalCriarTicket extends DBTestCase{
+public class TesteFuncionalAtualizarConsumidor extends DBTestCase{
 	
 private FlatXmlDataSet bancoCarregado;
 	
@@ -43,29 +47,28 @@ private FlatXmlDataSet bancoCarregado;
 		return DatabaseOperation.DELETE_ALL;
 	}
 	
-	public void testCriarTicket() throws SQLException, Exception
+	public void testAtualizarTicket() throws SQLException, Exception
 	{
-		BancoTeste.zerar();	
+		BancoTeste.zerar();		
 		
 		RoteiroCriarDepartamento rCriarDepartamento = new RoteiroCriarDepartamento("Departamento de Computacao", "DCC");
-		rCriarDepartamento.executar();
+		rCriarDepartamento.executar();		
 		
-		RoteiroCriarRefeicao rCriarRefeicao = new RoteiroCriarRefeicao("Farofa", "NOITE", "Alface");
-		rCriarRefeicao.executar();			
+		RoteiroCriarCurso rCriarCurso = new RoteiroCriarCurso("Ciencia da Computacao", "CC", "DCC");
+		rCriarCurso.executar();		
 		
-		RoteiroCriarFuncionario rCriarFuncionario = new RoteiroCriarFuncionario("Kaustchr", 2010780154, "2010", Sexo.MASCULINO.toString(), Titulo.DOUTORADO.toString(), "12345678901", "DCC" );
-		rCriarFuncionario.executar();			
+		RoteiroCriarAluno rCriarAluno = new RoteiroCriarAluno("Kaustchr", 2010780154, "2010", Sexo.MASCULINO.toString(), Titulo.DOUTORADO.toString(), "12345678901", "CC" );
+		rCriarAluno.executar();		
 		
-		RoteiroCriarTicket rCriarTicket = new RoteiroCriarTicket("1", true, "12345678901");
-		rCriarTicket.executar();		
-	
+		RoteiroAtualizarConsumidor rAtualizarConsumidor = new RoteiroAtualizarConsumidor("Rafael", 2010780154, "2010",Sexo.MASCULINO.toString(), "12345678901");
+		rAtualizarConsumidor.executar();
+		
 		IDataSet dadosSetBanco = getConnection().createDataSet();
-		ITable dadosNoBanco = dadosSetBanco.getTable("ticket");
+		ITable dadosNoBanco = dadosSetBanco.getTable("consumidor");
 		ITable filteredTable = DefaultColumnFilter.excludedColumnsTable(dadosNoBanco, new String[]{"id"});
 		
-		
-		IDataSet dadosSetEsperado = new FlatXmlDataSetBuilder().build(new FileInputStream("xml/datasetTicket.xml"));
-		ITable dadosEsperados = dadosSetEsperado.getTable("ticket");
+		IDataSet dadosSetEsperado = new FlatXmlDataSetBuilder().build(new FileInputStream("xml/datasetAtualizarConsumidor.xml"));
+		ITable dadosEsperados = dadosSetEsperado.getTable("consumidor");
 		
 		Assertion.assertEquals(dadosEsperados, filteredTable);
 	}
@@ -77,9 +80,8 @@ private FlatXmlDataSet bancoCarregado;
 
 	@Override
 	protected IDataSet getDataSet() throws Exception {
-		bancoCarregado = new FlatXmlDataSetBuilder().build( new FileInputStream("xml/datasetTicket.xml"));
+		bancoCarregado = new FlatXmlDataSetBuilder().build( new FileInputStream("xml/datasetAtualizarConsumidor.xml"));
 		return bancoCarregado;
 	}
-
 
 }

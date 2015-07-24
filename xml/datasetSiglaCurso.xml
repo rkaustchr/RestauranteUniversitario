@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dataset>
+	<curso NOME = "Ciencia da Computacao" SIGLA = "CC" SIGLADEPARTAMENTO = "DCC"/>
+	<curso NOME = "Historia" SIGLA = "CC" SIGLADEPARTAMENTO = "DCC"/>
+</dataset>

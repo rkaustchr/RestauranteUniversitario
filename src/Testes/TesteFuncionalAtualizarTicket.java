@@ -18,12 +18,14 @@ import org.junit.Before;
 
 import entidades.Sexo;
 import entidades.Titulo;
+import roteiros.RoteiroAtualizarRefeicao;
+import roteiros.RoteiroAtualizarTicket;
 import roteiros.RoteiroCriarDepartamento;
 import roteiros.RoteiroCriarFuncionario;
 import roteiros.RoteiroCriarRefeicao;
 import roteiros.RoteiroCriarTicket;
 
-public class TesteFuncionalCriarTicket extends DBTestCase{
+public class TesteFuncionalAtualizarTicket extends DBTestCase{
 	
 private FlatXmlDataSet bancoCarregado;
 	
@@ -43,9 +45,9 @@ private FlatXmlDataSet bancoCarregado;
 		return DatabaseOperation.DELETE_ALL;
 	}
 	
-	public void testCriarTicket() throws SQLException, Exception
+	public void testAtualizarTicket() throws SQLException, Exception
 	{
-		BancoTeste.zerar();	
+		BancoTeste.zerar();		
 		
 		RoteiroCriarDepartamento rCriarDepartamento = new RoteiroCriarDepartamento("Departamento de Computacao", "DCC");
 		rCriarDepartamento.executar();
@@ -54,17 +56,19 @@ private FlatXmlDataSet bancoCarregado;
 		rCriarRefeicao.executar();			
 		
 		RoteiroCriarFuncionario rCriarFuncionario = new RoteiroCriarFuncionario("Kaustchr", 2010780154, "2010", Sexo.MASCULINO.toString(), Titulo.DOUTORADO.toString(), "12345678901", "DCC" );
-		rCriarFuncionario.executar();			
+		rCriarFuncionario.executar();	
 		
 		RoteiroCriarTicket rCriarTicket = new RoteiroCriarTicket("1", true, "12345678901");
-		rCriarTicket.executar();		
-	
+		rCriarTicket.executar();	
+		
+		RoteiroAtualizarTicket rAtualizarTicket = new RoteiroAtualizarTicket(1, true);
+		rAtualizarTicket.executar();
+		
 		IDataSet dadosSetBanco = getConnection().createDataSet();
 		ITable dadosNoBanco = dadosSetBanco.getTable("ticket");
 		ITable filteredTable = DefaultColumnFilter.excludedColumnsTable(dadosNoBanco, new String[]{"id"});
 		
-		
-		IDataSet dadosSetEsperado = new FlatXmlDataSetBuilder().build(new FileInputStream("xml/datasetTicket.xml"));
+		IDataSet dadosSetEsperado = new FlatXmlDataSetBuilder().build(new FileInputStream("xml/datasetAtualizarTicket.xml"));
 		ITable dadosEsperados = dadosSetEsperado.getTable("ticket");
 		
 		Assertion.assertEquals(dadosEsperados, filteredTable);
@@ -77,9 +81,8 @@ private FlatXmlDataSet bancoCarregado;
 
 	@Override
 	protected IDataSet getDataSet() throws Exception {
-		bancoCarregado = new FlatXmlDataSetBuilder().build( new FileInputStream("xml/datasetTicket.xml"));
+		bancoCarregado = new FlatXmlDataSetBuilder().build( new FileInputStream("xml/datasetAtualizarTicket.xml"));
 		return bancoCarregado;
 	}
-
 
 }

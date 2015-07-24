@@ -40,7 +40,7 @@ public class TesteFuncionalCriarDepartamento extends DBTestCase{
 		BancoTeste.zerar();
 		
 		RoteiroCriarDepartamento rCriarDepartamento = new RoteiroCriarDepartamento("Departamento de Computacao", "DCC");
-		rCriarDepartamento.executar();		
+		rCriarDepartamento.executar();
 	
 		IDataSet dadosSetBanco = getConnection().createDataSet();
 		ITable dadosNoBanco = dadosSetBanco.getTable("departamento");
