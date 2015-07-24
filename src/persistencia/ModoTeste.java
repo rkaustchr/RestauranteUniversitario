@@ -1,5 +1,7 @@
 package persistencia;
 
+import java.sql.Connection;
+
 public class ModoTeste {
 	
 	public static boolean testeAtivo = false;
@@ -10,8 +12,8 @@ public class ModoTeste {
 		testeAtivo = true;
 		
 		ConexaoBD conexao = new ConexaoBD();
-		
-		if ( conexao.abrirConexao() ) {
+		Connection con = conexao.abrirConexao();
+		if ( con != null ) {
 			conexao.executarCUDQuery(sql);
 			conexao.fecharConexao();
 		}
@@ -26,8 +28,9 @@ public class ModoTeste {
 				+ "create table status(id int primary key, value varchar(10));"
 				+ "insert into status(id, value) values(1, '1')";
 	
-		
-		if ( conexao.abrirConexao() ) {
+		conexao = new ConexaoBD();
+		con = conexao.abrirConexao();
+		if ( con != null ) {
 			conexao.executarCUDQuery(sql);
 			conexao.fecharConexao();
 		}		

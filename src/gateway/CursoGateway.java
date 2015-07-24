@@ -1,5 +1,8 @@
 package gateway;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
 import persistencia.ConexaoBD;
 
 public class CursoGateway implements IGateway {
@@ -8,6 +11,7 @@ public class CursoGateway implements IGateway {
 	private DepartamentoGateway departamento;
 	
 	protected ConexaoBD conexao;
+	protected Connection con;
 	
 	public CursoGateway(String nome, String sigla, DepartamentoGateway departamento) {
 		super();
@@ -31,12 +35,20 @@ public class CursoGateway implements IGateway {
 	@Override
 	public boolean insert() {
 		int res = 0;
-		String sql = "INSERT INTO Curso(sigla, nome, siglaDepartamento) "
-				+ "VALUES('"+ this.sigla +"', '"+ this.nome +"', '"+ this.departamento.getSigla() +"');";
+		String sql = "INSERT INTO Curso(sigla, nome, siglaDepartamento) VALUES(?, ?, ?);";
 		
-		if ( conexao.abrirConexao() ) {
-			res = conexao.executarCUDQuery(sql);
-			conexao.fecharConexao();
+		con = conexao.abrirConexao();
+		if ( con != null ) {
+			try {
+				PreparedStatement stmt = con.prepareStatement(sql);
+				stmt.setString(1, this.sigla);
+				stmt.setString(2, this.nome);
+				stmt.setString(3, this.departamento.getSigla());
+				
+				res = stmt.executeUpdate();
+			} catch (Exception e) {
+				res = 0;
+			}
 		}
 		
 		if ( res == 0 ) {
@@ -50,13 +62,23 @@ public class CursoGateway implements IGateway {
 
 	@Override
 	public void update() {
-		String sql = "UPDATE curso SET nome='"+ this.nome +"', siglaDepartamento='"+ this.departamento.getSigla() +"' "
-		+ "WHERE sigla='"+ this.sigla +"';";
+		String sql = "UPDATE curso SET nome=?, siglaDepartamento=? WHERE sigla=?;";
+		int res = 0;
 		
-		if ( conexao.abrirConexao() ) {
-			conexao.executarCUDQuery(sql);
-			conexao.fecharConexao();
+		con = conexao.abrirConexao();
+		if ( con != null ) {
+			try {
+				PreparedStatement stmt = con.prepareStatement(sql);
+				stmt.setString(1, this.nome);
+				stmt.setString(2, this.departamento.getSigla());
+				stmt.setString(3, this.sigla);
+				
+				res = stmt.executeUpdate();
+			} catch (Exception e) {
+				res = 0;
+			}
 		}
+		
 	}
 
 	@Override

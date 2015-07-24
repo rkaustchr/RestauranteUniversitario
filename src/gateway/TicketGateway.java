@@ -1,5 +1,8 @@
 package gateway;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
 import persistencia.ConexaoBD;
 
 public class TicketGateway implements IGateway {
@@ -9,6 +12,7 @@ public class TicketGateway implements IGateway {
 	private IGateway consumidor;
 	
 	protected ConexaoBD conexao;
+	protected Connection con;
 	
 	public TicketGateway(int id, boolean pago, RefeicaoGateway refeicao, IGateway consumidor) {
 		super();
@@ -39,12 +43,21 @@ public class TicketGateway implements IGateway {
 	@Override
 	public boolean insert() {
 		int res= 0; 
-		String sql = "INSERT INTO ticket(pago, idRefeicao, cpfConsumidor ) "
-				+ "VALUES("+ this.pago +", "+ this.refeicao.getId() +", '"+ ( (ConsumidorGateway) this.consumidor).getCpf()+"');";
+		String sql = "INSERT INTO ticket(pago, idRefeicao, cpfConsumidor ) VALUES(?, ?, ?);";
 		
-		if ( conexao.abrirConexao() ) {
-			res = conexao.executarCUDQuery(sql);
-			conexao.fecharConexao();
+		con = conexao.abrirConexao();
+		if ( con != null ) {
+			try {
+				PreparedStatement stmt = con.prepareStatement(sql);
+				stmt.setBoolean(1, this.pago);
+				stmt.setInt(2, Integer.parseInt( this.refeicao.getId()) );
+				stmt.setString(3, ( (ConsumidorGateway) this.consumidor).getCpf().toString());
+				
+				
+				res = stmt.executeUpdate();
+			} catch (Exception e) {
+				res = 0;
+			}
 		}
 		
 		if ( res == 0 ) {
@@ -58,12 +71,20 @@ public class TicketGateway implements IGateway {
 
 	@Override
 	public void update() {
-		String sql = "UPDATE ticket "
-				+ "SET pago="+ this.pago + " WHERE id='"+ this.id +"';";
+		String sql = "UPDATE ticket SET pago=? WHERE id=?;";
+		int res = 0;
 		
-		if ( conexao.abrirConexao() ) {
-			conexao.executarCUDQuery(sql);
-			conexao.fecharConexao();
+		con = conexao.abrirConexao();
+		if ( con != null ) {
+			try {
+				PreparedStatement stmt = con.prepareStatement(sql);
+				stmt.setBoolean(1, this.pago);
+				stmt.setInt(2, this.id );
+				
+				res = stmt.executeUpdate();
+			} catch (Exception e) {
+				res = 0;
+			}
 		}
 		
 	}

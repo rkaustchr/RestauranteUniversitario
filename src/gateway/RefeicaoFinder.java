@@ -1,5 +1,6 @@
 package gateway;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import persistencia.ConexaoBD;
 public class RefeicaoFinder implements IFinder {
 	
 	protected ConexaoBD conexao;
+	protected Connection con;
 	
 	public RefeicaoFinder() {
 		conexao = new ConexaoBD();
@@ -19,7 +21,8 @@ public class RefeicaoFinder implements IFinder {
 		ArrayList<IGateway> gRefeicoes = new ArrayList<IGateway>();
 		String sql = "SELECT * FROM refeicao;";
 		
-		if (conexao.abrirConexao()) {
+		con = conexao.abrirConexao();
+		if ( con != null ) {
 			ResultSet rs = conexao.executarSelectQuery(sql);
 			
 			if ( rs != null ) {
@@ -44,7 +47,8 @@ public class RefeicaoFinder implements IFinder {
 		String sql = "SELECT * FROM refeicao WHERE id='"+ id +"';";
 		IGateway gRefeicao = null;
 		
-		if (conexao.abrirConexao()) {
+		con = conexao.abrirConexao();
+		if ( con != null ) {
 			ResultSet rs = conexao.executarSelectQuery(sql);
 			if ( rs != null ) {
 				try {
