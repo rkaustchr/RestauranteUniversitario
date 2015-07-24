@@ -39,7 +39,14 @@ public class VerTicket extends HttpServlet {
 		String acao = (String) request.getParameter("acaoVer");
 		if (acao == null)
 			acao = "";
-
+		
+		if(request.getParameter("id") == null){
+			request.setAttribute("erro", "Selecione uma Refeicao!");
+			response.sendRedirect("ListarTicket"); 
+			//request.getRequestDispatcher("ListarConsumidor.jsp").forward(request,response);
+			return;
+		}
+		
 		switch (acao) {
 			case "Voltar":
 				request.getRequestDispatcher("ListarTicket").forward(request,response);

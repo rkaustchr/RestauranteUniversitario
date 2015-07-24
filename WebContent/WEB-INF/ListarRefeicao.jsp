@@ -32,7 +32,7 @@
 				<br />
 						
 				<table width="80%">
-				  <tr><th>op</<th><th>Turno</th><th>Descrição</th><th>Opção Vegetariana</th></tr>
+				  <tr><th></<th><th>Turno</th><th>Descrição</th><th>Opção Vegetariana</th></tr>
 				  <%
 					  try{
 						  ArrayList<Refeicao> listaRefeicao = (ArrayList<Refeicao>)request.getAttribute("listaRefeicoes");

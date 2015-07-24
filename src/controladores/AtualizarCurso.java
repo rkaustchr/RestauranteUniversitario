@@ -23,6 +23,13 @@ public class AtualizarCurso extends HttpServlet {
 		
 		if (acao == null)
 			acao = "";
+		
+		if(request.getParameter("sigla") == null){
+			request.setAttribute("erro", "Selecione um departamento!");
+			response.sendRedirect("ListarCurso"); 
+			//request.getRequestDispatcher("ListarConsumidor.jsp").forward(request,response);
+			return;
+		}
 
 		switch (acao) {
 			case "Cancelar":

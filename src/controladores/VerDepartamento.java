@@ -22,6 +22,13 @@ public class VerDepartamento extends HttpServlet {
 		if (acao == null)
 			acao = "";
 
+		if(request.getParameter("sigla") == null){
+			request.setAttribute("erro", "Selecione um departamento!");
+			response.sendRedirect("ListarDepartamento"); 
+			//request.getRequestDispatcher("ListarConsumidor.jsp").forward(request,response);
+			return;
+		}
+		
 		switch (acao) {
 			case "Voltar":
 				request.getRequestDispatcher("ListarDepartamento").forward(request,response);

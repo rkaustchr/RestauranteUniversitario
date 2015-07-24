@@ -41,7 +41,14 @@ public class AtualizarTicket extends HttpServlet {
 		
 		if (acao == null)
 			acao = "";
-
+		
+		if(request.getParameter("id") == null){
+			request.setAttribute("erro", "Selecione uma Refeicao!");
+			response.sendRedirect("ListarTicket"); 
+			//request.getRequestDispatcher("ListarConsumidor.jsp").forward(request,response);
+			return;
+		}
+		
 		switch (acao) {
 			case "Cancelar":
 			case "Voltar":

@@ -39,6 +39,13 @@ public class VerConsumidor extends HttpServlet {
 		String acao = (String) request.getParameter("acaoVer");
 		if (acao == null)
 			acao = "";
+		
+		if(request.getParameter("cpf") == null){
+			request.setAttribute("erro", "Selecione um consumidor!");
+			response.sendRedirect("ListarConsumidor"); 
+			//request.getRequestDispatcher("ListarConsumidor.jsp").forward(request,response);
+			return;
+		}
 
 		switch (acao) {
 			case "Voltar":

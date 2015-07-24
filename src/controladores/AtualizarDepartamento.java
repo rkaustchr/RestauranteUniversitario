@@ -20,7 +20,7 @@ public class AtualizarDepartamento extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String acao = (String) request.getParameter("acaoAtualizar");
-		if(request.getParameter("DCC") == null){
+		if(request.getParameter("sigla") == null){
 			request.setAttribute("erro", "Selecione um departamento!");
 			response.sendRedirect("ListarDepartamento"); 
 			//request.getRequestDispatcher("ListarConsumidor.jsp").forward(request,response);
