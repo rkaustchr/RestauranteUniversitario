@@ -1,5 +1,6 @@
 package gateway;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import persistencia.ConexaoBD;
 public class TicketFinder implements IFinder {
 	
 	protected ConexaoBD conexao;
+	protected Connection con;
 
 	public TicketFinder(){
 		conexao = new ConexaoBD();
@@ -18,7 +20,8 @@ public class TicketFinder implements IFinder {
 		ArrayList<IGateway> gTickets = new ArrayList<IGateway>();
 		String sql = "SELECT * FROM ticket;";
 		
-		if (conexao.abrirConexao()) {
+		con = conexao.abrirConexao();
+		if ( con != null ) {
 			ResultSet rs = conexao.executarSelectQuery(sql);
 			
 			if ( rs != null ) {
@@ -53,7 +56,8 @@ public class TicketFinder implements IFinder {
 		String sql = "SELECT * FROM ticket WHERE idRefeicao='"+ id +"';";
 		IGateway gTicket = null;
 		
-		if (conexao.abrirConexao()) {
+		con = conexao.abrirConexao();
+		if ( con != null ) {
 			ResultSet rs = conexao.executarSelectQuery(sql);
 			if ( rs != null ) {
 				try {

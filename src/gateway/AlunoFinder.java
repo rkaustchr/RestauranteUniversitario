@@ -1,5 +1,6 @@
 package gateway;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import persistencia.ConexaoBD;
 
 public class AlunoFinder implements IFinder {
 	protected ConexaoBD conexao;
+	protected Connection con;
 	
 	public AlunoFinder() {
 		conexao = new ConexaoBD();
@@ -20,7 +22,8 @@ public class AlunoFinder implements IFinder {
 		ArrayList<IGateway> gAlunos = new ArrayList<IGateway>();
 		String sql = "SELECT * FROM Aluno, Consumidor where cpf = cpfConsumidor;";
 		
-		if (conexao.abrirConexao()) {
+		con = conexao.abrirConexao();
+		if ( con != null ) {
 			ResultSet rs = conexao.executarSelectQuery(sql);
 			
 			if ( rs != null ) {
@@ -56,7 +59,8 @@ public class AlunoFinder implements IFinder {
 		String sql = "SELECT * FROM Aluno, Consumidor WHERE cpf='"+ id +"' AND cpf = cpfConsumidor;";
 		IGateway gAluno = null; //new AlunoGateway("", 0, "", null, null, null, null);
 		
-		if (conexao.abrirConexao()) {
+		con = conexao.abrirConexao();
+		if ( con != null ) {
 			ResultSet rs = conexao.executarSelectQuery(sql);
 			if ( rs != null ) {
 				try {

@@ -1,5 +1,8 @@
 package gateway;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
 import entidades.Turno;
 import persistencia.ConexaoBD;
 
@@ -10,6 +13,7 @@ public class RefeicaoGateway implements IGateway {
 	private Turno turno;
 	
 	protected ConexaoBD conexao;
+	protected Connection con;
 	
 	public RefeicaoGateway(String id, String descricao, Turno turno, String opcaoVegan) {
 		super();
@@ -40,12 +44,20 @@ public class RefeicaoGateway implements IGateway {
 	@Override
 	public boolean insert() {
 		int res = 0;
-		String sql = "INSERT INTO refeicao(turno, descricao, opcaoVegan) "
-				+ "VALUES('"+ this.turno.toString() +"', '"+ this.descricao +"', '"+ this.opcaoVegan +"');";
+		String sql = "INSERT INTO refeicao(turno, descricao, opcaoVegan) VALUES(?, ?, ?);";
 
-		if ( conexao.abrirConexao() ) {
-			res = conexao.executarCUDQuery(sql);
-			conexao.fecharConexao();
+		con = conexao.abrirConexao();
+		if ( con != null ) {
+			try {
+				PreparedStatement stmt = con.prepareStatement(sql);
+				stmt.setString(1, this.turno.toString());
+				stmt.setString(2, this.descricao);
+				stmt.setString(3, this.opcaoVegan);
+				
+				res = stmt.executeUpdate();
+			} catch (Exception e) {
+				res = 0;
+			}
 		}
 		
 		if ( res == 0 ) {
@@ -59,13 +71,22 @@ public class RefeicaoGateway implements IGateway {
 
 	@Override
 	public void update() {
-		String sql = "UPDATE refeicao "
-				+ "SET descricao='"+ this.descricao +"', opcaoVegan='"+ this.opcaoVegan +"' "
-						+ "WHERE id='"+ this.id +"';";
-		
-		if ( conexao.abrirConexao() ) {
-			conexao.executarCUDQuery(sql);
-			conexao.fecharConexao();
+		String sql = "UPDATE refeicao SET descricao=?, opcaoVegan=? WHERE id=?;";
+		int res = 0;
+	
+		con = conexao.abrirConexao();
+		if ( con != null ) {
+			try {
+				PreparedStatement stmt = con.prepareStatement(sql);
+				stmt.setString(1, this.descricao);
+				stmt.setString(2, this.opcaoVegan);
+				stmt.setInt(3, Integer.parseInt(this.id) );
+				
+				res = stmt.executeUpdate();
+			} catch (Exception e) {
+				res = 0;
+				System.out.println("ERRO: Update Refeicao");
+			}
 		}
 		
 	}

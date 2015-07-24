@@ -48,7 +48,7 @@ public class ConexaoBD {
 	private Connection conexao;
 	
 	// request.getContextPath()
-	public boolean abrirConexao( )  {
+	public Connection abrirConexao( )  {
 	    try {
 			Class.forName("org.h2.Driver");
 			
@@ -69,17 +69,18 @@ public class ConexaoBD {
 				conexao = DriverManager.getConnection("jdbc:h2:~/restauranteTeste", "admin", "admin");
 			}
 			
-			return true;
+			return conexao;
 			
 		} catch (ClassNotFoundException e) {
 			System.out.println("Erro ao abrir conexão: Classe Não encontrada!");
-			return false;
+			return null;
 		} catch (SQLException e) {
 			System.out.println("Erro ao abrir conexão: " + e.getMessage());
-			return false;
+			return null;
 		}
 	    	    
 	}
+	
 	
 	public void fecharConexao() {
 		try {

@@ -1,5 +1,6 @@
 package gateway;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import persistencia.ConexaoBD;
 
 public class DepartamentoFinder implements IFinder {
 	protected ConexaoBD conexao;
+	protected Connection con;
 	
 	public DepartamentoFinder(){
 		conexao = new ConexaoBD();
@@ -18,7 +20,8 @@ public class DepartamentoFinder implements IFinder {
 		ArrayList<IGateway> gDepartamentos = new ArrayList<IGateway>();
 		String sql = "SELECT * FROM departamento ORDER BY nome ASC;";
 		
-		if (conexao.abrirConexao()) {
+		con = conexao.abrirConexao();
+		if ( con != null ) {
 			ResultSet rs = conexao.executarSelectQuery(sql);
 			
 			if ( rs != null ) {
@@ -43,7 +46,8 @@ public class DepartamentoFinder implements IFinder {
 		String sql = "SELECT * FROM departamento WHERE sigla='"+ id +"';";
 		IGateway gDepartamento = null;
 		
-		if (conexao.abrirConexao()) {
+		con = conexao.abrirConexao();
+		if ( con != null ) {
 			ResultSet rs = conexao.executarSelectQuery(sql);
 			if ( rs != null ) {
 				try {

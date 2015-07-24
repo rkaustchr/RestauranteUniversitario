@@ -1,5 +1,8 @@
 package gateway;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
 import persistencia.ConexaoBD;
 
 public class DepartamentoGateway implements IGateway{
@@ -7,6 +10,7 @@ public class DepartamentoGateway implements IGateway{
 	private String sigla;
 	
 	protected ConexaoBD conexao;
+	protected Connection con;
 
 	public DepartamentoGateway(String nome, String sigla) {
 		this.nome = nome;
@@ -30,15 +34,19 @@ public class DepartamentoGateway implements IGateway{
 	@Override
 	public boolean insert() {
 		int res = 0;
-		String sql = "INSERT INTO departamento(sigla, nome) "
-				+ "VALUES('"+ this.sigla +"', '"+ this.nome +"');";
+		String sql = "INSERT INTO departamento(sigla, nome) VALUES(?, ?);";
 		
-		if ( conexao.abrirConexao() ) {
-			res = conexao.executarCUDQuery(sql);
-
-			conexao.fecharConexao();
-		} else {
-			System.out.println("Erro: Não foi possivel abrir a conexão!");
+		con = conexao.abrirConexao();
+		if ( con != null ) {
+			try {
+				PreparedStatement stmt = con.prepareStatement(sql);
+				stmt.setString(1, this.sigla);
+				stmt.setString(2, this.nome);
+				
+				res = stmt.executeUpdate();
+			} catch (Exception e) {
+				res = 0;
+			}
 		}
 		
 		if ( res == 0 ) {
@@ -52,14 +60,20 @@ public class DepartamentoGateway implements IGateway{
 
 	@Override
 	public void update() {
-		String sql = "UPDATE departamento SET nome='"+ this.nome +"' WHERE sigla='"+ this.sigla +"';";
+		String sql = "UPDATE departamento SET nome=? WHERE sigla=?;";
+		int res = 0;
 		
-		if ( conexao.abrirConexao() ) {
-			conexao.executarCUDQuery(sql);
-
-			conexao.fecharConexao();
-		} else {
-			System.out.println("Erro: Não foi possivel abrir a conexão!");
+		con = conexao.abrirConexao();
+		if ( con != null ) {
+			try {
+				PreparedStatement stmt = con.prepareStatement(sql);
+				stmt.setString(1, this.nome);
+				stmt.setString(2, this.sigla);
+				
+				res = stmt.executeUpdate();
+			} catch (Exception e) {
+				res = 0;
+			}
 		}
 		
 	}
