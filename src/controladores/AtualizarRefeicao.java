@@ -18,6 +18,12 @@ public class AtualizarRefeicao extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String acao = (String) request.getParameter("acaoAtualizar");
+		if(request.getParameter("id") == null){
+			request.setAttribute("erro", "Selecione uma Refeicao!");
+			response.sendRedirect("ListarRefeicao"); 
+			//request.getRequestDispatcher("ListarConsumidor.jsp").forward(request,response);
+			return;
+		}
 		if (acao == null)
 			acao = "";
 

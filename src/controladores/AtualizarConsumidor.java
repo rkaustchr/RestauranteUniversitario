@@ -20,7 +20,13 @@ public class AtualizarConsumidor extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String acao = (String) request.getParameter("acaoAtualizar");
-		
+		if(request.getParameter("cpf") == null){
+			request.setAttribute("erro", "Selecione um consumidor!");
+			response.sendRedirect("ListarConsumidor"); 
+			//request.getRequestDispatcher("ListarConsumidor.jsp").forward(request,response);
+			return;
+		}
+			
 		if (acao == null)
 			acao = "";
 

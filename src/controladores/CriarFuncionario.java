@@ -72,7 +72,7 @@ public class CriarFuncionario extends HttpServlet {
 		String siglaDepartamento =  (String)request.getParameter("departamento");
 		
 		CPF testeCPF = new CPF(cpf);
-		if ( testeCPF.isCpfValido() == false ) {
+		if ( !testeCPF.isCpfValido()) {
 			request.setAttribute("erro", "Deve ser informado um CPF válido!");
 			request.getRequestDispatcher("WEB-INF/CriarFuncionario.jsp").forward(request,response);
 			return;

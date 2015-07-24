@@ -38,8 +38,7 @@
 						<option value="ESPECIALIZACAO">Especialização</option>
 					</select> <br />
 			CPF : <input type="text" name ="cpf" value = ""> <br />
-			Departamento : <select name ="departamento"> 
-						<option value=""></option>
+			Departamento : <select name ="departamento">
 						<% for(Departamento dptoi : departamentosDisponiveis){ %>
 							<option value="<%=dptoi.getSigla()%>"><%=dptoi.getNome()%></option>
 						<% } %>

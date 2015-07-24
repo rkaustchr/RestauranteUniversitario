@@ -24,7 +24,7 @@
 		
 			<form action="ListarRefeicao" method="post">
 				<center>
-					<h2>Listagem dos departamentos</h2>
+					<h2>Listagem das Refeições</h2>
 					<input type="submit" name ="acaoListar" value = "Criar">
 					<input type="submit" name ="acaoListar" value = "Atualizar">
 					<input type="submit" name ="acaoListar" value = "Ver">

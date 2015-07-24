@@ -80,6 +80,14 @@ public class CPF {
 		return digitos;
 	}
 	
+	public Boolean equals(String str){
+		if(this.digitos.equals(str)){
+			return true;
+		}
+		else
+			return false;
+	}
+	
 	public String toString() {
 		return digitos;
 	}

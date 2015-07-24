@@ -34,6 +34,7 @@
 					    <th></th>
 					    <th>Refeição</th>
 					    <th>Consumidor</th>
+					    <th>Valor</th>
 					    <th>Pago</th>
 					  </tr>
 					  
@@ -47,6 +48,7 @@
 						    <td><input type="radio" name='id' value='<%=listaTickets.get(i).getId()%>'></td>
 						    <td><%=listaTickets.get(i).getRefeicao().getDescricao()%></td>
 						    <td><%=listaTickets.get(i).getConsumidor().getNome() %></td>
+						    <td>R$ <%=listaTickets.get(i).getPreco() %>0</td>
 						    <td align="center">
 						    	<% if ( listaTickets.get(i).isPago() == true ) { %>
 						    		<img src="https://cdn2.iconfinder.com/data/icons/function_icon_set/accepted_48.png" alt="Pago" width="16" height="16"/>

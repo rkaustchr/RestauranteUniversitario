@@ -29,7 +29,10 @@ public class RoteiroCriarCurso {
 					throw new NomeNotFoundException();
 				}else{
 					CursoGateway gCurso = new CursoGateway(nome, sigla, gDepartamento);
-					gCurso.insert();
+					boolean b = gCurso.insert();
+					if (b == false)
+						throw new SiglaAlreadyExistsException(sigla);
+					
 				}
 			}
 		}else{

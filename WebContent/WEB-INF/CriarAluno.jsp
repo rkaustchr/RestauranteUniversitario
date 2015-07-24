@@ -34,8 +34,7 @@
 						<option value="ESPECIALIZACAO">Especialização</option>
 					</select><br />
 			CPF : <input type="text" name ="cpf" value = ""><br />
-			Curso : <select name ="curso"> 
-			<option value=""></option>
+			Curso : <select name ="curso">
 			<% for(Curso curso : cursosDisponiveis){ %>
 				<option value="<%=curso.getSigla()%>"><%=curso.getNome()%></option>
 			<% } %>

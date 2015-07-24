@@ -19,11 +19,11 @@
 		</div>
 			
 		<div class="conteudo">
-
-			<%@include file="messagePage.jsp" %>
+	
 			<center>
 			<form action="ListarCurso" method="post">
 			<h2>Listando os cursos</h2>
+			<%@include file="messagePage.jsp" %>
 				<input type="submit" name ="acaoListar" value = "Criar">
 				<input type="submit" name ="acaoListar" value = "Atualizar">
 				<input type="submit" name ="acaoListar" value = "Ver">

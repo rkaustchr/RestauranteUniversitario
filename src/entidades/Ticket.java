@@ -5,12 +5,17 @@ public class Ticket {
 	private Refeicao refeicao;
 	private boolean pago;
 	private Consumidor consumidor;
+	private double preco;
 	
 	public Ticket(int id, Refeicao refeicao, boolean pago, Consumidor consumidor) {
 		this.id = id;
 		this.refeicao = refeicao;
 		this.pago = pago;
 		this.consumidor = consumidor;
+		if(consumidor instanceof Aluno)
+			this.preco = this.refeicao.getTurno().getValorAluno();
+		else
+			this.preco = this.refeicao.getTurno().getValorFuncionario();
 	}
 
 	public int getId() {
@@ -45,5 +50,8 @@ public class Ticket {
 		this.consumidor = consumidor;
 	}
 	
+	public double getPreco(){
+		return preco;
+	}
 
 }

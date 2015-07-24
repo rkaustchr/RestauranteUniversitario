@@ -52,7 +52,7 @@ public class CriarCurso extends HttpServlet {
 		try {
 			RoteiroCriarCurso rCriarCurso = new RoteiroCriarCurso(nome, sigla, siglaDepartamento);
 			rCriarCurso.executar();
-			request.setAttribute("message", "Novo departamento criado!");
+			request.setAttribute("message", "Novo curso criado!");
 			request.getRequestDispatcher("ListarCurso").forward(request,response);
 		} catch (SiglaNotFoundException | NomeNotFoundException e2) {
 			request.setAttribute("erro", "Um curso deve conter um nome, uma sigla e um departamento");

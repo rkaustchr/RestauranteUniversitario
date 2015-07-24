@@ -8,7 +8,7 @@
 </style> 
 <title>SisRU - Criar Departamento</title>
 </head>
-<%@include file="messagePage.jsp" %>
+
 <body>
 	<div class="tudo">
 		<div class="topo">
@@ -19,6 +19,7 @@
 		<br />
 		<br />
 			<h2>Criar um novo departamento</h2>
+			<%@include file="messagePage.jsp" %><br>
 			<br />
 			<form action="CriarDepartamento" method="post">
 			Nome : <input type="text" name ="nome" value = ""> <br />

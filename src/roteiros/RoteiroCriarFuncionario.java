@@ -41,7 +41,7 @@ public class RoteiroCriarFuncionario {
 		DepartamentoFinder fDepartamento = new DepartamentoFinder();
 		DepartamentoGateway gDepartamento = (DepartamentoGateway) fDepartamento.find(this.siglaDepartamento);
 		if( gDepartamento != null ){			
-			if (this.cpf.toString() == ""){
+			if (this.cpf.equals("")){
 				throw new SiglaNotFoundException();
 			}else{
 				if (this.nome==""){

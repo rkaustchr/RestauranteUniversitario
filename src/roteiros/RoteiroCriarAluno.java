@@ -42,14 +42,14 @@ public class RoteiroCriarAluno {
 		CursoFinder fCurso = new CursoFinder();
 		CursoGateway gCurso = (CursoGateway) fCurso.find(this.siglaCurso);
 		if( gCurso != null ){			
-			if (this.cpf.toString() == ""){
+			if (this.cpf.equals("")){
 				throw new SiglaNotFoundException();
 			}else{
 				if (this.nome==""){
 					throw new NomeNotFoundException();
 				}else{
 					AlunoGateway gAluno = new AlunoGateway(this.nome, this.matricula, this.anoIngresso, this.sexo, this.titulo, this.cpf, gCurso);
-					if ( gAluno.insert() == false ) 
+					if ( !gAluno.insert()) 
 						throw new CpfAlreadyExistsException(this.cpf);
 				}
 			}

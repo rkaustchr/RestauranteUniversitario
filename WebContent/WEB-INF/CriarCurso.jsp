@@ -11,7 +11,7 @@
   <%@include file="css/estilo.css" %>  
 </style> 
 </head>
-<%@include file="messagePage.jsp" %>
+
 <% ArrayList<Departamento> departamentosDisponiveis = (ArrayList<Departamento>)request.getAttribute("departamentosDisponiveis"); %>
 
 <body>
@@ -22,11 +22,11 @@
 			
 		<div class="conteudo">
 			<h2>Criar novo curso</h2>
+			<%@include file="messagePage.jsp" %><br>
 			<form action="CriarCurso" method="post">
 				Nome : <input type="text" name ="nome" value = ""> <br />
 				Sigla : <input type="text" name ="sigla" value = ""> <br />
-				Departamento : <select name ="departamento"> 
-				<option value=""></option>
+				Departamento : <select name ="departamento" selected="1">
 				<% for(Departamento dptoi : departamentosDisponiveis){ %>
 					<option value="<%=dptoi.getSigla()%>"><%=dptoi.getNome()%></option>
 				<% } %>

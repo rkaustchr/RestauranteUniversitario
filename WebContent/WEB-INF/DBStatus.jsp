@@ -8,6 +8,11 @@
 </head>
 <body>
 	Status do banco de dados: <%= request.getAttribute("dbstatus") %>
+	<br />
+	<br />
+	<form action="DBStatus">
+		<input type="submit" value="Resetar Bando de Dados" />
+	</form>
 
 </body>
 </html>
